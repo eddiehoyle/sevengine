@@ -1,2 +1,3 @@
 # Sev
-Babies first game library.
+An academic experiment to learn game development.
+
