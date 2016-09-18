@@ -12,30 +12,13 @@
 #include <glm/gtc/type_ptr.hpp>
 
 Camera::Camera()
-        : m_transform( NULL ),
-          m_width( 0 ),
-          m_height( 0 )
+        : m_transform( NULL )
 {
     m_transform = new Transform();
-//    m_width = 0;
-//    m_height = 0;
 }
 
-//Camera::Camera( unsigned int screenWidth, unsigned int screenHeight )
-//        : m_transform( NULL ),
-//          m_width( 0 ),
-//          m_height( 0 )
-//{
-//    m_transform = new Transform();
-//    m_width = screenWidth;
-//    m_height = screenHeight;
-//}
-
-Camera::~Camera()
-{
+Camera::~Camera() {
     delete m_transform;
-    m_width = 0;
-    m_height = 0;
 }
 
 Transform* Camera::getTransform() const
@@ -48,6 +31,11 @@ void Camera::setTransform( Transform* transform )
     m_transform = transform;
 }
 
+void Camera::setAspectRatio( float aspect )
+{
+    m_aspect = aspect;
+}
+
 void Camera::setFocalLength( double focal )
 {
     // TODO
@@ -55,8 +43,8 @@ void Camera::setFocalLength( double focal )
 
 glm::mat4 Camera::getOrthographicMatrix()
 {
-    float aspectRatio = Game::instance()->getWindow()->getAspectRatio();
-    glm::mat4 matrix = glm::ortho( -aspectRatio, aspectRatio, -1.0f, 1.0f, -1.0f, 1.0f );
+//    float aspectRatio = Game::instance()->getWindow()->getAspectRatio();
+    glm::mat4 matrix = glm::ortho( -m_aspect, m_aspect, -1.0f, 1.0f, -1.0f, 1.0f );
     return matrix;
 }
 
@@ -64,12 +52,12 @@ glm::mat4 Camera::getProjectionMatrix()
 {
     // Perspective Matrix
     float fov = 45;
-    float aspectRatio = Game::instance()->getWindow()->getAspectRatio();
+//    float aspectRatio = Game::instance()->getWindow()->getAspectRatio();
     float nearClip = 0.1f;
     float farClip = 100.f;
 
     glm::mat4 matrix = glm::perspective( glm::radians( fov ),
-                                        aspectRatio,
+                                        m_aspect,
                                         nearClip,
                                         farClip );
     return matrix;

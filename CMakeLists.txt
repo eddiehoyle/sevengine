@@ -33,7 +33,11 @@ set(SOURCE_FILES
         src/core/event/InputEventHandler.cc
         src/core/event/InputEventHandler.hh
         src/core/event/InputEvent.cc
-        src/core/event/InputEvent.hh)
+        src/core/event/InputEvent.hh
+        src/core/observer/ObserverHandler.cc
+        src/core/observer/ObserverHandler.hh
+        src/core/observer/ObserverContext.cc
+        src/core/observer/ObserverContext.hh)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/build)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)

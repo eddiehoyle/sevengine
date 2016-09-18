@@ -7,16 +7,26 @@
 
 
 Entity::Entity()
-{}
-
-Entity::Entity( const char *name, Shader *shader, Model* model )
-        : m_name( "" ),
-          m_shader( NULL ),
-          m_model( NULL )
+        : m_shader( NULL ),
+          m_model( NULL ),
+          m_transform( NULL )
 {
-    m_name = name;
+    m_transform = new Transform();
+}
+
+Entity::~Entity()
+{
+    delete m_shader;
+    delete m_model;
+    delete m_transform;
+}
+
+
+void Entity::initializeShader( Shader* shader, Model* model )
+{
     m_shader = shader;
     m_model = model;
+
 }
 
 Shader* Entity::getShader() const
@@ -34,7 +44,7 @@ Model* Entity::getModel() const
     return m_model;
 }
 
-void Entity::draw( Camera* camera )
+void Entity::draw()
 {
     GLuint program = m_shader->getProgram();
     glUseProgram( program );
@@ -46,9 +56,9 @@ void Entity::draw( Camera* camera )
 
 //
 
-    glm::mat4 projection = camera->getProjectionMatrix();
-    GLint projectionHandle = glGetUniformLocation( program, "projection" );
-    glUniformMatrix4fv(projectionHandle, 1, GL_FALSE, glm::value_ptr(projection));
+//    glm::mat4 projection = camera->getProjectionMatrix();
+//    GLint projectionHandle = glGetUniformLocation( program, "projection" );
+//    glUniformMatrix4fv(projectionHandle, 1, GL_FALSE, glm::value_ptr(projection));
 //
 //    // ------------------------------------------------------------
 //
@@ -81,4 +91,9 @@ void Entity::draw( Camera* camera )
 //
 //    // Disable vertex array
 //    glDisableVertexAttribArray(mPositionHandle);
+}
+
+void Entity::listen( AbstractEvent *event )
+{
+    // TODO
 }

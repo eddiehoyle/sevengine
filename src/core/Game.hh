@@ -5,8 +5,11 @@
 #ifndef SEV_GAME_HH
 #define SEV_GAME_HH
 
+//#include <src/core/observer/ObserverHandler.hh>
 #include "Window.hh"
 #include "event/InputEventHandler.hh"
+#include "observer/ObserverHandler.hh"
+#include "Camera.hh"
 
 class Game
 {
@@ -19,6 +22,8 @@ public:
 
     Window* getWindow() { return m_window; }
     InputEventHandler* getInputHandler() { return m_inputEventHandler; }
+    ObserverHandler* getObserverHandler() { return m_observerHandler; }
+    Camera* getCamera() { return m_camera; }
 
 private:
     static Game *s_instance;
@@ -35,6 +40,8 @@ private:
 
     Window* m_window;
     InputEventHandler* m_inputEventHandler;
+    ObserverHandler* m_observerHandler;
+    Camera* m_camera;
 
 //  Log         *log_;
 //  FileSystem  *fileSystem_;

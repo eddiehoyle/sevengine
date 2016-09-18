@@ -12,6 +12,10 @@ Game::Game()
 {
     m_window = new Window();
     m_inputEventHandler = new InputEventHandler();
+    m_observerHandler = new ObserverHandler();
+
+    m_camera = new Camera();
+    m_camera->setAspectRatio( m_window->getAspectRatio() );
 }
 
 Game::~Game()

@@ -9,27 +9,29 @@
 #include "Transform.hh"
 #include "Model.hh"
 
-// Hmmm
-#include "Camera.hh"
+#include "event/AbstractEvent.hh"
+
 
 class Entity {
 
 public:
     Entity();
-    explicit Entity( const char* name, Shader* shader, Model* model );
+    virtual ~Entity();
+
+    void draw();
+    virtual void listen( AbstractEvent* event );
 
     Shader* getShader() const;
-    Transform* getTransform() const;
     Model* getModel() const;
-    void draw( Camera* camera );
+    Transform* getTransform() const;
+
+protected:
+    void initializeShader( Shader* shader, Model* model );
 
 private:
-    const char* m_name;
-
     Shader* m_shader;
     Model* m_model;
     Transform* m_transform;
-
 
 };
 
