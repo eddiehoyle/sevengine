@@ -18,7 +18,7 @@ public:
     Entity();
     virtual ~Entity();
 
-    void draw();
+    virtual void draw();
     virtual void listen( AbstractEvent* event );
 
     Shader* getShader() const;

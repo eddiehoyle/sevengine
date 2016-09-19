@@ -24,12 +24,12 @@ public:
               x( x ),
               y( y )
     {
-        std::cout << "TouchPressEvent (" << x << ", " << y << ")" << std::endl;
+//        std::cout << "TouchPressEvent (" << x << ", " << y << ")" << std::endl;
     }
 
     ~TouchPressEvent()
     {
-        std::cout << "TouchPressEvent delete()" << std::endl;
+//        std::cout << "TouchPressEvent delete()" << std::endl;
     };
 
     const  float x;
@@ -58,16 +58,16 @@ public:
               y( y ),
               magnitude( computeMagnitude() )
     {
-        std::cout << "TouchMoveEvent("
-        << prevX << ", " << prevY << ")"
-        << " --> ("
-        << x << ", " << y << "), magnitude: " << magnitude
-        << std::endl;
+//        std::cout << "TouchMoveEvent("
+//        << prevX << ", " << prevY << ")"
+//        << " --> ("
+//        << x << ", " << y << "), magnitude: " << magnitude
+//        << std::endl;
     }
 
     ~TouchMoveEvent()
     {
-        std::cout << "TouchMoveEvent delete()" << std::endl;
+//        std::cout << "TouchMoveEvent delete()" << std::endl;
     };
 
     const  float prevX;
@@ -101,12 +101,12 @@ public:
               x( 0 ),
               y( 0 )
     {
-        std::cout << "TouchReleaseEvent (" << x << ", " << y << ")" << std::endl;
+//        std::cout << "TouchReleaseEvent (" << x << ", " << y << ")" << std::endl;
     }
 
     ~TouchReleaseEvent()
     {
-        std::cout << "TouchReleaseEvent delete()" << std::endl;
+//        std::cout << "TouchReleaseEvent delete()" << std::endl;
     };
 
     const  float x;

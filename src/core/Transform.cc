@@ -72,6 +72,9 @@ glm::vec3& Transform::getScale()
     return m_scale;
 }
 
-
+glm::mat4 Transform::getMatrix()
+{
+    return glm::mat4();
+}
 
 

@@ -7,16 +7,19 @@
 
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
+#include <vector>
+
+typedef std::vector< GLfloat > Vertexes;
 
 class Model {
 
 public:
 
-    void setVertexes( GLfloat* vertexes );
-    GLfloat* getVertexes() const;
+    void setVertexes( Vertexes vertexes );
+    Vertexes getVertexes() const;
 
 private:
-    GLfloat* m_vertexes;
+    Vertexes m_vertexes;
 
 };
 

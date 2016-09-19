@@ -45,6 +45,7 @@ public:
 
 public:
 
+    glm::mat4 getMatrix();
     glm::vec3& getTranslate();
     glm::vec3& getRotate();
     glm::vec3& getScale();

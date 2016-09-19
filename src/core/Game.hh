@@ -19,6 +19,8 @@ public:
 
     static Game* instance();
     ~Game();
+    
+    void initialize( int width, int height );
 
     Window* getWindow() { return m_window; }
     InputEventHandler* getInputHandler() { return m_inputEventHandler; }

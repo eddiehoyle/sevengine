@@ -40,7 +40,11 @@ void Shader::check( const GLuint &id, const GLenum type )
     glGetShaderiv( id, type, &result );
     glGetShaderiv( id, GL_INFO_LOG_LENGTH, &length );
 
-    if ( length > 0 )
+    if ( length == 0 )
+    {
+        std::cout << "Shader compiled type " << type << " successfully." << std::endl;
+    }
+    else
     {
         char log[length + 1];
         glGetShaderInfoLog( id, length, &length, log );

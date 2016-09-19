@@ -4,12 +4,12 @@
 
 #include "Model.hh"
 
-void Model::setVertexes( GLfloat* vertexes )
+void Model::setVertexes( Vertexes vertexes )
 {
     m_vertexes = vertexes;
 }
 
-GLfloat* Model::getVertexes() const
+Vertexes Model::getVertexes() const
 {
     return m_vertexes;
 }

@@ -20,7 +20,7 @@ public:
     void setFocalLength( double focal );
     void setAspectRatio( float aspect );
 
-    glm::mat4 getProjectionMatrix();
+    glm::mat4 getPerspectiveMatrix();
     glm::mat4 getOrthographicMatrix();
 
 private:
