@@ -19,6 +19,8 @@ public:
     void setTransform( Transform* transform );
     void setFocalLength( double focal );
     void setAspectRatio( float aspect );
+    void setWidth( int width ) { m_width = ( float )width; }
+    void setHeight( int height ) { m_height = ( float )height; }
 
     glm::mat4 getPerspectiveMatrix();
     glm::mat4 getOrthographicMatrix();
@@ -28,6 +30,8 @@ private:
     Transform* m_transform;
 
     float m_aspect;
+    float m_width;
+    float m_height;
 
 };
 
