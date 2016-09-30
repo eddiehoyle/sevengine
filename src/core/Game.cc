@@ -20,9 +20,9 @@ void Game::initialize( int width, int height )
     m_window->update( width, height );
 
     m_camera = new Camera();
-    m_camera->setAspectRatio( m_window->getAspectRatio() );
-    m_camera->setWidth( width );
-    m_camera->setHeight( height );
+//    m_camera->setAspectRatio( m_window->getAspectRatio() );
+//    m_camera->setWidth( width );
+//    m_camera->setHeight( height );
 
     m_inputEventHandler = new InputEventHandler();
     m_observerHandler = new ObserverHandler();

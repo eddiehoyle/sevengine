@@ -43,21 +43,22 @@ void Camera::setFocalLength( double focal )
     // TODO
 }
 
-glm::mat4 Camera::getOrthographicMatrix()
+glm::mat4 Camera::getOrthographicMatrix( const unsigned int width, const unsigned int height )
 {
-    glm::mat4 matrix = glm::ortho( 0.0f, m_width, m_height, 0.0f, -1.0f, 1.0f );
+    glm::mat4 matrix = glm::ortho( 0.0f, ( float )width, ( float )height, 0.0f, -1.0f, 1.0f );
     return matrix;
 }
 
-glm::mat4 Camera::getPerspectiveMatrix()
+glm::mat4 Camera::getPerspectiveMatrix( const unsigned int width, const unsigned int height )
 {
     // Perspective Matrix
+    float aspect = ( float )width / height;
     float fov = 45.0f;
     float nearClip = 0.1f;
     float farClip = 100.f;
 
     glm::mat4 matrix = glm::perspective( glm::radians( fov ),
-                                         m_aspect,
+                                         aspect,
                                          nearClip,
                                          farClip );
     return matrix;

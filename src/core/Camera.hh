@@ -22,8 +22,8 @@ public:
     void setWidth( int width ) { m_width = ( float )width; }
     void setHeight( int height ) { m_height = ( float )height; }
 
-    glm::mat4 getPerspectiveMatrix();
-    glm::mat4 getOrthographicMatrix();
+    glm::mat4 getPerspectiveMatrix( const unsigned int width, const unsigned int height );
+    glm::mat4 getOrthographicMatrix( const unsigned int width, const unsigned int height );
 
 private:
 
