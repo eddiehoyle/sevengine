@@ -7,11 +7,13 @@
 
 #include "Entity.hh"
 #include "Game.hh"
+#include "Rect.hh"
 
 Entity::Entity()
         : m_shader( NULL ),
           m_model( NULL ),
-          m_transform( NULL )
+          m_transform( NULL ),
+          m_rect( NULL )
 {
     m_transform = new Transform();
 }
@@ -21,13 +23,21 @@ Entity::~Entity()
     delete m_shader;
     delete m_model;
     delete m_transform;
+    delete m_rect;
 }
 
 
-void Entity::initializeShader( Shader* shader, Model* model )
+void Entity::initializeShader( Shader* shader, Mesh* model )
 {
     m_shader = shader;
     m_model = model;
+
+}
+
+void Entity::initializeShader( Shader* shader, Rect* rect )
+{
+    m_shader = shader;
+    m_rect = rect;
 
 }
 
@@ -41,7 +51,7 @@ Transform* Entity::getTransform() const
     return m_transform;
 }
 
-Model* Entity::getModel() const
+Mesh* Entity::getModel() const
 {
     return m_model;
 }
@@ -80,7 +90,7 @@ Model* Entity::getModel() const
 ////    // In this case: [[x, y, z], [x, y, z], ...] == [12, 12, ...]
 //    GLuint stride = size * sizeof( GLfloat );
 //
-//    Vertexes vertexes = getModel()->getVertexes();
+//    Mesh vertexes = getModel()->getVertexes();
 ////    std::cout << "Paddle vertexes: "
 ////    << vertexes[0] << ", " << vertexes[1] << ", " << vertexes[2] << std::endl;
 //    glVertexAttribPointer( mPositionHandle, size, GL_FLOAT, GL_FALSE, stride, &vertexes[0] );
@@ -105,12 +115,17 @@ Model* Entity::getModel() const
 ////    std::cout << "Entity draw()" << std::endl;
 //}
 
+void Entity::listen( AbstractEvent* event )
+{
+    // TODO
+}
+
+void Entity::update( double elapsed )
+{
+    // TODO
+}
+
 void Entity::draw()
 {
 
-}
-
-void Entity::listen( AbstractEvent *event )
-{
-    // TODO
 }

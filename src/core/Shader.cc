@@ -42,7 +42,7 @@ void Shader::check( const GLuint &id, const GLenum type )
 
     if ( length == 0 )
     {
-        std::cout << "Shader compiled type " << type << " successfully." << std::endl;
+
     }
     else
     {

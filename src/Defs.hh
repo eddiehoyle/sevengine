@@ -5,12 +5,8 @@
 #ifndef SEV_DEFS_HH_HH
 #define SEV_DEFS_HH_HH
 
-#include "core/Transform.hh"
-#include "core/Shader.hh"
-
-// Transform
-typedef Transform::RotateOrder RotateOrder;
-
-
+typedef unsigned char  uchar;
+typedef unsigned short ushort;
+typedef unsigned int   uint;
 
 #endif //SEV_DEFS_HH_HH

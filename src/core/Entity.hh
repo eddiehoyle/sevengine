@@ -7,7 +7,9 @@
 
 #include "Shader.hh"
 #include "Transform.hh"
-#include "Model.hh"
+#include "Mesh.hh"
+#include "Rect.hh"
+#include "BoundingBox.hh"
 
 #include "event/AbstractEvent.hh"
 
@@ -18,20 +20,26 @@ public:
     Entity();
     virtual ~Entity();
 
-    virtual void draw();
+
     virtual void listen( AbstractEvent* event );
+    virtual void update( double elapsed );
+    virtual void draw();
+
 
     Shader* getShader() const;
-    Model* getModel() const;
+    Mesh* getModel() const;
     Transform* getTransform() const;
 
 protected:
-    void initializeShader( Shader* shader, Model* model );
+    void initializeShader( Shader* shader, Mesh* model );
+    void initializeShader( Shader* shader, Rect* rect );
 
 private:
     Shader* m_shader;
-    Model* m_model;
+    Mesh* m_model;
     Transform* m_transform;
+    Rect* m_rect;
+
 
 };
 

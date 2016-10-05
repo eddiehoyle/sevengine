@@ -17,13 +17,13 @@ set(SOURCE_FILES
         src/core/Window.hh
         src/core/Transform.cc
         src/core/Transform.hh
-        src/Defs.hh.hh
+        src/Defs.hh
         src/core/Shader.cc
         src/core/Shader.hh
         src/core/Entity.cc
         src/core/Entity.hh
-        src/core/Model.cc
-        src/core/Model.hh
+        src/core/Mesh.cc
+        src/core/Mesh.hh
         src/core/Camera.cc
         src/core/Camera.hh
         src/core/Game.cc
@@ -37,7 +37,19 @@ set(SOURCE_FILES
         src/core/observer/ObserverHandler.cc
         src/core/observer/ObserverHandler.hh
         src/core/observer/ObserverContext.cc
-        src/core/observer/ObserverContext.hh)
+        src/core/observer/ObserverContext.hh
+        src/core/BoundingBox.cc
+        src/core/BoundingBox.hh
+        src/core/Rect.cc
+        src/core/Rect.hh
+        src/core/graphics/Buffer.cc
+        src/core/graphics/Buffer.hh
+        src/core/graphics/Vertex.cc
+        src/core/graphics/Vertex.hh
+        src/core/graphics/render/AbstractRender.cc
+        src/core/graphics/render/AbstractRender.hh
+        src/core/graphics/render/QuadRender.cc
+        src/core/graphics/render/QuadRender.hh )
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/build)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)
