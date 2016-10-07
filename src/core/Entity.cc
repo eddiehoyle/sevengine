@@ -34,7 +34,7 @@ void Entity::initializeShader( Shader* shader, Mesh* model )
 
 }
 
-void Entity::initializeShader( Shader* shader, Rect* rect )
+void Entity::initializeShader( Shader* shader, Quad* rect )
 {
     m_shader = shader;
     m_rect = rect;

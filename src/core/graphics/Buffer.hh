@@ -6,6 +6,11 @@
 #define SEV_BUFFER_HH
 
 #include <OpenGLES/gltypes.h>
+#include <cstddef>
+
+inline char* bufferOffset( GLuint offset ) {
+    return ( char* )NULL + offset;
+}
 
 class Buffer {
 
@@ -36,8 +41,16 @@ public:
     /// Delete this buffer.
     void destroy();
 
+    /// Get the ID.
+    /// returns the ID of this buffer.
+    GLuint getID() const;
+
 private:
+
+    /// The id of this buffer
     GLuint m_id;
+
+    /// TODO
     GLenum m_target;
 };
 

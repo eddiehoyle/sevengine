@@ -6,7 +6,7 @@
 #define SEV_QUADRENDERER_HH
 
 #include "AbstractRender.hh"
-#include "../Rect.hh"
+#include "src/core/graphics/Quad.hh"
 
 class RenderQuad : public AbstractRender {
 
@@ -16,7 +16,7 @@ public:
 
 public:
     virtual void begin() {};
-    virtual void render( void* Texture, Rect* rect) {};
+    virtual void render( void* Texture, Quad* rect) {};
     virtual void end() {};
 
 private:

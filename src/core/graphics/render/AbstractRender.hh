@@ -9,7 +9,7 @@
 #include "../Vertex.hh"
 #include "src/core/graphics/Buffer.hh"
 #include "../../../Defs.hh"
-#include "../Rect.hh"
+#include "src/core/graphics/Quad.hh"
 
 /*
  * class RendererQuad {
@@ -49,7 +49,7 @@ public:
 
 public:
     virtual void begin();
-    virtual void render( void* Texture, Rect* rect);
+    virtual void render( void* Texture, Quad* rect);
     virtual void end();
 
     RenderType getType() const { return m_type; }

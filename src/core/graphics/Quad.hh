@@ -7,9 +7,9 @@
 
 #include "Vertex.hh"
 
-struct Rect {
+struct Quad {
 
-    Rect();
+    Quad();
 
     void set( float x, float y, float u, float v );
     Vertex bl, br, tl, tr;

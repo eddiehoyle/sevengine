@@ -2,9 +2,9 @@
 // Created by Eddie Hoyle on 7/10/16.
 //
 
-#include "Rect.hh"
+#include "Quad.hh"
 
-Rect::Rect()
+Quad::Quad()
     : bl(),
       br(),
       tl(),
@@ -13,7 +13,7 @@ Rect::Rect()
     set( 0.0f, 0.0f, 0.0f, 0.0f );
 }
 
-void Rect::set( float x, float y, float u, float v )
+void Quad::set( float x, float y, float u, float v )
 {
     bl.set( 0.0f, 0.0f, 0.0f, 0.0f );
     br.set( x, 0.0f, u, 0.0f );

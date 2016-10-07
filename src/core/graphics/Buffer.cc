@@ -37,3 +37,9 @@ void Buffer::destroy()
     glDeleteBuffers( 1, &m_id );
 }
 
+GLuint Buffer::getID() const
+{
+    return m_id;
+}
+
+

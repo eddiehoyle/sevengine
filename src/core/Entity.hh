@@ -32,13 +32,13 @@ public:
 
 protected:
     void initializeShader( Shader* shader, Mesh* model );
-    void initializeShader( Shader* shader, Rect* rect );
+    void initializeShader( Shader* shader, Quad* rect );
 
 private:
     Shader* m_shader;
     Mesh* m_model;
     Transform* m_transform;
-    Rect* m_rect;
+    Quad* m_rect;
 
 
 };

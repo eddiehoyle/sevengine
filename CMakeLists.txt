@@ -49,7 +49,7 @@ set(SOURCE_FILES
         src/core/graphics/render/AbstractRender.cc
         src/core/graphics/render/AbstractRender.hh
         src/core/graphics/render/RenderQuad.cc
-        src/core/graphics/render/RenderQuad.hh src/core/graphics/Rect.cc src/core/graphics/Rect.hh)
+        src/core/graphics/render/RenderQuad.hh src/core/graphics/Quad.cc src/core/graphics/Quad.hh src/core/graphics/Texture.cc src/core/graphics/Texture.hh)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/build)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)

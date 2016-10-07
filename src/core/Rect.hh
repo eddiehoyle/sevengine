@@ -11,10 +11,10 @@
 #include <glm/vec2.hpp>
 #include <glm/gtx/transform.hpp>
 
-class Rect {
+class Quad {
 
 public:
-    Rect( const float width, const float height )
+    Quad( const float width, const float height )
     {
         m_a = glm::vec2( width / -2, height / 2 );
         m_b = glm::vec2( width / 2, height / 2 );
