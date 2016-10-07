@@ -7,8 +7,10 @@
 
 #include <cstddef>
 #include "../Vertex.hh"
-#include "../Buffer.hh"
+#include "src/core/graphics/Buffer.hh"
 #include "../../../Defs.hh"
+#include "../Rect.hh"
+
 /*
  * class RendererQuad {
   public:
@@ -33,6 +35,13 @@
 
 }
  */
+
+enum RenderType {
+    kNull = 0,
+    kParticle,
+    kQuad
+};
+
 class AbstractRender {
 
 public:
@@ -40,8 +49,10 @@ public:
 
 public:
     virtual void begin();
-    virtual void render();
+    virtual void render( void* Texture, Rect* rect);
     virtual void end();
+
+    RenderType getType() const { return m_type; }
 
 private:
     virtual void flush();
@@ -50,6 +61,8 @@ protected:
     Buffer m_buffer;
     Vertex m_vertexes[256];
     std::size_t m_index;
+
+    RenderType m_type;
 
 };
 

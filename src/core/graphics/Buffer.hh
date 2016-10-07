@@ -5,9 +5,40 @@
 #ifndef SEV_BUFFER_HH
 #define SEV_BUFFER_HH
 
+#include <OpenGLES/gltypes.h>
 
 class Buffer {
 
+public:
+
+    /// Generate a unique buffer of type
+    /// @param target:
+    void create( GLenum target );
+
+    /// Create a new buffer store bound to m_target
+    /// @param size: Size in bytes of the buffer object's new data store.
+    /// @param usage: Specifies the expected usage pattern of the data store.
+    void allocate( GLsizei size, GLenum usage );
+
+    /// Fill up the buffer, or parts of the buffer with data.
+    /// @param data: Pointer to the new data that will be copied into the data store.
+    /// @param offset: Specifies the offset into the buffer object's data store where data
+    ///     replacement will begin, measured in bytes.
+    /// @param size: Specifies the size in bytes of the data store region being replaced.
+    void buffer( void* data, GLintptr offset, GLsizei size );
+
+    /// Bind this buffer to m_target.
+    void bind();
+
+    /// Break connection to m_target.
+    void unbind();
+
+    /// Delete this buffer.
+    void destroy();
+
+private:
+    GLuint m_id;
+    GLenum m_target;
 };
 
 

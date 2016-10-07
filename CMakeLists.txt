@@ -48,8 +48,8 @@ set(SOURCE_FILES
         src/core/graphics/Vertex.hh
         src/core/graphics/render/AbstractRender.cc
         src/core/graphics/render/AbstractRender.hh
-        src/core/graphics/render/QuadRender.cc
-        src/core/graphics/render/QuadRender.hh )
+        src/core/graphics/render/RenderQuad.cc
+        src/core/graphics/render/RenderQuad.hh src/core/graphics/Rect.cc src/core/graphics/Rect.hh)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/build)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)

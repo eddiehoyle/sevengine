@@ -5,18 +5,18 @@
 #ifndef SEV_QUADRENDERER_HH
 #define SEV_QUADRENDERER_HH
 
-
 #include "AbstractRender.hh"
+#include "../Rect.hh"
 
-class QuadRender : public AbstractRender {
+class RenderQuad : public AbstractRender {
 
 public:
-    QuadRender() : AbstractRender() {}
-    virtual ~QuadRender() {}
+    RenderQuad();
+    virtual ~RenderQuad();
 
 public:
     virtual void begin() {};
-    virtual void render() {};
+    virtual void render( void* Texture, Rect* rect) {};
     virtual void end() {};
 
 private:

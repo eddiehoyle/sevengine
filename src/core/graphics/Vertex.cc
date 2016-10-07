@@ -5,7 +5,7 @@
 #include "Vertex.hh"
 
 
-void Vertex::set(float _x, float _y, float _u, float _v)
+void Vertex::set( float _x, float _y, float _u, float _v )
 {
     x = _x;
     y = _y;
