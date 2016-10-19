@@ -1,3 +1,2 @@
-# Sev
-An academic experiment to learn game development.
-
+# Sevengine
+Learning C++ by writing a simple 2D game library.
