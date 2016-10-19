@@ -4,10 +4,11 @@
 
 #include <vector>
 #include "Shader.hh"
-
-
-Shader::Shader()
-{}
+//#include <GL/glew.h>
+//#include <GLFW/glfw3.h>
+//#include <GLFW/glfw3.h>
+//Shader::Shader()
+//{}
 
 Shader::Shader( const char* vertex, const char* fragment )
         : m_program( 0 ),
@@ -17,18 +18,19 @@ Shader::Shader( const char* vertex, const char* fragment )
     m_program = glCreateProgram();
     m_vertex = compile( vertex, GL_VERTEX_SHADER );
     m_fragment = compile( fragment, GL_FRAGMENT_SHADER );
-    link();
+    printf( "Program Created: %d\n", m_program );
 }
 
-Shader::~Shader()
-{
-    m_program = 0;
-    m_vertex = 0;
-    m_fragment = 0;
-}
+//Shader::~Shader()
+//{
+//    m_program = 0;
+//    m_vertex = 0;
+//    m_fragment = 0;
+//}
 
 GLuint Shader::getProgram() const
 {
+    printf( "Return Other: %d\n", m_program );
     return m_program;
 }
 
@@ -40,15 +42,14 @@ void Shader::check( const GLuint &id, const GLenum type )
     glGetShaderiv( id, type, &result );
     glGetShaderiv( id, GL_INFO_LOG_LENGTH, &length );
 
-    if ( length == 0 )
-    {
-
-    }
-    else
+    if ( length != 0 )
     {
         char log[length + 1];
         glGetShaderInfoLog( id, length, &length, log );
         printf( "%s\n", log );
+    } else
+    {
+        printf( "Shader compiled successfully...\n" );
     }
 }
 
@@ -66,18 +67,19 @@ GLuint Shader::compile( const char* shader, const GLenum type )
 
 void Shader::link()
 {
-    // Link the program
+    // Link the proegram
     glAttachShader( m_program, m_vertex );
     glAttachShader( m_program, m_fragment );
     glLinkProgram( m_program );
 
     check( m_program, GL_LINK_STATUS );
 
-    glDetachShader( m_program, m_vertex );
-    glDetachShader( m_program, m_fragment);
-
-    glDeleteShader( m_vertex );
-    glDeleteShader( m_fragment );
+//    glDetachShader( m_program, m_vertex );
+//    glDetachShader( m_program, m_fragment);
+//
+//    glDeleteShader( m_vertex );
+//    glDeleteShader( m_fragment );
+//    printf( "Linked: %d\n" );
 }
 
 void Shader::setProjectionMatrix( const GLfloat *matrix )

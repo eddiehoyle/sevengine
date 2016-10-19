@@ -2,14 +2,32 @@
 // Created by Eddie Hoyle on 5/10/16.
 //
 
-#include <OpenGLES/ES2/gl.h>
+#define GL_GLEXT_PROTOTYPES
+#include <GLES2/gl2.h>
 #include "Buffer.hh"
 #include <stddef.h>
 
-void Buffer::create( GLenum target )
+
+Buffer::Buffer()
+        : m_target( 0 ),
+          m_id( 0 )
 {
+    m_id = 0;
+    m_target = GL_INVALID_ENUM;
+}
+
+Buffer::Buffer( GLenum target )
+        : m_target( 0 ),
+          m_id( 0 )
+{
+    m_id = 0;
     m_target = target;
     glGenBuffers( 1, &m_id );
+}
+
+Buffer::~Buffer()
+{
+    m_id = 0;
 }
 
 void Buffer::allocate( GLsizei size, GLenum usage )
@@ -32,7 +50,7 @@ void Buffer::unbind()
     glBindBuffer( m_target, 0 );
 }
 
-void Buffer::destroy()
+void Buffer::release()
 {
     glDeleteBuffers( 1, &m_id );
 }

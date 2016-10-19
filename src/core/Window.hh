@@ -5,9 +5,6 @@
 #ifndef SEV_SCREEN_HH
 #define SEV_SCREEN_HH
 
-
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
 #include <vector>
 
 // GLM

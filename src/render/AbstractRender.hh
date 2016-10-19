@@ -6,10 +6,10 @@
 #define SEV_ABSTRACTRENDERER_HH
 
 #include <cstddef>
-#include "../Vertex.hh"
-#include "src/core/graphics/Buffer.hh"
-#include "../../../Defs.hh"
-#include "src/core/graphics/Quad.hh"
+#include "Vertex.hh"
+#include "Buffer.hh"
+#include "../Defs.hh"
+#include "Quad.hh"
 
 /*
  * class RendererQuad {
@@ -39,18 +39,20 @@
 enum RenderType {
     kNull = 0,
     kParticle,
-    kQuad
+    kTriangle,
+    kQuad,
 };
 
 class AbstractRender {
 
 public:
+    AbstractRender();
     virtual ~AbstractRender();
 
 public:
-    virtual void begin();
-    virtual void render( void* Texture, Quad* rect);
-    virtual void end();
+    virtual void begin() {}
+    virtual void render() {}
+    virtual void end() {}
 
     RenderType getType() const { return m_type; }
 
@@ -58,9 +60,9 @@ private:
     virtual void flush();
 
 protected:
-    Buffer m_buffer;
-    Vertex m_vertexes[256];
-    std::size_t m_index;
+    Buffer* m_buffer;
+//    Vertex* m_vertexes[256];
+//    std::size_t m_index;
 
     RenderType m_type;
 

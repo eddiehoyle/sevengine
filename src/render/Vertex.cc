@@ -12,3 +12,7 @@ void Vertex::set( float _x, float _y, float _u, float _v )
     u = _u;
     v = _v;
 }
+void Vertex::set( Vertex vertex )
+{
+
+}

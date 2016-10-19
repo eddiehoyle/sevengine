@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "AbstractApplication.hh"
-#include <src/core/Window.hh>
+#include "Window.hh"
 
 
 // GLM

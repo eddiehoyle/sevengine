@@ -6,7 +6,7 @@
 #define SEV_RECT_HH
 
 
-#include <OpenGLES/gltypes.h>
+#include <GLES2/gl2.h>
 #include <vector>
 #include <glm/vec2.hpp>
 #include <glm/gtx/transform.hpp>

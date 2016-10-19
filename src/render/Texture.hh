@@ -6,13 +6,14 @@
 #define SEV_TEXTURE_HH
 
 
-#include <OpenGLES/gltypes.h>
+#define GL_GLEXT_PROTOTYPES
+#include <GLES2/gl2.h>
+#include <png.h>
 
 struct Texture {
 
-    void set( int width, int height, GLuint handle );
     GLuint handle;
-    int width, height;
+    GLuint width, height;
 
 };
 

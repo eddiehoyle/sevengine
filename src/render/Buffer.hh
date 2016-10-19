@@ -5,7 +5,8 @@
 #ifndef SEV_BUFFER_HH
 #define SEV_BUFFER_HH
 
-#include <OpenGLES/gltypes.h>
+#define GL_GLEXT_PROTOTYPES
+#include <GLES2/gl2.h>
 #include <cstddef>
 
 inline char* bufferOffset( GLuint offset ) {
@@ -16,9 +17,15 @@ class Buffer {
 
 public:
 
-    /// Generate a unique buffer of type
-    /// @param target:
-    void create( GLenum target );
+    Buffer();
+    ~Buffer();
+
+    explicit Buffer( GLenum target );
+
+public:
+
+    /// Create a buffer
+//    void create( GLenum target );
 
     /// Create a new buffer store bound to m_target
     /// @param size: Size in bytes of the buffer object's new data store.
@@ -39,7 +46,7 @@ public:
     void unbind();
 
     /// Delete this buffer.
-    void destroy();
+    void release();
 
     /// Get the ID.
     /// returns the ID of this buffer.
