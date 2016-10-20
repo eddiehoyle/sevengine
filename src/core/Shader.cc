@@ -55,12 +55,27 @@ void Shader::check( const GLuint &id, const GLenum type )
 
 GLuint Shader::compile( const char* shader, const GLenum type )
 {
+    // Compile shader
     GLuint id = glCreateShader( type );
     glShaderSource( id, 1, &shader, NULL );
     glCompileShader( id );
 
-    // Check status
-    check( id, GL_COMPILE_STATUS );
+    // Check compile result
+    GLint result = 0;
+    glGetShaderiv( id, type, &result );
+
+    if ( !result )
+    {
+        // Something went wrong, get the error.
+        GLsizei length;
+        glGetShaderiv( id, GL_INFO_LOG_LENGTH, &length );
+        if ( length )
+        {
+            char log[length + 1];
+            glGetShaderInfoLog( id, length, &length, log );
+            printf( "Shader::Error : %s\n", log );
+        }
+    }
 
     return id;
 }
@@ -72,44 +87,58 @@ void Shader::link()
     glAttachShader( m_program, m_fragment );
     glLinkProgram( m_program );
 
-    check( m_program, GL_LINK_STATUS );
+    // Check the link status
+    glGetProgramiv(programObject, GL_LINK_STATUS, &linked);
+    if(!linked)
+    {
+        GLint infoLen = 0;
+        glGetProgramiv(programObject, GL_INFO_LOG_LENGTH, &infoLen);
+        if(infoLen > 1)
+        {
+            char* infoLog = malloc(sizeof(char) * infoLen);
+            glGetProgramInfoLog(programObject, infoLen, NULL, infoLog); esLogMessage("Error linking program:\n%s\n", infoLog);
+            free(infoLog); }
+        glDeleteProgram(programObject);
+        return FALSE;
+    }
 
+//    check( m_program, GL_LINK_STATUS );
+//
 //    glDetachShader( m_program, m_vertex );
 //    glDetachShader( m_program, m_fragment);
 //
 //    glDeleteShader( m_vertex );
 //    glDeleteShader( m_fragment );
-//    printf( "Linked: %d\n" );
 }
 
-void Shader::setProjectionMatrix( const GLfloat *matrix )
-{
-
-    GLuint handle = ( GLuint )glGetUniformLocation( m_program, "projection" );
-    GLboolean transpose = GL_FALSE;
-    GLsizei count = 1;
-
-    glUniformMatrix4fv( handle, count, transpose, matrix );
-}
-
-void Shader::setVertexPosition( const GLfloat* vertexes )
-{
-    GLuint positionHandle = ( GLuint )glGetAttribLocation( m_program, "position" );
-
-    // Enable a handle to the triangle vertices
-    glEnableVertexAttribArray( positionHandle );
-
-    // Number of components per attribute, ie: len([x, y, z]) == 3
-    // This is confusing, because the 'position' attribute in the
-    // vert shader is vec4, implying a size of 4?
-    GLsizei size = 3;
-
-    // Stride simply means the amount of bytes between each vertex.
-    // In this case: [[x, y, z], [x, y, z], ...] == [12, 12, ...]
-    GLint stride = size * sizeof( GLfloat );
-
-    GLenum type = GL_FLOAT;
-    GLboolean normalized = GL_FALSE;
-
-    glVertexAttribPointer( positionHandle, size, type, normalized, stride, vertexes );
-}
+//void Shader::setProjectionMatrix( const GLfloat *matrix )
+//{
+//
+//    GLuint handle = ( GLuint )glGetUniformLocation( m_program, "projection" );
+//    GLboolean transpose = GL_FALSE;
+//    GLsizei count = 1;
+//
+//    glUniformMatrix4fv( handle, count, transpose, matrix );
+//}
+//
+//void Shader::setVertexPosition( const GLfloat* vertexes )
+//{
+//    GLuint positionHandle = ( GLuint )glGetAttribLocation( m_program, "position" );
+//
+//    // Enable a handle to the triangle vertices
+//    glEnableVertexAttribArray( positionHandle );
+//
+//    // Number of components per attribute, ie: len([x, y, z]) == 3
+//    // This is confusing, because the 'position' attribute in the
+//    // vert shader is vec4, implying a size of 4?
+//    GLsizei size = 3;
+//
+//    // Stride simply means the amount of bytes between each vertex.
+//    // In this case: [[x, y, z], [x, y, z], ...] == [12, 12, ...]
+//    GLint stride = size * sizeof( GLfloat );
+//
+//    GLenum type = GL_FLOAT;
+//    GLboolean normalized = GL_FALSE;
+//
+//    glVertexAttribPointer( positionHandle, size, type, normalized, stride, vertexes );
+//}
