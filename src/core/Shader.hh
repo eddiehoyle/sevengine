@@ -20,8 +20,6 @@ public:
 
 public:
 
-    void setProjectionMatrix( const GLfloat* matrix );
-    void setVertexPosition( const GLfloat* vertices );
     GLuint getProgram() const;
     void link();
 
