@@ -17,5 +17,7 @@ struct Texture {
 
 };
 
+GLuint loadImage();
+
 
 #endif //SEV_TEXTURE_HH

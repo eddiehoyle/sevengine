@@ -4,10 +4,14 @@
 
 #ifndef SEV_SHADER_HH
 #define SEV_SHADER_HH
+
 #define GL_GLEXT_PROTOTYPES
 #include <GLES2/gl2.h>
-
 #include <iostream>
+//#include "Attribute.hh"
+#include <map>
+
+typedef std::map< const char*, int > AttributeMap;
 
 class Shader {
 
@@ -21,6 +25,8 @@ public:
 public:
 
     GLuint getProgram() const;
+    void setAttr( GLuint index, const char* name );
+    GLuint getAttr( const char* name );
     void link();
 
 private:
@@ -30,9 +36,11 @@ private:
 
 private:
     GLuint m_program;
-    GLuint m_other;
+
+    /// Shader handles
     GLuint m_vertex;
     GLuint m_fragment;
+
 };
 
 

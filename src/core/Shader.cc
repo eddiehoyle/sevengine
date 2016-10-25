@@ -13,19 +13,12 @@
 Shader::Shader( const char* vertex, const char* fragment )
         : m_program( 0 ),
           m_vertex( 0 ),
-          m_fragment( 0)
+          m_fragment( 0 )
 {
     m_program = glCreateProgram();
     m_vertex = compile( vertex, GL_VERTEX_SHADER );
     m_fragment = compile( fragment, GL_FRAGMENT_SHADER );
 }
-
-//Shader::~Shader()
-//{
-//    m_program = 0;
-//    m_vertex = 0;
-//    m_fragment = 0;
-//}
 
 GLuint Shader::getProgram() const
 {
@@ -79,3 +72,36 @@ void Shader::link() {
         }
     }
 }
+
+void Shader::setAttr( GLuint index, const char* name )
+{
+
+    glBindAttribLocation( m_program, index, name );
+
+//    GLenum err = glGetError();
+//    std::string error;
+//
+//    switch( err )
+//    {
+//        case GL_INVALID_OPERATION:
+//            error = "INVALID_OPERATION";
+//            break;
+//        case GL_INVALID_VALUE:
+//            error = "INVALID_VALUE";
+//            break;
+//        case GL_NO_ERROR:
+//        default:
+//            error = "";
+//    }
+//
+//    if ( err ) {
+//        printf( "Shader::Attribute::Error: %s\n", error.c_str() );
+//    }
+}
+
+
+GLuint Shader::getAttr( const char *name )
+{
+    return 0;
+}
+
