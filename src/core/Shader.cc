@@ -3,6 +3,8 @@
 //
 
 #include <vector>
+#include <glm/ext.hpp>
+#include <glm/vec4.hpp>
 #include "Shader.hh"
 //#include <GL/glew.h>
 //#include <GLFW/glfw3.h>
@@ -73,35 +75,31 @@ void Shader::link() {
     }
 }
 
-void Shader::setAttr( GLuint index, const char* name )
+void Shader::setAttr( GLuint handle, const char* name, GLfloat value )
 {
-
-    glBindAttribLocation( m_program, index, name );
-
-//    GLenum err = glGetError();
-//    std::string error;
-//
-//    switch( err )
-//    {
-//        case GL_INVALID_OPERATION:
-//            error = "INVALID_OPERATION";
-//            break;
-//        case GL_INVALID_VALUE:
-//            error = "INVALID_VALUE";
-//            break;
-//        case GL_NO_ERROR:
-//        default:
-//            error = "";
-//    }
-//
-//    if ( err ) {
-//        printf( "Shader::Attribute::Error: %s\n", error.c_str() );
-//    }
+    glVertexAttrib1f( handle, value );
 }
 
-
-GLuint Shader::getAttr( const char *name )
+void Shader::setAttr( GLuint handle, const char* name, const glm::vec2& vec )
 {
-    return 0;
+    glVertexAttrib2fv( handle, glm::value_ptr( vec ) );
+}
+
+void Shader::setAttr( GLuint handle, const char* name, const glm::vec3& vec )
+{
+    glVertexAttrib3fv( handle, glm::value_ptr( vec ) );
+}
+
+void Shader::setAttr( GLuint handle, const char* name, const glm::vec4& vec )
+{
+    glVertexAttrib4fv( handle, glm::value_ptr( vec ) );
+}
+
+template< typename T >
+void Shader::setAttr( GLuint handle, GLenum type, GLint size, T* data )
+{
+    GLboolean normalized = GL_FALSE;
+    GLsizei stride = 0;
+    glVertexAttribPointer( handle, size, type, normalized, stride, data );
 }
 

@@ -8,7 +8,8 @@
 #define GL_GLEXT_PROTOTYPES
 #include <GLES2/gl2.h>
 #include <iostream>
-//#include "Attribute.hh"
+#include <glm/ext.hpp>
+#include <glm/vec4.hpp>
 #include <map>
 
 typedef std::map< const char*, int > AttributeMap;
@@ -28,6 +29,14 @@ public:
     void setAttr( GLuint index, const char* name );
     GLuint getAttr( const char* name );
     void link();
+
+    void setAttr( GLuint handle, const char* name, GLfloat value );
+    void setAttr( GLuint handle, const char* name, const glm::vec2& vec );
+    void setAttr( GLuint handle, const char* name, const glm::vec3& vec );
+    void setAttr( GLuint handle, const char* name, const glm::vec4& vec );
+
+    template< typename T >
+    void setAttr( GLuint handle, GLenum type, GLint size, T* data );
 
 private:
 

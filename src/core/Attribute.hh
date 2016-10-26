@@ -12,11 +12,11 @@
 
 GLuint getAttrHandle( GLuint program, const char* name );
 
-GLfloat getAttr( GLuint program, GLuint handle, const char* name );
-void getAttr( GLuint program, GLuint handle, const char* name, glm::vec1& vec );
-void getAttr( GLuint program, GLuint handle, const char* name, glm::vec2& vec );
-void getAttr( GLuint program, GLuint handle, const char* name, glm::vec3& vec );
-void getAttr( GLuint program, GLuint handle, const char* name, glm::vec4& vec );
+void setAttr( GLuint program, GLuint handle, const char* name, GLfloat value );
+void setAttr( GLuint program, GLuint handle, const char* name, glm::vec1& vec );
+void setAttr( GLuint program, GLuint handle, const char* name, glm::vec2& vec );
+void setAttr( GLuint program, GLuint handle, const char* name, glm::vec3& vec );
+void setAttr( GLuint program, GLuint handle, const char* name, glm::vec4& vec );
 
 /// Specify the location and data format of an array of generic vertex
 /// attributes for input attribute handle.

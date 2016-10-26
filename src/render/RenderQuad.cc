@@ -67,7 +67,7 @@ void RenderQuad::flush()
 {
     glEnable( GL_TEXTURE_2D );
     glActiveTexture( GL_TEXTURE0 );
-    glBindTexture( GL_TEXTURE_2D, m_texture->handle );
+    glBindTexture( GL_TEXTURE_2D, m_texture->getHandle() );
 
     GLuint size = m_vertexIndex * sizeof( Vertex );
     m_buffer->allocate( size, GL_STREAM_DRAW );

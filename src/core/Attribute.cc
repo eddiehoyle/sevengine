@@ -5,6 +5,7 @@
 #define GL_GLEXT_PROTOTYPES
 #include <GLES2/gl2.h>
 #include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
 #include "Attribute.hh"
 
@@ -17,47 +18,42 @@ glVertexAttrib3f (GLuint index, GLfloat x, GLfloat y, GLfloat z);
 glVertexAttrib3fv (GLuint index, const GLfloat *v);
 glVertexAttrib4f (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
 glVertexAttrib4fv (GLuint index, const GLfloat *v);
+
+glGetVertexAttribfv (GLuint index, GLenum pname, GLfloat *params);
+glGetVertexAttribiv (GLuint index, GLenum pname, GLint *params);
+glGetVertexAttribPointerv (GLuint index, GLenum pname, void **pointer);
  */
+
+
 
 GLuint getAttrHandle( GLuint program, const char* name )
 {
     return glGetAttribLocation( program, name );
 }
 
-GLfloat getAttr( GLuint program, GLuint handle, const char* name )
+void setAttr( GLuint program, GLuint handle, const char* name, GLfloat value )
 {
-    GLfloat result = 0.0f;
-    glVertexAttrib1f( handle, result );
-    return result;
+    glVertexAttrib1f( handle, value );
 }
 
-void getAttr( GLuint program, GLuint handle, const char* name, glm::vec1& vec )
+void setAttr( GLuint program, GLuint handle, const char* name, glm::vec1& vec )
 {
-    GLfloat* array;
-    glVertexAttrib1fv( handle, array );
-    vec = glm::vec1( *array );
+    glVertexAttrib1fv( handle, glm::value_ptr( vec ) );
 }
 
-void getAttr( GLuint program, GLuint handle, const char* name, glm::vec2& vec )
+void setAttr( GLuint program, GLuint handle, const char* name, glm::vec2& vec )
 {
-    GLfloat x, y;
-    glVertexAttrib2f( handle, x, y );
-    vec = glm::vec2( x, y );
+    glVertexAttrib2fv( handle, glm::value_ptr( vec ) );
 }
 
-void getAttr( GLuint program, GLuint handle, const char* name, glm::vec3& vec )
+void setAttr( GLuint program, GLuint handle, const char* name, glm::vec3& vec )
 {
-    GLfloat x, y, z;
-    glVertexAttrib3f( handle, x, y, z );
-    vec = glm::vec3( x, y, z );
+    glVertexAttrib3fv( handle, glm::value_ptr( vec ) );
 }
 
-void getAttr( GLuint program, GLuint handle, const char* name, glm::vec4& vec )
+void setAttr( GLuint program, GLuint handle, const char* name, glm::vec4& vec )
 {
-    GLfloat x, y, z, w;
-
-    glVertexAttrib4f( handle, x, y, z, w );
-    vec = glm::vec4( x, y, z, w );
+    glVertexAttrib4fv( handle, glm::value_ptr( vec ) );
 }
 
 template< typename T >
