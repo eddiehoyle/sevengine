@@ -75,6 +75,11 @@ void Shader::link() {
     }
 }
 
+void Shader::bindAttr( GLuint index, const char *name )
+{
+    glBindAttribLocation( m_program, index, name );
+}
+
 void Shader::setAttr( GLuint handle, const char* name, GLfloat value )
 {
     glVertexAttrib1f( handle, value );
@@ -101,5 +106,47 @@ void Shader::setAttr( GLuint handle, GLenum type, GLint size, T* data )
     GLboolean normalized = GL_FALSE;
     GLsizei stride = 0;
     glVertexAttribPointer( handle, size, type, normalized, stride, data );
+}
+
+GLint Shader::getUnifHandle( const char *name )
+{
+    return glGetUniformLocation( m_program, name );
+}
+
+
+
+void Shader::setUnif( GLuint handle, GLfloat value )
+{
+    glUniform1f( handle, value );
+}
+
+void Shader::setUnif( GLuint handle, const glm::vec2& vec )
+{
+    glUniform2fv( handle, 1, glm::value_ptr( vec ) );
+}
+
+void Shader::setUnif( GLuint handle, const glm::vec3 &vec )
+{
+    glUniform3fv( handle, 1, glm::value_ptr( vec ) );
+}
+
+void Shader::setUnif( GLuint handle, const glm::vec4& vec )
+{
+    glUniform4fv( handle, 1, glm::value_ptr( vec ) );
+}
+
+void Shader::setUnif( GLuint handle, bool transpose, const glm::mat2& mat )
+{
+    glUniformMatrix2fv( handle, 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
+}
+
+void Shader::setUnif( GLuint handle, bool transpose, const glm::mat3& mat )
+{
+    glUniformMatrix3fv( handle, 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
+}
+
+void Shader::setUnif( GLuint handle, bool transpose, const glm::mat4& mat )
+{
+    glUniformMatrix4fv( handle, 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
 }
 
