@@ -5,20 +5,20 @@
 #ifndef SEV_QUADRENDERER_HH
 #define SEV_QUADRENDERER_HH
 
-#include "AbstractRender.hh"
-#include "Buffer.hh"
-#include "Texture.hh"
-#include "Quad.hh"
+#include "AbstractRenderer.hh"
+#include "../Buffer.hh"
+#include "../Texture.hh"
+#include "../Quad.hh"
 
-class RenderQuad : public AbstractRender {
+class RectRenderer : public AbstractRender {
 
 public:
 
     static const unsigned int kVboSize = 256;
     static const unsigned int kEboSize = 256;
 
-    RenderQuad();
-    virtual ~RenderQuad();
+    RectRenderer();
+    virtual ~RectRenderer();
 
 public:
     virtual void begin();
@@ -33,7 +33,7 @@ private:
     RenderType m_type;
 
     /// Primitive buffer
-    Buffer* m_buffer;
+//    Buffer* m_buffer;
 
     /// Active texture
     Texture* m_texture;

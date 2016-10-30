@@ -6,11 +6,16 @@
 #include <glm/ext.hpp>
 #include <glm/vec4.hpp>
 #include "Shader.hh"
-//#include <GL/glew.h>
-//#include <GLFW/glfw3.h>
-//#include <GLFW/glfw3.h>
-//Shader::Shader()
-//{}
+
+Shader::Shader()
+        : m_program( 0 ),
+          m_vertex( 0 ),
+          m_fragment( 0 )
+{
+    m_program = 0;
+    m_vertex = 0;
+    m_fragment = 0;
+}
 
 Shader::Shader( const char* vertex, const char* fragment )
         : m_program( 0 ),
@@ -20,7 +25,16 @@ Shader::Shader( const char* vertex, const char* fragment )
     m_program = glCreateProgram();
     m_vertex = compile( vertex, GL_VERTEX_SHADER );
     m_fragment = compile( fragment, GL_FRAGMENT_SHADER );
+    link();
 }
+
+Shader::~Shader()
+{
+    m_program = 0;
+    m_vertex = 0;
+    m_fragment = 0;
+}
+
 
 GLuint Shader::getProgram() const
 {
@@ -47,6 +61,9 @@ GLuint Shader::compile( const char* shader, const GLenum type )
             glGetShaderInfoLog( id, logLength, &logLength, log );
             printf( "Shader::Error::Compile: %s\n", log );
         }
+    } else
+    {
+        printf( "Shader::Success::Compile: Shader compiled successfully\n" );
     }
     return id;
 }
@@ -72,7 +89,15 @@ void Shader::link() {
             printf( "Shader::Error::Link: %s\n", log );
             glDeleteProgram( m_program );
         }
+    } else
+    {
+        printf( "Shader::Success::Link: Shader linked successfully\n" );
     }
+}
+
+void Shader::use()
+{
+    glUseProgram( m_program );
 }
 
 void Shader::bindAttr( GLuint index, const char *name )
@@ -80,32 +105,36 @@ void Shader::bindAttr( GLuint index, const char *name )
     glBindAttribLocation( m_program, index, name );
 }
 
-void Shader::setAttr( GLuint handle, const char* name, GLfloat value )
+GLint Shader::getAttrHandle( const char* name ) const
 {
-    glVertexAttrib1f( handle, value );
+    return glGetAttribLocation( m_program, name );
 }
 
-void Shader::setAttr( GLuint handle, const char* name, const glm::vec2& vec )
+void Shader::setAttr( const char* name, GLfloat value )
 {
-    glVertexAttrib2fv( handle, glm::value_ptr( vec ) );
+    glVertexAttrib1f( glGetAttribLocation( m_program, name ), value );
 }
 
-void Shader::setAttr( GLuint handle, const char* name, const glm::vec3& vec )
+void Shader::setAttr( const char* name, const glm::vec2& vec )
 {
-    glVertexAttrib3fv( handle, glm::value_ptr( vec ) );
+    glVertexAttrib2fv( glGetAttribLocation( m_program, name ), glm::value_ptr( vec ) );
 }
 
-void Shader::setAttr( GLuint handle, const char* name, const glm::vec4& vec )
+void Shader::setAttr( const char* name, const glm::vec3& vec )
 {
-    glVertexAttrib4fv( handle, glm::value_ptr( vec ) );
+    glVertexAttrib3fv( glGetAttribLocation( m_program, name ), glm::value_ptr( vec ) );
 }
 
-template< typename T >
-void Shader::setAttr( GLuint handle, GLenum type, GLint size, T* data )
+void Shader::setAttr( const char* name, const glm::vec4& vec )
+{
+    glVertexAttrib4fv( glGetAttribLocation( m_program, name ), glm::value_ptr( vec ) );
+}
+
+void Shader::setAttr( const char* name, GLenum type, GLint size, GLfloat* data )
 {
     GLboolean normalized = GL_FALSE;
     GLsizei stride = 0;
-    glVertexAttribPointer( handle, size, type, normalized, stride, data );
+    glVertexAttribPointer( glGetAttribLocation( m_program, name ), size, type, normalized, stride, data );
 }
 
 GLint Shader::getUnifHandle( const char *name )
@@ -113,40 +142,38 @@ GLint Shader::getUnifHandle( const char *name )
     return glGetUniformLocation( m_program, name );
 }
 
-
-
-void Shader::setUnif( GLuint handle, GLfloat value )
+void Shader::setUnif( const char* name, GLfloat value )
 {
-    glUniform1f( handle, value );
+    glUniform1f( getUnifHandle( name ), value );
 }
 
-void Shader::setUnif( GLuint handle, const glm::vec2& vec )
+void Shader::setUnif( const char* name, const glm::vec2& vec )
 {
-    glUniform2fv( handle, 1, glm::value_ptr( vec ) );
+    glUniform2fv( getUnifHandle( name ), 1, glm::value_ptr( vec ) );
 }
 
-void Shader::setUnif( GLuint handle, const glm::vec3 &vec )
+void Shader::setUnif( const char* name, const glm::vec3 &vec )
 {
-    glUniform3fv( handle, 1, glm::value_ptr( vec ) );
+    glUniform3fv( getUnifHandle( name ), 1, glm::value_ptr( vec ) );
 }
 
-void Shader::setUnif( GLuint handle, const glm::vec4& vec )
+void Shader::setUnif( const char* name, const glm::vec4& vec )
 {
-    glUniform4fv( handle, 1, glm::value_ptr( vec ) );
+    glUniform4fv( getUnifHandle( name ), 1, glm::value_ptr( vec ) );
 }
 
-void Shader::setUnif( GLuint handle, bool transpose, const glm::mat2& mat )
+void Shader::setUnif( const char* name, bool transpose, const glm::mat2& mat )
 {
-    glUniformMatrix2fv( handle, 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
+    glUniformMatrix2fv( getUnifHandle( name ), 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
 }
 
-void Shader::setUnif( GLuint handle, bool transpose, const glm::mat3& mat )
+void Shader::setUnif( const char* name, bool transpose, const glm::mat3& mat )
 {
-    glUniformMatrix3fv( handle, 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
+    glUniformMatrix3fv( getUnifHandle( name ), 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
 }
 
-void Shader::setUnif( GLuint handle, bool transpose, const glm::mat4& mat )
+void Shader::setUnif( const char* name, bool transpose, const glm::mat4& mat )
 {
-    glUniformMatrix4fv( handle, 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
+    glUniformMatrix4fv( getUnifHandle( name ), 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
 }
 

@@ -6,10 +6,10 @@
 #define SEV_ABSTRACTRENDERER_HH
 
 #include <cstddef>
-#include "Vertex.hh"
-#include "Buffer.hh"
-#include "../Defs.hh"
-#include "Quad.hh"
+#include "../Vertex.hh"
+#include "../Buffer.hh"
+#include "../../Defs.hh"
+#include "../Quad.hh"
 
 /*
  * class RendererQuad {
@@ -57,7 +57,7 @@ public:
     RenderType getType() const { return m_type; }
 
 private:
-    virtual void flush();
+    virtual void flush() {};
 
 protected:
     Buffer* m_buffer;

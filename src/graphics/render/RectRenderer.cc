@@ -2,26 +2,27 @@
 // Created by Eddie Hoyle on 5/10/16.
 //
 
-#include "RenderQuad.hh"
+#include <iostream>
+#include "RectRenderer.hh"
 
 
-RenderQuad::RenderQuad()
+RectRenderer::RectRenderer()
         : AbstractRender()
 {
     m_type = kQuad;
 }
 
-RenderQuad::~RenderQuad()
+RectRenderer::~RectRenderer()
 {
     // TODO
 }
 
-void RenderQuad::begin()
+void RectRenderer::begin()
 {
     m_buffer->bind();
 }
 
-void RenderQuad::render( Texture* texture, Quad* rect )
+void RectRenderer::render( Texture* texture, Quad* rect )
 {
     // Active texture
     m_texture = texture;
@@ -53,18 +54,23 @@ void RenderQuad::render( Texture* texture, Quad* rect )
 
 }
 
-void RenderQuad::end()
+void RectRenderer::end()
 {
+    if ( m_vertexIndex > 0 )
+    {
+        flush();
+    }
     glBindTexture( GL_TEXTURE_2D, 0 );
 }
 
-void RenderQuad::release()
+void RectRenderer::release()
 {
     m_buffer->release();
 }
 
-void RenderQuad::flush()
+void RectRenderer::flush()
 {
+    std::cerr << "flush()" << std::endl;
     glEnable( GL_TEXTURE_2D );
     glActiveTexture( GL_TEXTURE0 );
     glBindTexture( GL_TEXTURE_2D, m_texture->getHandle() );

@@ -2,8 +2,8 @@
 // Created by Eddie Hoyle on 5/10/16.
 //
 
-#include "AbstractRender.hh"
-#include "Buffer.hh"
+#include "AbstractRenderer.hh"
+#include "../Buffer.hh"
 
 AbstractRender::AbstractRender()
         : m_type( kNull ),
