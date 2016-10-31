@@ -14,5 +14,6 @@ void Vertex::set( float _x, float _y, float _u, float _v )
 }
 void Vertex::set( Vertex vertex )
 {
-
+    set( vertex.x, vertex.y,
+         vertex.u, vertex.v );
 }

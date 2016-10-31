@@ -38,7 +38,7 @@ public:
     void setAttr( const char* name, const glm::vec3& vec );
     void setAttr( const char* name, const glm::vec4& vec );
 
-    void setAttr( const char* name, GLenum type, GLint size, GLfloat* data );
+    void setAttr( const char* name, GLint size, GLenum type, GLsizei stride, GLfloat* data );
 
 public:
 

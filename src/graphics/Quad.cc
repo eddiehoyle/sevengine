@@ -10,10 +10,10 @@ Quad::Quad()
       tl(),
       tr()
 {
-    set( 0.0f, 0.0f, 0.0f, 0.0f );
+    set( 0.0f, 0.0f );
 }
 
-void Quad::set( float x, float y, float u, float v )
+void Quad::set( float width, float height )
 {
     // Starts from bottom left.
     //
@@ -24,7 +24,7 @@ void Quad::set( float x, float y, float u, float v )
     // bl(0,0)---br(1,0)
 
     bl.set( 0.0f, 0.0f, 0.0f, 0.0f );
-    br.set( x, 0.0f, u, 0.0f );
-    tl.set( 0.0f, y, 0.0f, v );
-    tr.set( x, y, u, v );
+    br.set( width, 0.0f, 1, 0.0f );
+    tl.set( 0.0f, height, 0.0f, 1 );
+    tr.set( width, height, 1, 1 );
 };

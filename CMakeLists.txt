@@ -32,7 +32,7 @@ include_directories(${SOIL_INCLUDE_DIR})
 #message(WARNING ${SOIL_INCLUDE_DIR})
 
 # Output
-add_library(${LIB_NAME} ${SOURCE_FILES})
+add_library(${LIB_NAME} ${SOURCE_FILES} src/graphics/render/RenderQuad.cc src/graphics/render/RenderQuad.hh)
 
 target_link_libraries(${LIB_NAME}
         ${OPENGL_LIBRARIES}

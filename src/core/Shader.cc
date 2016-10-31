@@ -130,11 +130,11 @@ void Shader::setAttr( const char* name, const glm::vec4& vec )
     glVertexAttrib4fv( glGetAttribLocation( m_program, name ), glm::value_ptr( vec ) );
 }
 
-void Shader::setAttr( const char* name, GLenum type, GLint size, GLfloat* data )
+void Shader::setAttr( const char* name, GLint size, GLenum type, GLsizei stride, GLfloat* data )
 {
     GLboolean normalized = GL_FALSE;
-    GLsizei stride = 0;
     glVertexAttribPointer( glGetAttribLocation( m_program, name ), size, type, normalized, stride, data );
+    glEnableVertexAttribArray( getAttrHandle( name ) );
 }
 
 GLint Shader::getUnifHandle( const char *name )

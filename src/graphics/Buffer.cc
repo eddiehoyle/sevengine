@@ -35,7 +35,7 @@ void Buffer::allocate( GLsizei size, GLenum usage )
     glBufferData( m_target, size, NULL, usage );
 }
 
-void Buffer::buffer( void *data, GLintptr offset, GLsizei size )
+void Buffer::buffer( void* data, GLintptr offset, GLsizei size )
 {
     glBufferSubData( m_target, offset, size, data );
 }
