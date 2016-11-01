@@ -9,7 +9,7 @@
 #include <GLES2/gl2.h>
 #include <cstddef>
 
-inline char* bufferOffset( GLuint offset ) {
+inline char* BufferOffset( GLuint offset ) {
     return ( char* )NULL + offset;
 }
 
@@ -30,6 +30,7 @@ public:
     /// Create a new buffer store bound to m_target
     /// @param size: Size in bytes of the buffer object's new data store.
     /// @param usage: Specifies the expected usage pattern of the data store.
+    ///     These may be GL_STATIC_DRAW, GL_DYNAMIC_DRAW or GL_STREAM_DRAW
     void allocate( GLsizei size, GLenum usage );
 
     /// Fill up the buffer, or parts of the buffer with data.
@@ -37,7 +38,7 @@ public:
     /// @param offset: Specifies the offset into the buffer object's data store where data
     ///     replacement will begin, measured in bytes.
     /// @param size: Specifies the size in bytes of the data store region being replaced.
-    void buffer( void* data, GLintptr offset, GLsizei size );
+    void buffer( GLintptr offset, GLsizei size, void* data );
 
     /// Bind this buffer to m_target.
     void bind();

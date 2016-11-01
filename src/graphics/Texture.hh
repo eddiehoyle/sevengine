@@ -5,7 +5,6 @@
 #ifndef SEV_TEXTURE_HH
 #define SEV_TEXTURE_HH
 
-
 #define GL_GLEXT_PROTOTYPES
 #include <GLES2/gl2.h>
 #include <png.h>
@@ -15,47 +14,56 @@ class Texture {
 
 public:
 
-    /// Bind a texture to it's target.
+    /// Bind a texture to it's target
+    /// @param texture - A texture
     static void bind( Texture* texture );
 
-    /// Unbind a texture from it's target.
+    /// Unbind a texture from it's target
+    /// @param texture - A texture
     static void unbind( Texture* texture );
 
 public:
-    Texture();
-    ~Texture();
-//    explicit Texture( const char* path );
 
-    bool initialise( GLenum target, const char* path, int width, int height );
+    /// Construct a texture
+    /// @param target - A texture target to bind to, eg: GL_TEXTURE_2D
+    /// @param path - Image file path
+    /// @param width - Image width
+    /// @param height - Image height
+    explicit Texture( GLenum target, const char* path, int width, int height );
 
-
-
-    void bind();
+    /// Get the image data read into memory
+    /// @returns Byte array of image data
     unsigned char* getImage() const;
+
+    /// Get the texture handle generated with glGenTextures
+    /// @returns This textures handle
     GLuint getHandle() const;
+
+    /// Get the target this texture is bound to
+    /// @returns The designated target
     GLenum getTarget() const;
+
+    /// Get the width of this image
+    /// @returns The image width
     int getWidth() const;
+
+    /// Get the width of this image
+    /// @returns The image height
     int getHeight() const;
 
 private:
-    void load( const char* path );
+
+    /// Read image data into memory.
+    /// @param path - Image file path.
+    void readImage( const char* path );
 
 private:
 
-    // Image data
-    unsigned char* m_image;
-
-    GLuint m_handle;
-    GLenum m_target;
-
-    int m_width;
-    int m_height;
-
-
-
+    unsigned char* m_image; /// Image data
+    GLuint m_handle;        /// Texture handle
+    GLenum m_target;        /// Texture target
+    int m_width;            /// Image width
+    int m_height;           /// Image height
 };
-
-GLuint loadImage();
-
 
 #endif //SEV_TEXTURE_HH

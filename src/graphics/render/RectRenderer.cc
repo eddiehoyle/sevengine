@@ -77,7 +77,7 @@ void RectRenderer::flush()
 
     GLuint size = m_vertexIndex * sizeof( Vertex );
     m_buffer->allocate( size, GL_STREAM_DRAW );
-    m_buffer->buffer( &m_vertexBuffer, 0, size );
+    m_buffer->buffer( 0, size, &m_vertexBuffer );
     glDrawElements( GL_TRIANGLES, m_elementIndex, GL_UNSIGNED_SHORT, &m_elementBuffer );
 
     m_vertexIndex = 0;
