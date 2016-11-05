@@ -8,8 +8,14 @@
 #include "../Texture.hh"
 #include "../Quad.hh"
 #include "../Buffer.hh"
+#include "../../core/Shader.hh"
 
 class RenderQuad {
+
+public:
+
+    static const unsigned int kVboSize = 256;   /// Vertex Buffer Object
+    static const unsigned int kEboSize = 256;   /// Element Buffer Object
 
 public:
     RenderQuad();
@@ -17,11 +23,8 @@ public:
 
 public:
 
-    /// Create a buffer
-    void allocate();
-
     /// Fill buffer with data
-    void buffer( Texture* texture, Quad* quad );
+    void buffer( Texture* texture, Quad* quad, Shader* shader );
 
     /// Draw data
     void draw();
@@ -32,6 +35,12 @@ public:
 private:
     Buffer* m_buffer;
     Texture* m_texture;
+
+    Vertex m_vertices[kVboSize];
+    GLuint m_elements[kEboSize];
+
+    GLuint m_vertexIndex;
+    GLuint m_elementIndex;
 
 };
 

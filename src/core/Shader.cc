@@ -100,8 +100,9 @@ void Shader::use()
     glUseProgram( m_program );
 }
 
-void Shader::bindAttr( GLuint index, const char *name )
+void Shader::bindAttr( GLuint index, const char* name )
 {
+    // Bind attribute name
     glBindAttribLocation( m_program, index, name );
 }
 
@@ -130,11 +131,28 @@ void Shader::setAttr( const char* name, const glm::vec4& vec )
     glVertexAttrib4fv( glGetAttribLocation( m_program, name ), glm::value_ptr( vec ) );
 }
 
-void Shader::setAttr( const char* name, GLint size, GLenum type, GLsizei stride, GLfloat* data )
+void Shader::setAttr( const char* name, GLint size, GLenum type,
+                      bool normalized, GLsizei stride, void* data )
 {
-    GLboolean normalized = GL_FALSE;
-    glVertexAttribPointer( glGetAttribLocation( m_program, name ), size, type, normalized, stride, data );
-    glEnableVertexAttribArray( getAttrHandle( name ) );
+    glVertexAttribPointer( ( GLuint )glGetAttribLocation( m_program, name ), size, type,
+                           ( GLboolean )normalized, stride, data );
+}
+
+void Shader::setAttrOffset( const char* name, GLint size, GLenum type,
+                            bool normalized, GLsizei stride, GLsizei offset )
+{
+    glVertexAttribPointer( ( GLuint )glGetAttribLocation( m_program, name ), size, type,
+                           ( GLboolean )normalized, stride, BufferOffset( offset ) );
+}
+
+void Shader::enableAttr( const char* name )
+{
+    glEnableVertexAttribArray( ( GLuint )getAttrHandle( name ) );
+}
+
+void Shader::disableAttr( const char* name )
+{
+    glDisableVertexAttribArray( ( GLuint )getAttrHandle( name ) );
 }
 
 GLint Shader::getUnifHandle( const char *name )
@@ -176,4 +194,3 @@ void Shader::setUnif( const char* name, bool transpose, const glm::mat4& mat )
 {
     glUniformMatrix4fv( getUnifHandle( name ), 1, ( GLboolean )transpose, glm::value_ptr( mat ) );
 }
-

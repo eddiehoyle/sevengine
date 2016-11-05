@@ -12,9 +12,45 @@
 #include <glm/vec4.hpp>
 #include <map>
 
-typedef std::map< const char*, int > AttributeMap;
+//
+//struct Attribute;
+//typedef std::vector< Attribute > Attributes;
+//
+//struct Attribute {
+//    explicit Attribute( GLuint _index,
+//                           const char* _name,
+//                           GLsizei _size,
+//                           GLenum _type,
+//                           GLsizei _offset )
+//    {
+//        index = _index;
+//        name = _name;
+//        size = _size;
+//        type = _type;
+//        offset = _offset;
+//    };
+//
+//    GLuint index;
+//    const char* name;
+//    GLsizei size;
+//    GLenum type;
+//    GLsizei offset;
+//};
+
+/*
+ * - Is Attribute struct useful?
+ * - It's only used for VBOs and describing the offset between
+ * arrays.
+ *
+ */
+
+inline const char* BufferOffset( GLsizei offset ) {
+    return ( char* )NULL + offset;
+}
 
 class Shader {
+
+
 
 public:
 
@@ -27,8 +63,6 @@ public:
     GLuint getProgram() const;
     void use();
 
-public:
-
     // Attributes
     void bindAttr( GLuint index, const char* name );
 
@@ -37,8 +71,14 @@ public:
     void setAttr( const char* name, const glm::vec2& vec );
     void setAttr( const char* name, const glm::vec3& vec );
     void setAttr( const char* name, const glm::vec4& vec );
+    void setAttr( const char* name, GLint size, GLenum type,
+                  bool normalized, GLsizei stride, void* data );
 
-    void setAttr( const char* name, GLint size, GLenum type, GLsizei stride, GLfloat* data );
+    void enableAttr( const char* name );
+    void disableAttr( const char* name );
+
+    void setAttrOffset( const char* name, GLint size, GLenum type,
+                        bool normalized, GLsizei stride, GLsizei offset );
 
 public:
 
