@@ -62,6 +62,7 @@ public:
 
     GLuint getProgram() const;
     void use();
+    void unuse();
 
     // Attributes
     void bindAttr( GLuint index, const char* name );

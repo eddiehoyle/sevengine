@@ -5,14 +5,15 @@
 #ifndef SEV_VERTEX_HH
 #define SEV_VERTEX_HH
 
+#define GL_GLEXT_PROTOTYPES
+#include <GLES2/gl2.h>
 
 struct Vertex {
 
-    float x, y;
-    float u, v;
+    GLfloat x, y;
+    GLfloat u, v;
 
-    void set( float _x, float _y, float _u, float _v );
-    void set( Vertex vertex );
+    void set( GLfloat _x, GLfloat _y, GLfloat _u, GLfloat _v );
 };
 
 

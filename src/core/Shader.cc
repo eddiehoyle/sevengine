@@ -100,6 +100,11 @@ void Shader::use()
     glUseProgram( m_program );
 }
 
+void Shader::unuse()
+{
+    glUseProgram( 0 );
+}
+
 void Shader::bindAttr( GLuint index, const char* name )
 {
     // Bind attribute name

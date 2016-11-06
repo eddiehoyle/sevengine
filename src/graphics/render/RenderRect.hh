@@ -5,26 +5,26 @@
 #ifndef SEVENGINE_RENDERQUAD_HH
 #define SEVENGINE_RENDERQUAD_HH
 
+#include <vector>
 #include "../Texture.hh"
 #include "../Quad.hh"
 #include "../Buffer.hh"
 #include "../../core/Shader.hh"
 
-class RenderQuad {
+class RenderRect {
 
 public:
 
-    static const unsigned int kVboSize = 256;   /// Vertex Buffer Object
-    static const unsigned int kEboSize = 256;   /// Element Buffer Object
+    static const unsigned int kVboSize = 1024;   /// Vertex Buffer Object
 
 public:
-    RenderQuad();
-    ~RenderQuad();
+    explicit RenderRect( Shader* shader, Texture* texture );
+    ~RenderRect();
 
 public:
 
     /// Fill buffer with data
-    void buffer( Texture* texture, Quad* quad, Shader* shader );
+    void buffer( const Quad& quad );
 
     /// Draw data
     void draw();
@@ -35,9 +35,10 @@ public:
 private:
     Buffer* m_buffer;
     Texture* m_texture;
+    Shader* m_shader;
 
-    Vertex m_vertices[kVboSize];
-    GLuint m_elements[kEboSize];
+    std::vector< Vertex > m_vertices;
+    std::vector< GLuint > m_elements;
 
     GLuint m_vertexIndex;
     GLuint m_elementIndex;
