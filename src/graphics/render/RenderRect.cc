@@ -56,21 +56,21 @@ void RenderRect::buffer( const Quad& quad )
 void RenderRect::draw()
 {
     // -------------------------------------------------------------------------------------
-    std::vector< GLuint >::iterator eIter;
-    std::cerr << "Elements: ";
-    for ( eIter = m_elements.begin(); eIter != m_elements.end(); eIter++ ) {
-        std::cerr << *eIter << ", ";
-    }
-    std::cerr << std::endl;
-
-    std::vector< Vertex >::iterator vIter;
-    std::cerr << "Vertices: ";
-    for ( vIter = m_vertices.begin(); vIter != m_vertices.end(); vIter++ ) {
-        Vertex v = *vIter;
-        std::cerr << "((" << vIter->x << ", " << vIter->y << "), "
-                  << "(" << vIter->u << ", " << vIter->v << ")), ";
-    }
-    std::cerr << std::endl;
+//    std::vector< GLuint >::iterator eIter;
+//    std::cerr << "Elements: ";
+//    for ( eIter = m_elements.begin(); eIter != m_elements.end(); eIter++ ) {
+//        std::cerr << *eIter << ", ";
+//    }
+//    std::cerr << std::endl;
+//
+//    std::vector< Vertex >::iterator vIter;
+//    std::cerr << "Vertices: ";
+//    for ( vIter = m_vertices.begin(); vIter != m_vertices.end(); vIter++ ) {
+//        Vertex v = *vIter;
+//        std::cerr << "((" << vIter->x << ", " << vIter->y << "), "
+//                  << "(" << vIter->u << ", " << vIter->v << ")), ";
+//    }
+//    std::cerr << std::endl;
 
 //    std::cerr << "Vertices length and size: " << m_vertices.size() << ", " << sizeof(Vertex) * m_vertices.size() << std::endl;
 //    std::cerr << "Vertex size: " << sizeof( struct Vertex) << std::endl;
@@ -116,7 +116,11 @@ void RenderRect::draw()
 //    m_shader->setAttrOffset( "in_Texture", 2, GL_FLOAT, false, 0, 8 );
 //    m_shader->setAttrOffset( "in_Color", 4, GL_UNSIGNED_BYTE, false, 0, 16 );
 
-    glDrawElements( GL_TRIANGLES, ( GLsizei )m_vertices.size(), GL_UNSIGNED_INT, 0 );
+//    glm::mat4 model;
+//    glm::mat4 translate = glm::translate( model, quad. );
+//    m_shader->setUnif( "uf_ModelMatrix", false, translate );
+
+    glDrawElements( GL_TRIANGLES, ( GLsizei )m_elements.size(), GL_UNSIGNED_INT, 0 );
 
 
     glDeleteBuffers( 1, &vbo );
