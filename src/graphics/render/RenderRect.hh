@@ -38,7 +38,9 @@ private:
     Shader* m_shader;
 
     std::vector< Vertex > m_vertices;
+    std::vector< GLfloat > m_translates;
     std::vector< GLuint > m_elements;
+    std::vector< GLuint > m_transformeElements;
 
     GLuint m_vertexIndex;
     GLuint m_elementIndex;

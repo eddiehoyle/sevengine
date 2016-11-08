@@ -23,6 +23,9 @@ RenderRect::RenderRect( Shader* shader, Texture* texture )
     // Reserve vertex and element buffers
     m_vertices.reserve( kVboSize );
     m_elements.reserve( kVboSize );
+    m_translates.reserve( kVboSize );
+    m_transformeElements.reserve( kVboSize );
+
 }
 
 RenderRect::~RenderRect()
@@ -33,7 +36,6 @@ RenderRect::~RenderRect()
 
 void RenderRect::buffer( const Quad& quad )
 {
-
     // Vertex array for this quad
     Vertex vertices[4] = {
             quad.bl, quad.tl,
@@ -48,9 +50,22 @@ void RenderRect::buffer( const Quad& quad )
             index + 3, index + 1,
     };
 
+    // Transforms for quads
+    GLfloat translates[4] = {
+            quad.x, quad.y,
+            0.0f, 0.0f
+    };
+
+    GLuint transformIndex = ( GLuint )m_transformeElements.size();
+    GLuint transformElements[6] = {
+            transformIndex, transformIndex + 1
+    };
+
     // Copy these arrays into vertex and element vectors
     std::copy( vertices, vertices + 4, std::back_inserter( m_vertices ) );
     std::copy( elements, elements + 6, std::back_inserter( m_elements ) );
+    std::copy( translates, translates + 4, std::back_inserter( m_translates ) );
+    std::copy( transformElements, transformElements + 2, std::back_inserter( m_transformeElements ) );
 }
 
 void RenderRect::draw()
@@ -62,6 +77,13 @@ void RenderRect::draw()
 //        std::cerr << *eIter << ", ";
 //    }
 //    std::cerr << std::endl;
+
+    std::vector< GLfloat >::iterator tIter;
+    std::cerr << "Elements: ";
+    for ( tIter = m_translates.begin(); tIter != m_translates.end(); tIter++ ) {
+        std::cerr << "(" << *tIter << ", " << *++tIter << "), ";
+    }
+    std::cerr << std::endl;
 //
 //    std::vector< Vertex >::iterator vIter;
 //    std::cerr << "Vertices: ";
@@ -84,26 +106,41 @@ void RenderRect::draw()
 
 
 
-    GLuint vbo;
-    GLuint ebo;
+    GLuint vbo, tbo;
+    GLuint ebo, tebo;
     glGenBuffers( 1, &vbo );
+    glGenBuffers( 1, &tbo );
     glGenBuffers( 1, &ebo );
-
-    std::cerr << "Got buffers: " << vbo << ", " << ebo << std::endl;
+    glGenBuffers( 1, &tebo );
 
     glBindBuffer( GL_ARRAY_BUFFER, vbo );
     glBufferData( GL_ARRAY_BUFFER, m_vertices.size() * sizeof( Vertex ), &m_vertices[0], GL_STATIC_DRAW );
 
+    glBindBuffer( GL_ARRAY_BUFFER, tbo );
+    glBufferData( GL_ARRAY_BUFFER, m_translates.size() * sizeof( GLfloat ), &m_translates[0], GL_STATIC_DRAW );
+
+    glBindBuffer( GL_ARRAY_BUFFER, vbo );
+    GLuint stride = sizeof( Vertex );
+    glVertexAttribPointer( m_shader->getAttrHandle( "in_Position" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 0 );
+    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Position" ) );
+
+    glVertexAttribPointer( m_shader->getAttrHandle( "in_Texture" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 2 );
+    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Texture" ) );
+
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, ebo );
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof( GLuint ), &m_elements[0], GL_STATIC_DRAW );
 
-//    std::cerr << "in_Position handle: " << m_shader->getAttrHandle( "in_Position" ) << std::endl;
-    GLuint stride = sizeof( Vertex );
-    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Position" ) );
-    glVertexAttribPointer( m_shader->getAttrHandle( "in_Position" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 0 );
+    glBindBuffer( GL_ARRAY_BUFFER, tbo );
+    glVertexAttribPointer( m_shader->getAttrHandle( "in_Translate" ), 2, GL_FLOAT, GL_FALSE, sizeof( GLfloat ) * 4, ( void * ) + 0 );
+    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Translate" ) );
 
-    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Texture" ) );
-    glVertexAttribPointer( m_shader->getAttrHandle( "in_Texture" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 2 );
+    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, tebo );
+    glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_transformeElements.size() * sizeof( GLuint ), &m_transformeElements[0], GL_STATIC_DRAW );
+
+//    glBindBuffer( GL_ARRAY_BUFFER, 0 );
+//    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
+
+
 
 //    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Texture" ) );
 //    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Color" ) );
@@ -116,15 +153,12 @@ void RenderRect::draw()
 //    m_shader->setAttrOffset( "in_Texture", 2, GL_FLOAT, false, 0, 8 );
 //    m_shader->setAttrOffset( "in_Color", 4, GL_UNSIGNED_BYTE, false, 0, 16 );
 
-//    glm::mat4 model;
-//    glm::mat4 translate = glm::translate( model, quad. );
-//    m_shader->setUnif( "uf_ModelMatrix", false, translate );
-
     glDrawElements( GL_TRIANGLES, ( GLsizei )m_elements.size(), GL_UNSIGNED_INT, 0 );
 
 
     glDeleteBuffers( 1, &vbo );
     glDeleteBuffers( 1, &ebo );
+    glDeleteBuffers( 1, &tbo );
     Texture::unbind( m_texture );
 }
 

@@ -78,6 +78,7 @@ public:
     void enableAttr( const char* name );
     void disableAttr( const char* name );
 
+    /// TODO
     void setAttrOffset( const char* name, GLint size, GLenum type,
                         bool normalized, GLsizei stride, GLsizei offset );
 

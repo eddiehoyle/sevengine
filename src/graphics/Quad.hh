@@ -13,6 +13,7 @@ struct Quad {
 
     void set( float width, float height );
     Vertex bl, br, tl, tr;
+    GLfloat x, y;
 
 };
 
