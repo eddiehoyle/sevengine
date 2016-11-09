@@ -17,6 +17,8 @@ GLuint compileShader( const char *path, GLenum type );
 
 bool linkProgram( GLuint program, GLuint vertexId, GLuint fragmentId );
 
+void checkError();
+
 #endif //SEV_UTILITIES_HH
 
 

@@ -6,6 +6,7 @@
 #include "RenderRect.hh"
 #include "../Buffer.hh"
 #include "../../core/Shader.hh"
+#include "../../Utilities.hh"
 
 RenderRect::RenderRect( Shader* shader, Texture* texture )
         : m_buffer( NULL ),
@@ -23,9 +24,6 @@ RenderRect::RenderRect( Shader* shader, Texture* texture )
     // Reserve vertex and element buffers
     m_vertices.reserve( kVboSize );
     m_elements.reserve( kVboSize );
-    m_translates.reserve( kVboSize );
-    m_transformeElements.reserve( kVboSize );
-
 }
 
 RenderRect::~RenderRect()
@@ -50,22 +48,9 @@ void RenderRect::buffer( const Quad& quad )
             index + 3, index + 1,
     };
 
-    // Transforms for quads
-    GLfloat translates[4] = {
-            quad.x, quad.y,
-            0.0f, 0.0f
-    };
-
-    GLuint transformIndex = ( GLuint )m_transformeElements.size();
-    GLuint transformElements[6] = {
-            transformIndex, transformIndex + 1
-    };
-
     // Copy these arrays into vertex and element vectors
     std::copy( vertices, vertices + 4, std::back_inserter( m_vertices ) );
     std::copy( elements, elements + 6, std::back_inserter( m_elements ) );
-    std::copy( translates, translates + 4, std::back_inserter( m_translates ) );
-    std::copy( transformElements, transformElements + 2, std::back_inserter( m_transformeElements ) );
 }
 
 void RenderRect::draw()
@@ -78,12 +63,12 @@ void RenderRect::draw()
 //    }
 //    std::cerr << std::endl;
 
-    std::vector< GLfloat >::iterator tIter;
-    std::cerr << "Elements: ";
-    for ( tIter = m_translates.begin(); tIter != m_translates.end(); tIter++ ) {
-        std::cerr << "(" << *tIter << ", " << *++tIter << "), ";
-    }
-    std::cerr << std::endl;
+//    std::vector< GLfloat >::iterator tIter;
+//    std::cerr << "Elements: ";
+//    for ( tIter = m_translates.begin(); tIter != m_translates.end(); tIter++ ) {
+//        std::cerr << "(" << *tIter << ", " << *++tIter << "), ";
+//    }
+//    std::cerr << std::endl;
 //
 //    std::vector< Vertex >::iterator vIter;
 //    std::cerr << "Vertices: ";
@@ -98,28 +83,32 @@ void RenderRect::draw()
 //    std::cerr << "Vertex size: " << sizeof( struct Vertex) << std::endl;
     // -------------------------------------------------------------------------------------
 
+    GLfloat pixels[4] = {
+            50.0f, 20.0f, 0.0f, 1.0f,
+    };
+
     // Enable textures
-//    glEnable( GL_TEXTURE_2D );
+    GLuint textureId;
+    glGenTextures( 1, &textureId );
+//    glTexImage2D (GLenum target, GLint level, GLint internalformat, GLsizei width,
+//    GLsizei height, GLint border, GLenum format, GLenum type, const void *pixels);
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels );
+    glEnable( GL_TEXTURE_2D );
+    glBindTexture( GL_TEXTURE_2D, textureId );
 //    Texture::bind( m_texture );
-//    glActiveTexture( GL_TEXTURE0 );
+    glActiveTexture( GL_TEXTURE0 );
+    checkError();
 //    glBindTexture( GL_TEXTURE_2D, m_texture->getHandle() );
 
 
 
-    GLuint vbo, tbo;
-    GLuint ebo, tebo;
+    GLuint vbo, ebo;
     glGenBuffers( 1, &vbo );
-    glGenBuffers( 1, &tbo );
     glGenBuffers( 1, &ebo );
-    glGenBuffers( 1, &tebo );
 
     glBindBuffer( GL_ARRAY_BUFFER, vbo );
     glBufferData( GL_ARRAY_BUFFER, m_vertices.size() * sizeof( Vertex ), &m_vertices[0], GL_STATIC_DRAW );
 
-    glBindBuffer( GL_ARRAY_BUFFER, tbo );
-    glBufferData( GL_ARRAY_BUFFER, m_translates.size() * sizeof( GLfloat ), &m_translates[0], GL_STATIC_DRAW );
-
-    glBindBuffer( GL_ARRAY_BUFFER, vbo );
     GLuint stride = sizeof( Vertex );
     glVertexAttribPointer( m_shader->getAttrHandle( "in_Position" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 0 );
     glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Position" ) );
@@ -130,12 +119,7 @@ void RenderRect::draw()
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, ebo );
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof( GLuint ), &m_elements[0], GL_STATIC_DRAW );
 
-    glBindBuffer( GL_ARRAY_BUFFER, tbo );
-    glVertexAttribPointer( m_shader->getAttrHandle( "in_Translate" ), 2, GL_FLOAT, GL_FALSE, sizeof( GLfloat ) * 4, ( void * ) + 0 );
-    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Translate" ) );
-
-    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, tebo );
-    glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_transformeElements.size() * sizeof( GLuint ), &m_transformeElements[0], GL_STATIC_DRAW );
+    checkError();
 
 //    glBindBuffer( GL_ARRAY_BUFFER, 0 );
 //    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
@@ -155,10 +139,8 @@ void RenderRect::draw()
 
     glDrawElements( GL_TRIANGLES, ( GLsizei )m_elements.size(), GL_UNSIGNED_INT, 0 );
 
-
     glDeleteBuffers( 1, &vbo );
     glDeleteBuffers( 1, &ebo );
-    glDeleteBuffers( 1, &tbo );
     Texture::unbind( m_texture );
 }
 
