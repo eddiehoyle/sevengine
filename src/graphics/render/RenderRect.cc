@@ -41,7 +41,8 @@ void RenderRect::buffer( const Quad& quad )
     };
 
     // Element array for this quad
-    GLuint index = ( GLuint )m_vertices.size() + ( ( GLuint )m_vertices.size() / 2 );
+//    GLuint index = ( GLuint )m_vertices.size() + ( ( GLuint )m_vertices.size() / 2 );
+    GLuint index = ( GLuint )m_vertices.size();
     GLuint elements[6] = {
             index,     index + 1,
             index + 2, index + 2,
@@ -62,13 +63,6 @@ void RenderRect::draw()
 //        std::cerr << *eIter << ", ";
 //    }
 //    std::cerr << std::endl;
-
-//    std::vector< GLfloat >::iterator tIter;
-//    std::cerr << "Elements: ";
-//    for ( tIter = m_translates.begin(); tIter != m_translates.end(); tIter++ ) {
-//        std::cerr << "(" << *tIter << ", " << *++tIter << "), ";
-//    }
-//    std::cerr << std::endl;
 //
 //    std::vector< Vertex >::iterator vIter;
 //    std::cerr << "Vertices: ";
@@ -83,21 +77,21 @@ void RenderRect::draw()
 //    std::cerr << "Vertex size: " << sizeof( struct Vertex) << std::endl;
     // -------------------------------------------------------------------------------------
 
-    GLfloat pixels[4] = {
-            50.0f, 20.0f, 0.0f, 1.0f,
-    };
-
-    // Enable textures
-    GLuint textureId;
-    glGenTextures( 1, &textureId );
-//    glTexImage2D (GLenum target, GLint level, GLint internalformat, GLsizei width,
-//    GLsizei height, GLint border, GLenum format, GLenum type, const void *pixels);
-    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels );
-    glEnable( GL_TEXTURE_2D );
-    glBindTexture( GL_TEXTURE_2D, textureId );
-//    Texture::bind( m_texture );
-    glActiveTexture( GL_TEXTURE0 );
-    checkError();
+//    GLfloat pixels[4] = {
+//            50.0f, 20.0f, 0.0f, 1.0f,
+//    };
+//
+//    // Enable textures
+//    GLuint textureId;
+//    glGenTextures( 1, &textureId );
+////    glTexImage2D (GLenum target, GLint level, GLint internalformat, GLsizei width,
+////    GLsizei height, GLint border, GLenum format, GLenum type, const void *pixels);
+//    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels );
+//    glEnable( GL_TEXTURE_2D );
+//    glBindTexture( GL_TEXTURE_2D, textureId );
+////    Texture::bind( m_texture );
+//    glActiveTexture( GL_TEXTURE0 );
+//    checkError();
 //    glBindTexture( GL_TEXTURE_2D, m_texture->getHandle() );
 
 
