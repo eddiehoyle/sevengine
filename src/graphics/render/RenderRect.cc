@@ -77,24 +77,6 @@ void RenderRect::draw()
 //    std::cerr << "Vertex size: " << sizeof( struct Vertex) << std::endl;
     // -------------------------------------------------------------------------------------
 
-//    GLfloat pixels[4] = {
-//            50.0f, 20.0f, 0.0f, 1.0f,
-//    };
-//
-//    // Enable textures
-//    GLuint textureId;
-//    glGenTextures( 1, &textureId );
-////    glTexImage2D (GLenum target, GLint level, GLint internalformat, GLsizei width,
-////    GLsizei height, GLint border, GLenum format, GLenum type, const void *pixels);
-//    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels );
-//    glEnable( GL_TEXTURE_2D );
-//    glBindTexture( GL_TEXTURE_2D, textureId );
-////    Texture::bind( m_texture );
-//    glActiveTexture( GL_TEXTURE0 );
-//    checkError();
-//    glBindTexture( GL_TEXTURE_2D, m_texture->getHandle() );
-
-
 
     GLuint vbo, ebo;
     glGenBuffers( 1, &vbo );
@@ -107,8 +89,8 @@ void RenderRect::draw()
     glVertexAttribPointer( m_shader->getAttrHandle( "in_Position" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 0 );
     glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Position" ) );
 
-    glVertexAttribPointer( m_shader->getAttrHandle( "in_Texture" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 2 );
-    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Texture" ) );
+//    glVertexAttribPointer( m_shader->getAttrHandle( "in_Texture" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 2 );
+//    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Texture" ) );
 
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, ebo );
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof( GLuint ), &m_elements[0], GL_STATIC_DRAW );
@@ -136,6 +118,9 @@ void RenderRect::draw()
     glDeleteBuffers( 1, &vbo );
     glDeleteBuffers( 1, &ebo );
     Texture::unbind( m_texture );
+
+    m_vertices.clear();
+    m_elements.clear();
 }
 
 void RenderRect::release()
