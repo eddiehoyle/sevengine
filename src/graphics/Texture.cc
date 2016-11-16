@@ -4,6 +4,7 @@
 
 #include "Texture.hh"
 #include <SOIL.h>
+#include <iostream>
 
 void Texture::bind( Texture* texture )
 {
@@ -54,6 +55,10 @@ void Texture::readImage( const char* path )
                   GL_RGBA, GL_UNSIGNED_BYTE, m_image );
     glGenerateMipmap( m_target );
     SOIL_free_image_data( m_image );
+
+    if ( m_image ) {
+        std::cerr << "Got image" << std::endl;
+    }
 }
 
 GLuint Texture::getHandle() const

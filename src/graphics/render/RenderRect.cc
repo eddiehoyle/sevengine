@@ -89,13 +89,17 @@ void RenderRect::draw()
     glVertexAttribPointer( m_shader->getAttrHandle( "in_Position" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 0 );
     glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Position" ) );
 
-//    glVertexAttribPointer( m_shader->getAttrHandle( "in_Texture" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 2 );
-//    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Texture" ) );
+    glVertexAttribPointer( m_shader->getAttrHandle( "in_TextureUV" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 2 );
+    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_TextureUV" ) );
 
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, ebo );
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof( GLuint ), &m_elements[0], GL_STATIC_DRAW );
 
     checkError();
+
+    glEnable( GL_TEXTURE_2D );
+    glActiveTexture( GL_TEXTURE0 );
+//    m_shader->setUnif( "uf_Texture", 0 );
 
 //    glBindBuffer( GL_ARRAY_BUFFER, 0 );
 //    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
