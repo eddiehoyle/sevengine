@@ -18,13 +18,16 @@ public:
     static const unsigned int kVboSize = 1024;   /// Vertex Buffer Object
 
 public:
-    explicit RenderRect( Shader* shader, Texture* texture );
+    explicit RenderRect( Shader* shader );
     ~RenderRect();
 
 public:
 
     /// Fill buffer with data
     void buffer( const Quad& quad );
+
+    /// Create buffers
+    void allocate();
 
     /// Draw data
     void draw();
@@ -34,7 +37,7 @@ public:
 
 private:
     Buffer* m_buffer;
-    Texture* m_texture;
+//    Texture* m_texture;
     Shader* m_shader;
 
     std::vector< Vertex > m_vertices;
@@ -44,6 +47,9 @@ private:
 
     GLuint m_vertexIndex;
     GLuint m_elementIndex;
+
+    GLuint m_vbo;
+    GLuint m_vao;
 
 };
 

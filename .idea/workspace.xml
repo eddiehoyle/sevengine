@@ -15,10 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45ef3f77-ceda-4b79-b26f-bfb99b454220" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/Shader.cc" afterPath="$PROJECT_DIR$/src/core/Shader.cc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/Quad.cc" afterPath="$PROJECT_DIR$/src/graphics/Quad.cc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/Texture.cc" afterPath="$PROJECT_DIR$/src/graphics/Texture.cc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/Texture.hh" afterPath="$PROJECT_DIR$/src/graphics/Texture.hh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/RenderRect.cc" afterPath="$PROJECT_DIR$/src/graphics/render/RenderRect.cc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/RenderRect.hh" afterPath="$PROJECT_DIR$/src/graphics/render/RenderRect.hh" />
     </list>
     <ignored path="sev.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +39,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="RenderRect.cc" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graphics/render/RenderRect.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+              <folding>
+                <element signature="e#46#66#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Quad.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphics/Quad.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+            <state relative-caret-position="75">
+              <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Shader.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/Shader.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="155" column="1" selection-start-line="155" selection-start-column="1" selection-end-line="155" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Shader.hh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/Shader.hh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RenderRect.hh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphics/render/RenderRect.hh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -61,11 +103,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Texture.hh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Texture.hh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphics/Texture.hh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+            <state relative-caret-position="385">
+              <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
               <folding>
                 <element signature="e#120#142#0" expanded="true" />
               </folding>
@@ -128,9 +170,7 @@
         <option value="$PROJECT_DIR$/include/sev/graphics/render/RenderQuad.cc" />
         <option value="$PROJECT_DIR$/src/graphics/render/RenderQuad.hh" />
         <option value="$PROJECT_DIR$/src/graphics/render/RectRenderer.cc" />
-        <option value="$PROJECT_DIR$/src/core/Shader.cc" />
         <option value="$PROJECT_DIR$/src/core/Shader.hh" />
-        <option value="$PROJECT_DIR$/src/graphics/render/RenderRect.hh" />
         <option value="$PROJECT_DIR$/src/Utilities.hh" />
         <option value="$PROJECT_DIR$/src/Utilities.cc" />
         <option value="$PROJECT_DIR$/src/graphics/Vertex.cc" />
@@ -138,10 +178,12 @@
         <option value="$PROJECT_DIR$/src/graphics/Vertex.hh" />
         <option value="$PROJECT_DIR$/resources/dynamic.vs" />
         <option value="$PROJECT_DIR$/resources/dynamic.fs" />
-        <option value="$PROJECT_DIR$/src/graphics/render/RenderRect.cc" />
         <option value="$PROJECT_DIR$/src/graphics/Texture.cc" />
-        <option value="$PROJECT_DIR$/src/graphics/Quad.cc" />
         <option value="$PROJECT_DIR$/src/graphics/Texture.hh" />
+        <option value="$PROJECT_DIR$/src/graphics/Quad.cc" />
+        <option value="$PROJECT_DIR$/src/core/Shader.cc" />
+        <option value="$PROJECT_DIR$/src/graphics/render/RenderRect.hh" />
+        <option value="$PROJECT_DIR$/src/graphics/render/RenderRect.cc" />
       </list>
     </option>
   </component>
@@ -251,6 +293,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="render" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sevengine" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sevengine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -481,9 +541,9 @@
     <frame x="0" y="23" width="640" height="773" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1987076" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3441034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18502203" sideWeight="0.5266084" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42731276" sideWeight="0.5266084" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32452276" sideWeight="0.45274028" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33920705" sideWeight="0.4733916" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -538,11 +598,6 @@
           <url>file://$PROJECT_DIR$/src/core/Window.hh</url>
           <line>9</line>
           <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/graphics/render/RenderRect.cc</url>
-          <line>99</line>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="14" />
@@ -706,7 +761,6 @@
           <caret line="61" column="80" selection-start-line="61" selection-start-column="80" selection-end-line="61" selection-end-column="80" />
           <folding>
             <element signature="e#46#66#0" expanded="true" />
-            <marker date="1479198593000" expanded="true" signature="1493:2090" ph="..." />
           </folding>
         </state>
       </provider>
@@ -741,26 +795,6 @@
         <state relative-caret-position="525">
           <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Shader.hh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
-          <folding>
-            <element signature="e#119#141#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/render/RenderRect.hh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="42" column="46" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="46" />
-          <folding>
-            <element signature="e#111#128#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -817,25 +851,6 @@
         <state relative-caret-position="165">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Shader.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/render/RenderRect.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="91" column="68" selection-start-line="91" selection-start-column="68" selection-end-line="91" selection-end-column="68" />
-          <folding>
-            <element signature="e#46#66#0" expanded="true" />
-            <marker date="1479198593000" expanded="true" signature="1493:2090" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -897,20 +912,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/Texture.hh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+          <folding>
+            <element signature="e#120#142#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/Quad.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+        <state relative-caret-position="75">
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/Texture.hh">
+    <entry file="file://$PROJECT_DIR$/src/core/Shader.hh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+        <state relative-caret-position="180">
+          <caret line="73" column="14" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Shader.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="155" column="1" selection-start-line="155" selection-start-column="1" selection-end-line="155" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/render/RenderRect.hh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/render/RenderRect.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
           <folding>
-            <element signature="e#120#142#0" expanded="true" />
+            <element signature="e#46#66#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -152,12 +152,12 @@ void Shader::setAttrOffset( const char* name, GLint size, GLenum type,
 
 void Shader::enableAttr( const char* name )
 {
-    glEnableVertexAttribArray( ( GLuint )getAttrHandle( name ) );
+    glEnableVertexAttribArray( getAttrHandle( name ) );
 }
 
 void Shader::disableAttr( const char* name )
 {
-    glDisableVertexAttribArray( ( GLuint )getAttrHandle( name ) );
+    glDisableVertexAttribArray( getAttrHandle( name ) );
 }
 
 GLint Shader::getUnifHandle( const char *name )
