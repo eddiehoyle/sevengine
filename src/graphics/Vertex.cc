@@ -4,11 +4,23 @@
 
 #include "Vertex.hh"
 
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
-void Vertex::set( GLfloat _x, GLfloat _y, GLfloat _u, GLfloat _v )
+Vertex::Vertex()
+{
+    set( 0, 0, 0, 0, 0, 0, 0, 0 );
+}
+
+void Vertex::set( GLfloat _x, GLfloat _y, GLfloat _s, GLfloat _t,
+                  GLubyte _r, GLubyte _g, GLubyte _b, GLubyte _a )
 {
     x = _x;
     y = _y;
-    u = _u;
-    v = _v;
+    s = _s;
+    t = _t;
+    r = _r;
+    g = _g;
+    b = _b;
+    a = _a;
 }

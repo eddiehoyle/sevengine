@@ -7,63 +7,41 @@
 
 #include <glm/vec3.hpp>
 #include <glm/mat4x4.hpp>
+#include <glm/vec2.hpp>
 
 class Transform {
 
 public:
-
-    enum RotateOrder
-    {
-        XYZ = 0,
-        YZX,
-        ZXY,
-        XZY,
-        YXZ,
-        ZYX,
-    };
-
-    enum DirtyFlags
-    {
-        WorldDirty = ( 1 << 0 ),
-        LocalDirty = ( 1 << 1 ),
-    };
-
-//    DirtyFlags dirtyFlags = WorldDirty | LocalDirty;
-
-public:
-
-
     Transform();
-    explicit Transform( const glm::vec3 translate,
-                        const glm::vec3 rotate,
-                        const glm::vec3 scale,
-                        RotateOrder order = XYZ );
-
-    explicit Transform( const glm::mat4 matrix );
-
+    explicit Transform( const glm::vec2& position,
+                        float angle,
+                        const glm::vec2& scale );
     ~Transform();
 
-public:
+    void setPosition( const glm::vec2& position );
+    void setPosition( double x, double y );
+
+    void setAngle( double degrees );
+
+    void setScale( const glm::vec2& scale );
+    void setScale( double x, double y );
+
+    void setPivot( const glm::vec2& pivot );
+    void setPivot( double x, double y );
+
+    glm::vec2 getPosition() const;
+    double getAngle() const;
+    glm::vec2 getScale() const;
+    glm::vec2 getPivot() const;
 
     glm::mat4 getMatrix();
-    glm::vec3& getTranslate();
-    glm::vec3& getRotate();
-    glm::vec3& getScale();
-
-    void setTranslate( const glm::vec3 translate );
-    void setRotate( const glm::vec3 rotate );
-    void setScale( const glm::vec3 scale );
 
 private:
-
-    glm::vec3 m_translate;
-    glm::vec3 m_rotate;
+    glm::vec3 m_position;
+    double m_angle;
     glm::vec3 m_scale;
-
-    glm::mat4 m_matrix;
-    glm::mat4 m_worldMatrix;
+    glm::vec3 m_pivot;
 
 };
-
 
 #endif //SEV_TRANSFORM_HH

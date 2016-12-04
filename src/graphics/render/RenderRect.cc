@@ -15,8 +15,6 @@ RenderRect::RenderRect( Shader* shader )
           m_vertices( 0 ),
           m_elements( 0 )
 {
-//    m_buffer = new Buffer( GL_ARRAY_BUFFER );
-
     m_shader = shader;
 
     // Reserve vertex and element buffers
@@ -26,7 +24,6 @@ RenderRect::RenderRect( Shader* shader )
 
 RenderRect::~RenderRect()
 {
-
     delete m_buffer;
 }
 
@@ -39,7 +36,6 @@ void RenderRect::buffer( const Quad& quad )
     };
 
     // Element array for this quad
-//    GLuint index = ( GLuint )m_vertices.size() + ( ( GLuint )m_vertices.size() / 2 );
     GLuint index = ( GLuint )m_vertices.size();
     GLuint elements[6] = {
             index,     index + 1,
@@ -54,7 +50,6 @@ void RenderRect::buffer( const Quad& quad )
 
 void RenderRect::allocate()
 {
-    std::cerr << "RenderRect::allocate()" << std::endl;
     glGenBuffers( 1, &m_vbo );
     glGenBuffers( 1, &m_vao );
 
@@ -63,79 +58,39 @@ void RenderRect::allocate()
 
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_vao );
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof( GLuint ), &m_elements[0], GL_STATIC_DRAW );
-}
 
-void RenderRect::draw()
-{
-    std::cerr << "RenderRect::draw()" << std::endl;
+    // Setup attributes
+    m_shader->bindAttr( 0, "in_Position" );
+    m_shader->bindAttr( 1, "in_TextureUV" );
+    m_shader->bindAttr( 2, "in_Color" );
 
     GLsizei stride = sizeof( Vertex );
     m_shader->setAttrOffset( "in_Position", 2, GL_FLOAT, false, stride, 0 );
     m_shader->setAttrOffset( "in_TextureUV", 2, GL_FLOAT, false, stride, 8 );
+    m_shader->setAttrOffset( "in_Color", 4, GL_UNSIGNED_BYTE, true, stride, 16 );
 
     m_shader->enableAttr( "in_Position" );
     m_shader->enableAttr( "in_TextureUV" );
+    m_shader->enableAttr( "in_Color" );
+}
 
-//    GLuint vbo, ebo;
-//    glGenBuffers( 1, &vbo );
-//    glGenBuffers( 1, &ebo );
-//
-//    glBindBuffer( GL_ARRAY_BUFFER, vbo );
-//    glBufferData( GL_ARRAY_BUFFER, m_vertices.size() * sizeof( Vertex ), &m_vertices[0], GL_STATIC_DRAW );
-//
-//    GLuint stride = sizeof( Vertex );
-//    glVertexAttribPointer( m_shader->getAttrHandle( "in_Position" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 0 );
-//    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Position" ) );
-//
-//    glVertexAttribPointer( m_shader->getAttrHandle( "in_TextureUV" ), 2, GL_FLOAT, GL_FALSE, stride, ( void * ) + 2 );
-//    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_TextureUV" ) );
-//
-//    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, ebo );
-//    glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof( GLuint ), &m_elements[0], GL_STATIC_DRAW );
-//
-//    checkError();
+void RenderRect::draw()
+{
+    // Enable alpha
+    glEnable( GL_BLEND );
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
-//    glEnable( GL_TEXTURE_2D );
-    glActiveTexture( GL_TEXTURE0 );
-    m_shader->setUnif( "uf_Texture", 0 );
-
-//    glBindBuffer( GL_ARRAY_BUFFER, 0 );
-//    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
-
-
-
-//    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Texture" ) );
-//    glEnableVertexAttribArray( m_shader->getAttrHandle( "in_Color" ) );
-
-//    m_shader->enableAttr( "in_Position" );
-//    m_shader->enableAttr( "in_Texture" );
-//    m_shader->enableAttr( "in_Color" );
-
-//    m_shader->setAttrOffset( "in_Position", 2, GL_FLOAT, false, 0, 0 );
-//    m_shader->setAttrOffset( "in_Texture", 2, GL_FLOAT, false, 0, 8 );
-//    m_shader->setAttrOffset( "in_Color", 4, GL_UNSIGNED_BYTE, false, 0, 16 );
-
+    // Draw
     glDrawElements( GL_TRIANGLES, ( GLsizei )m_elements.size(), GL_UNSIGNED_INT, 0 );
-
-//    glDeleteBuffers( 1, &vbo );
-//    glDeleteBuffers( 1, &ebo );
-//    Texture::unbind( m_texture );
-//
-//    m_vertices.clear();
-//    m_elements.clear();
 }
 
 void RenderRect::release()
 {
-    printf( "RenderRect::release()\n" );
-
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
 
     glDeleteBuffers( 1, &m_vbo );
     glDeleteBuffers( 1, &m_vao );
-
-//    Texture::unbind( m_texture );
 
     m_vertices.clear();
     m_elements.clear();

@@ -10,32 +10,29 @@
 #include <png.h>
 #include <string>
 
-class Texture2
+class Texture2D
 {
+
 public:
 
     /// Bind a texture to it's target
     /// @param texture - A texture
-    static void bind( Texture2* texture );
+    static void bind( Texture2D* texture, unsigned int index );
 
     /// Unbind a texture from it's target
     /// @param texture - A texture
-    static void release( Texture2* texture );
+    static void release( Texture2D* texture );
 
 public:
 
-    explicit Texture2( const std::string& path );
+    explicit Texture2D( const std::string& path );
+    void setResizeMode( GLenum min, GLenum max );
+    void setWrapMode( GLenum s, GLenum t );
     GLuint getHandle() const;
 
 private:
 
-    void load( const std::string& path );
-
-private:
-
     GLuint m_handle;
-    GLenum m_min;
-    GLenum m_mag;
 };
 
 class Texture {

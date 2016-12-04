@@ -4,77 +4,107 @@
 
 #include "Transform.hh"
 
+#define GLM_SWIZZLE
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
+#include <iostream>
 
-Transform::Transform() :
-    m_translate( glm::vec3() ),
-    m_rotate( glm::vec3() ),
-    m_scale( glm::vec3() )
-{
-    // TODO
-}
-
-
-Transform::Transform( const glm::vec3 translate,
-                      const glm::vec3 rotate,
-                      const glm::vec3 scale,
-                      Transform::RotateOrder order ) :
-    m_translate( glm::vec3() ),
-    m_rotate( glm::vec3() ),
-    m_scale( glm::vec3() )
-{
-    m_translate = translate;
-    m_rotate = rotate;
-    m_scale = scale;
-}
-
-Transform::Transform( const glm::mat4 matrix ) :
-    m_translate( glm::vec3() ),
-    m_rotate( glm::vec3() ),
-    m_scale( glm::vec3() )
-{
-    // TODO
-}
+Transform::Transform()
+        : m_position( glm::vec3() ),
+          m_angle( 0.0f ),
+          m_scale( glm::vec3( 1.0f ) )
+{}
 
 Transform::~Transform()
+{}
+
+Transform::Transform( const glm::vec2& position,
+                      float angle,
+                      const glm::vec2& scale )
+        : m_position( glm::vec3() ),
+          m_angle( 0.0f ),
+          m_scale( glm::vec3( 1.0f ) )
 {
-    m_translate = glm::vec3();
-    m_rotate = glm::vec3();
-    m_scale = glm::vec3();
+    setPosition( position );
+    setAngle( angle );
+    setScale( scale );
 }
 
-void Transform::setTranslate( const glm::vec3 translate )
+void Transform::setPosition( const glm::vec2& position )
 {
-    m_translate = translate;
+    m_position = glm::vec3( position.x, position.y, 0.0 );
+    m_pivot += glm::vec3( position.x, position.y, 0.0 );
 }
 
-void Transform::setRotate( const glm::vec3 rotate )
+void Transform::setPosition( double x, double y )
 {
-    m_rotate = rotate;
+    m_position = glm::vec3( x, y, 0.0 );
+    m_pivot += glm::vec3( x, y, 0.0 );
 }
 
-void Transform::setScale( const glm::vec3 scale )
+void Transform::setAngle( double degrees )
 {
-    m_scale = scale;
+    m_angle = degrees;
 }
 
-glm::vec3& Transform::getTranslate()
+void Transform::setScale( const glm::vec2& scale )
 {
-    return m_translate;
+    m_scale = glm::vec3( scale.x, scale.y, 0.0 );
 }
 
-glm::vec3& Transform::getRotate()
+
+void Transform::setScale( double x, double y )
 {
-    return m_rotate;
+    m_scale = glm::vec3( x, y, 0.0 );
 }
 
-glm::vec3& Transform::getScale()
+glm::vec2 Transform::getPosition() const
 {
-    return m_scale;
+    return glm::vec2( m_position.x, m_position.y );
+}
+
+double Transform::getAngle() const
+{
+    return m_angle;
+}
+
+glm::vec2 Transform::getScale() const
+{
+    return glm::vec2( m_scale.x, m_scale.y );
+}
+
+void Transform::setPivot( const glm::vec2& pivot )
+{
+    m_pivot = glm::vec3( pivot.x, pivot.y, 0.0f );
+}
+
+void Transform::setPivot( double x, double y )
+{
+    m_pivot = glm::vec3( x, y, 0.0f );
+}
+
+glm::vec2 Transform::getPivot() const
+{
+    return glm::vec2( m_pivot.x, m_pivot.y );
 }
 
 glm::mat4 Transform::getMatrix()
 {
-    return glm::mat4();
+    glm::mat4 translate( 1.0f );
+    glm::mat4 rotate( 1.0f );
+    glm::mat4 scale( 1.0f );
+
+    translate = glm::translate( translate, m_position );
+
+    rotate = glm::translate( rotate, m_pivot );
+    rotate = glm::rotate( rotate, glm::radians( -( float )m_angle ), glm::vec3( 0, 0, 1 ) );
+    rotate = glm::translate( rotate, -m_pivot );
+
+    scale = glm::translate( scale, m_pivot );
+    scale = glm::scale( scale, glm::vec3( m_scale.x, m_scale.y, 1.0f ) );
+    scale = glm::translate( scale, -m_pivot );
+
+    return scale * rotate * translate;
 }
 
 

@@ -8,12 +8,19 @@
 #define GL_GLEXT_PROTOTYPES
 #include <GLES2/gl2.h>
 
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
+
 struct Vertex {
 
-    GLfloat x, y;
-    GLfloat u, v;
+    Vertex();
 
-    void set( GLfloat _x, GLfloat _y, GLfloat _u, GLfloat _v );
+    GLfloat x, y;
+    GLfloat s, t;
+    GLubyte r, g, b, a;
+
+    void set( GLfloat _x, GLfloat _y, GLfloat _s, GLfloat _t,
+              GLubyte _r, GLubyte _g, GLubyte _b, GLubyte _a );
 };
 
 
