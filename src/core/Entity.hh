@@ -5,7 +5,6 @@
 #ifndef SEV_ENTITY_HH
 #define SEV_ENTITY_HH
 
-#include "Shader.hh"
 #include "Transform.hh"
 #include "Mesh.hh"
 #include "Rect.hh"
@@ -26,16 +25,11 @@ public:
     virtual void draw();
 
 
-    Shader* getShader() const;
+//    Shader* getShader() const;
     Mesh* getModel() const;
     Transform* getTransform() const;
 
-protected:
-    void initializeShader( Shader* shader, Mesh* model );
-    void initializeShader( Shader* shader, Quad* rect );
-
 private:
-    Shader* m_shader;
     Mesh* m_model;
     Transform* m_transform;
     Quad* m_rect;

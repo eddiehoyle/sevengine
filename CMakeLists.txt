@@ -32,7 +32,7 @@ include_directories(${SOIL_INCLUDE_DIR})
 #message(WARNING ${SOIL_INCLUDE_DIR})
 
 # Output
-add_library(${LIB_NAME} ${SOURCE_FILES})
+add_library(${LIB_NAME} ${SOURCE_FILES} src/graphics/render/RenderSimple.cc src/graphics/render/RenderSimple.cc src/graphics/render/RenderSimple.hh src/graphics/buffer/BufferQuad.cc src/graphics/buffer/BufferQuad.hh)
 
 target_link_libraries(${LIB_NAME}
         ${OPENGL_LIBRARIES}
@@ -40,4 +40,4 @@ target_link_libraries(${LIB_NAME}
         ${GLEW_LIBRARY})
 
 #message(WARNING ${SOIL_LIBRARY})
-#message(WARNING sdf)
+#message(WARNING ${SOURCE_FILES})

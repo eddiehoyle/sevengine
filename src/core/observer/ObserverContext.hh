@@ -5,10 +5,8 @@
 #ifndef SEV_OBSERVERCONTEXT_HH
 #define SEV_OBSERVERCONTEXT_HH
 
-//#include "../Entity.hh"
-#include <vector>
-
 #include "../Entity.hh"
+#include <vector>
 
 typedef std::vector< Entity* > Entities;
 

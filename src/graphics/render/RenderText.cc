@@ -5,17 +5,16 @@
 #include <algorithm>
 #include "RenderText.hh"
 #include "../Buffer.hh"
-#include "../../core/Shader.hh"
 #include "../../Utilities.hh"
 
-RenderText::RenderText( Shader* shader )
+RenderText::RenderText()
         : m_buffer( NULL ),
           m_vertexIndex( 0 ),
           m_elementIndex( 0 ),
           m_vertices( 0 ),
           m_elements( 0 )
 {
-    m_shader = shader;
+//    m_shader = shader;
 
     // Reserve vertex and element buffers
     m_vertices.reserve( kVboSize );
@@ -59,19 +58,19 @@ void RenderText::allocate()
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_vao );
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof( GLuint ), &m_elements[0], GL_STATIC_DRAW );
 
-    // Setup attributes
-    m_shader->bindAttr( 0, "in_Position" );
-    m_shader->bindAttr( 1, "in_TextureUV" );
-    m_shader->bindAttr( 2, "in_Color" );
-
-    GLsizei stride = sizeof( Vertex );
-    m_shader->setAttrOffset( "in_Position", 2, GL_FLOAT, false, stride, 0 );
-    m_shader->setAttrOffset( "in_TextureUV", 2, GL_FLOAT, false, stride, 8 );
-    m_shader->setAttrOffset( "in_Color", 4, GL_UNSIGNED_BYTE, true, stride, 16 );
-
-    m_shader->enableAttr( "in_Position" );
-    m_shader->enableAttr( "in_TextureUV" );
-    m_shader->enableAttr( "in_Color" );
+//    // Setup attributes
+//    m_shader->bindAttr( 0, "in_Position" );
+//    m_shader->bindAttr( 1, "in_TextureUV" );
+//    m_shader->bindAttr( 2, "in_Color" );
+//
+//    GLsizei stride = sizeof( Vertex );
+//    m_shader->setAttrOffset( "in_Position", 2, GL_FLOAT, false, stride, 0 );
+//    m_shader->setAttrOffset( "in_TextureUV", 2, GL_FLOAT, false, stride, 8 );
+//    m_shader->setAttrOffset( "in_Color", 4, GL_UNSIGNED_BYTE, true, stride, 16 );
+//
+//    m_shader->enableAttr( "in_Position" );
+//    m_shader->enableAttr( "in_TextureUV" );
+//    m_shader->enableAttr( "in_Color" );
 }
 
 void RenderText::draw()

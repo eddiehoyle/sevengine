@@ -11,7 +11,7 @@
 #include <iostream>
 
 /// Read and parse a shader file
-const char* readShaderFile( const char* path );
+const char* readShaderFile( const std::string& path );
 
 GLuint compileShader( const char *path, GLenum type );
 

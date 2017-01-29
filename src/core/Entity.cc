@@ -10,8 +10,7 @@
 #include "Rect.hh"
 
 Entity::Entity()
-        : m_shader( NULL ),
-          m_model( NULL ),
+        : m_model( NULL ),
           m_transform( NULL ),
           m_rect( NULL )
 {
@@ -20,31 +19,13 @@ Entity::Entity()
 
 Entity::~Entity()
 {
-    delete m_shader;
     delete m_model;
     delete m_transform;
     delete m_rect;
 }
 
 
-void Entity::initializeShader( Shader* shader, Mesh* model )
-{
-    m_shader = shader;
-    m_model = model;
 
-}
-
-void Entity::initializeShader( Shader* shader, Quad* rect )
-{
-    m_shader = shader;
-    m_rect = rect;
-
-}
-
-Shader* Entity::getShader() const
-{
-    return m_shader;
-}
 
 Transform* Entity::getTransform() const
 {

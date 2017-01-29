@@ -12,10 +12,10 @@ void test( std::string x ) {
     // TODO
 }
 
-const char* readShaderFile( const char* path )
+const char* readShaderFile( const std::string& path )
 {
     // Try open the file
-    FILE* fp = fopen(path, "r");
+    FILE* fp = fopen(path.c_str(), "r");
     if ( fp == NULL )
     {
         return NULL;
@@ -33,6 +33,7 @@ const char* readShaderFile( const char* path )
 
     return buf;
 }
+
 
 
 GLuint compileShader( const char *path, GLenum type )

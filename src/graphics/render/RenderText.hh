@@ -9,7 +9,7 @@
 #include "../Texture.hh"
 #include "../Quad.hh"
 #include "../Buffer.hh"
-#include "../../core/Shader.hh"
+//#include "../../core/Shader.hh"
 
 class RenderText {
 
@@ -18,7 +18,8 @@ public:
     static const unsigned int kVboSize = 1024;   /// Vertex Buffer Object
 
 public:
-    explicit RenderText( Shader* shader );
+//    explicit RenderText( Shader* shader );
+    RenderText();
     ~RenderText();
 
 public:
@@ -37,7 +38,7 @@ public:
 
 private:
     Buffer* m_buffer;
-    Shader* m_shader;
+//    Shader* m_shader;
 
     std::vector< Vertex > m_vertices;
     std::vector< GLfloat > m_translates;
