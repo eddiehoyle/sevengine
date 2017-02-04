@@ -32,7 +32,7 @@ include_directories(${SOIL_INCLUDE_DIR})
 #message(WARNING ${SOIL_INCLUDE_DIR})
 
 # Output
-add_library(${LIB_NAME} ${SOURCE_FILES} src/graphics/render/RenderSimple.cc src/graphics/render/RenderSimple.cc src/graphics/render/RenderSimple.hh src/graphics/buffer/BufferQuad.cc src/graphics/buffer/BufferQuad.hh)
+add_library(${LIB_NAME} ${SOURCE_FILES} src/graphics/texture/TextureManager2D.cc src/graphics/texture/TextureManager2D.hh)
 
 target_link_libraries(${LIB_NAME}
         ${OPENGL_LIBRARIES}

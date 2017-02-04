@@ -43,6 +43,7 @@ public:
     bool setAttr( const char* name, const glm::vec3& vec );
     bool setAttr( const char* name, const glm::vec4& vec );
 
+    bool setUnif( const char* name, GLint value );
     bool setUnif( const char* name, GLfloat value );
     bool setUnif( const char* name, const glm::vec2& vec );
     bool setUnif( const char* name, const glm::vec3& vec );
@@ -51,15 +52,17 @@ public:
     bool setUnif( const char* name, bool transpose, const glm::mat3& mat );
     bool setUnif( const char* name, bool transpose, const glm::mat4& mat );
 
+    // Temp?
+    GLint getAttrHandle( const char* name ) const;
+    GLint getUnifHandle( const char* name ) const;
+
+
 private:
     ShaderManager();
     ShaderManager( const ShaderManager& );
     ShaderManager& operator=( const ShaderManager& );
 
     Shader* getShader(const std::string &id) const;
-
-    GLint getAttrHandle( const char* name ) const;
-    GLint getUnifHandle( const char* name ) const;
 
 private:
     static ShaderManager* m_instance;

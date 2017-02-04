@@ -19,11 +19,6 @@ ShaderManager* ShaderManager::instance() {
     return m_instance;
 }
 
-ShaderManager::ShaderManager()
-        : m_shaders( ShaderMap() ),
-          m_active( ShaderPair() ) {
-}
-
 ShaderManager::~ShaderManager() {
 
     ShaderMap::iterator iter;
@@ -158,6 +153,14 @@ bool ShaderManager::setAttr( const char* name, const glm::vec4& vec )
     return true;
 }
 
+bool ShaderManager::setUnif( const char* name, GLint value ) {
+    GLint handle = getUnifHandle( name );
+    if ( handle < 0 ) {
+        return false;
+    }
+    glUniform1i( ( GLuint )handle, value );
+    return true;
+}
 bool ShaderManager::setUnif( const char* name, GLfloat value ) {
     GLint handle = getUnifHandle( name );
     if ( handle < 0 ) {

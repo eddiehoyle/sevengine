@@ -2,16 +2,14 @@
 // Created by Eddie Hoyle on 28/01/17.
 //
 
-#ifndef SEVENGINE_BUFFER_HH
-#define SEVENGINE_BUFFER_HH
+#ifndef SEVENGINE_RENDERSIMPLE_HH
+#define SEVENGINE_RENDERSIMPLE_HH
 
 #include "../Vertex.hh"
 #include "../Quad.hh"
-
 #include <vector>
 
-#define GL_GLEXT_PROTOTYPES
-#include <GLES2/gl2.h>
+
 
 typedef std::vector< Quad > Quads;
 typedef std::vector< Vertex > Vertices;
@@ -20,23 +18,36 @@ typedef std::vector< GLuint > Elements;
 class BufferQuad {
 
 public:
+    void add( const Quads& quad );
     void add( const Quad& quad );
-    void add( const std::vector< Quad >& quads );
+    void bind();
+    void clear();
 
     const Vertices& getData() const;
     const Elements& getElements() const;
 
-    void bind();
-    void clear();
-
 private:
-    Vertices m_vertices;
+    Vertices m_data;
     Elements m_elements;
 
     GLuint m_vbo;
     GLuint m_vao;
 };
 
+class RenderQuad {
+
+public:
+
+    RenderQuad();
+    explicit RenderQuad( const BufferQuad& buffer );
+
+    void bind();
+    void draw();
+    void release();
+
+private:
+    BufferQuad m_buffer;
+};
 
 
-#endif //SEVENGINE_BUFFER_HH
+#endif //SEVENGINE_RENDERSIMPLE_HH
