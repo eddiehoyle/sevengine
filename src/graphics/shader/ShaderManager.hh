@@ -2,8 +2,8 @@
 // Created by Eddie Hoyle on 21/01/17.
 //
 
-#ifndef SEVENGINE_TEXTUREMANAGER_HH
-#define SEVENGINE_TEXTUREMANAGER_HH
+#ifndef SEVENGINE_SHADERMANAGER_HH
+#define SEVENGINE_SHADERMANAGER_HH
 
 #include <map>
 #include "Shader.hh"
@@ -71,4 +71,4 @@ private:
 };
 
 
-#endif //SEVENGINE_TEXTUREMANAGER_HH
+#endif //SEVENGINE_SHADERMANAGER_HH

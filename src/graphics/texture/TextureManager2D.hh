@@ -9,6 +9,7 @@
 #include <GLES2/gl2.h>
 #include <string>
 #include <map>
+#include <vector>
 
 /* Note:
  * 16 slots available on macbook
@@ -21,17 +22,39 @@
  * in the manager.
  */
 
-struct Texture2Da {
-    GLuint handle;
-};
-
 class TextureManager2D {
 
+    typedef std::map< std::string, GLuint > TextureMap;
+
 public:
-    TextureManager2D* instance();
+    static TextureManager2D* instance();
     ~TextureManager2D();
 
-    void load( const std::string& id, const std::string& path );
+    bool load( const std::string& id, const std::string& path );
+    bool unload( const std::string& id );
+
+    GLint getHandle( const std::string& id ) const;
+
+    /// Bind a texture to a unit. Note, you don't need to unbind.
+    bool bind( const std::string& id, GLuint unit );
+
+    /// Enable 2D textures. Must be set!
+    void enable();
+
+    /// Disable textures and also resets all texture unit bindings
+    void disable();
+
+    /// Set resized pixels are displayed
+    void setResizeMode( GLenum min, GLenum max );
+
+    /// Set how pixels are displayed outside of UVs
+    void setWrapMode( GLenum s, GLenum t );
+
+
+    GLint getNextUnit() const;
+    std::vector< GLuint > getUnits() const;
+    bool isUnitInUse( GLuint unit );
+
 
 private:
     static TextureManager2D* m_instance;
@@ -40,8 +63,11 @@ private:
     TextureManager2D( const TextureManager2D& );
     TextureManager2D& operator=( const TextureManager2D& );
 
-    std::map< std::string, GLuint > m_textureMap;
+    TextureMap m_textureMap;
 
+    // Units
+    GLsizei m_max;
+    std::vector< GLuint > m_units;
 };
 
 
