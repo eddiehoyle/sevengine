@@ -13,8 +13,6 @@
 
 struct Vertex {
 
-    Vertex();
-
     GLfloat x, y;
     GLfloat s, t;
     GLubyte r, g, b, a;

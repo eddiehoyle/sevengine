@@ -17,7 +17,6 @@ ShaderManager* ShaderManager::instance() {
         // Register
         m_instance->add( "texture", new TextureShader() );
         m_instance->add( "particle", new ParticleShader() );
-
     }
     return m_instance;
 }

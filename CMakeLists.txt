@@ -32,7 +32,7 @@ include_directories(${SOIL_INCLUDE_DIR})
 #message(WARNING ${SOIL_INCLUDE_DIR})
 
 # Output
-add_library(${LIB_NAME} ${SOURCE_FILES} src/graphics/shader/ParticleShader.cc src/graphics/shader/ParticleShader.hh src/graphics/render/RenderParticle.cc src/graphics/render/RenderParticle.hh)
+add_library(${LIB_NAME} ${SOURCE_FILES})
 
 target_link_libraries(${LIB_NAME}
         ${OPENGL_LIBRARIES}

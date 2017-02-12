@@ -7,10 +7,6 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
-Vertex::Vertex()
-{
-    set( 0, 0, 0, 0, 0, 0, 0, 0 );
-}
 
 void Vertex::set( GLfloat _x, GLfloat _y, GLfloat _s, GLfloat _t,
                   GLubyte _r, GLubyte _g, GLubyte _b, GLubyte _a )

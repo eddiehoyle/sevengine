@@ -69,7 +69,7 @@ const Elements& BufferQuad::getElements() const {
 // ---------------------------------------------------------------------- //
 
 RenderQuad::RenderQuad()
-        : m_buffer( BufferQuad() ) {
+        : m_buffer() {
 }
 
 RenderQuad::RenderQuad( const BufferQuad& buffer )
