@@ -13,12 +13,12 @@
 
 struct Vertex {
 
+    void set( GLfloat _x, GLfloat _y, GLfloat _s, GLfloat _t,
+              GLubyte _r, GLubyte _g, GLubyte _b, GLubyte _a );
+
     GLfloat x, y;
     GLfloat s, t;
     GLubyte r, g, b, a;
-
-    void set( GLfloat _x, GLfloat _y, GLfloat _s, GLfloat _t,
-              GLubyte _r, GLubyte _g, GLubyte _b, GLubyte _a );
 };
 
 

@@ -2,7 +2,7 @@
 // Created by Eddie Hoyle on 7/02/17.
 //
 
-#include "RenderParticle.hh"
+#include "ParticleRender.hh"
 
 #define GL_GLEXT_PROTOTYPES
 #include <GLES2/gl2.h>
@@ -20,7 +20,7 @@ void Particle::setSize( GLfloat size ) {
     point.size = size;
 }
 
-void Particle::setColor( GLchar r, GLchar g, GLchar b, GLchar a ) {
+void Particle::setColor( GLubyte r, GLubyte g, GLubyte b, GLubyte a ) {
 
     point.r = r;
     point.g = g;
@@ -30,7 +30,7 @@ void Particle::setColor( GLchar r, GLchar g, GLchar b, GLchar a ) {
 
 // ----------------------------------------------------------------------
 
-void BufferParticle::add( const Particles& particles ) {
+void ParticleBuffer::add( const Particles& particles ) {
 
     for ( Particles::const_iterator iter = particles.begin();
           iter != particles.end();
@@ -39,13 +39,13 @@ void BufferParticle::add( const Particles& particles ) {
     }
 }
 
-void BufferParticle::add( const Particle& particle ) {
+void ParticleBuffer::add( const Particle& particle ) {
 
     m_data.push_back( particle.point );
     m_elements.push_back( ( GLuint )( m_data.size() - 1 ) );
 }
 
-void BufferParticle::bind() {
+void ParticleBuffer::bind() {
 
     glGenBuffers( 1, &m_vbo );
     glGenBuffers( 1, &m_vao );
@@ -57,7 +57,7 @@ void BufferParticle::bind() {
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof( GLuint ), &m_elements[0], GL_STATIC_DRAW );
 }
 
-void BufferParticle::clear() {
+void ParticleBuffer::clear() {
 
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
@@ -69,25 +69,25 @@ void BufferParticle::clear() {
     m_elements.clear();
 }
 
-const Points& BufferParticle::getData() const {
+const Points& ParticleBuffer::getData() const {
     return m_data;
 }
 
-const Elements& BufferParticle::getElements() const {
+const Elements& ParticleBuffer::getElements() const {
     return m_elements;
 }
 
 // ----------------------------------------------------------------------
 
-RenderParticle::RenderParticle()
+ParticleRender::ParticleRender()
         : m_buffer() {
 }
 
-RenderParticle::RenderParticle( const BufferParticle& buffer )
+ParticleRender::ParticleRender( const ParticleBuffer& buffer )
         : m_buffer( buffer ) {
 }
 
-void RenderParticle::bind() {
+void ParticleRender::bind() {
     m_buffer.bind();
 
 
@@ -95,9 +95,12 @@ void RenderParticle::bind() {
     // to 'gl_PointSize' unique var
     // https://forums.khronos.org/showthread.php/5984-gl_PointSize-problem?p=19252&viewfull=1#post19252
     glEnable( 0x8642 );
+
+    // Point sprites
+    glEnable( 0x8861 );
 }
 
-void RenderParticle::draw() {
+void ParticleRender::draw() {
 
     // Enable alpha
     glEnable( GL_BLEND );
@@ -108,7 +111,7 @@ void RenderParticle::draw() {
     glDrawElements( GL_POINTS, numElements, GL_UNSIGNED_INT, 0 );
 }
 
-void RenderParticle::release() {
+void ParticleRender::release() {
 
     // Disable point size
     glDisable( 0x8642 );

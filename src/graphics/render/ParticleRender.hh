@@ -13,10 +13,17 @@
 #include <glm/ext.hpp>
 #include <vector>
 
+struct Point;
+struct Particle;
+
+typedef std::vector< Point > Points;
+typedef std::vector< Particle > Particles;
+typedef std::vector< GLuint > Elements;
+
 struct Point {
 
-    void set ( GLfloat _x, GLfloat _y, GLchar _r,
-               GLchar _g, GLchar _b, GLchar _a,
+    void set ( GLfloat _x, GLfloat _y,
+               GLubyte _r, GLubyte _g, GLubyte _b, GLubyte _a,
                GLfloat _size ) {
         x = _x;
         y = _y;
@@ -28,25 +35,20 @@ struct Point {
     }
 
     GLfloat x, y;
-    GLchar r, g, b, a;
+    GLubyte r, g, b, a;
     GLfloat size;
-
 };
 
 struct Particle {
 
     void setPosition( const glm::vec2& vec );
+    void setColor( GLubyte r, GLubyte g, GLubyte b, GLubyte a );
     void setSize( GLfloat size );
-    void setColor( GLchar r, GLchar g, GLchar b, GLchar a );
-    Point point;
 
+    Point point;
 };
 
-typedef std::vector< Point > Points;
-typedef std::vector< Particle > Particles;
-typedef std::vector< GLuint > Elements;
-
-class BufferParticle {
+class ParticleBuffer {
 
 public:
     void add( const Particle& particle );
@@ -66,19 +68,19 @@ private:
 };
 
 
-class RenderParticle {
+class ParticleRender {
 
 public:
 
-    RenderParticle();
-    explicit RenderParticle( const BufferParticle& buffer );
+    ParticleRender();
+    explicit ParticleRender( const ParticleBuffer& buffer );
 
     void bind();
     void draw();
     void release();
 
 private:
-    BufferParticle m_buffer;
+    ParticleBuffer m_buffer;
 
 };
 

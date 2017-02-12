@@ -7,9 +7,8 @@
 
 #include <vector>
 #include "../Texture.hh"
-#include "../Quad.hh"
 #include "../Buffer.hh"
-//#include "../../core/Shader.hh"
+#include "QuadRender.hh"
 
 class RenderText {
 

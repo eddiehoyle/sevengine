@@ -51,7 +51,7 @@ bool TextureManager2D::load( const std::string& id, const std::string& path ) {
                                       SOIL_LOAD_AUTO,
                                       SOIL_CREATE_NEW_ID,
                                       SOIL_FLAG_MIPMAPS
-                                      | SOIL_FLAG_INVERT_Y
+//                                      | SOIL_FLAG_INVERT_Y // Skip invert, handle it in UVs
                                       | SOIL_FLAG_NTSC_SAFE_RGB
                                       | SOIL_FLAG_COMPRESS_TO_DXT );
 

@@ -14,7 +14,7 @@ void Vertex::set( GLfloat _x, GLfloat _y, GLfloat _s, GLfloat _t,
     x = _x;
     y = _y;
     s = _s;
-    t = _t;
+    t = GLfloat( 1.0 ) - _t; // Invert Y
     r = _r;
     g = _g;
     b = _b;

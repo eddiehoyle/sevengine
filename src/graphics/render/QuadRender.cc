@@ -3,7 +3,86 @@
 //
 
 #include <iostream>
-#include "RenderQuad.hh"
+#include "QuadRender.hh"
+
+
+Quad::Quad( float width, float height ) {
+
+    GLubyte r, g, b, a;
+    r = 255;
+    g = 255;
+    b = 255;
+    a = 255;
+
+    bl.set( 0.0f, 0.0f, 0.0f, 0.0f, r, g, b, a );
+    br.set( width, 0.0f, 1, 0.0f, r, g, b, a );
+    tl.set( 0.0f, height, 0.0f, 1, r, g, b, a );
+    tr.set( width, height, 1, 1, r, g, b, a );
+}
+void Quad::setMatrix( const glm::mat4& matrix )
+{
+    glm::vec4 posA( bl.x, bl.y, 0.0, 1.0 );
+    glm::vec4 posB( br.x, br.y, 0.0, 1.0 );
+    glm::vec4 posC( tl.x, tl.y, 0.0, 1.0 );
+    glm::vec4 posD( tr.x, tr.y, 0.0, 1.0 );
+
+    posA = matrix * posA;
+    posB = matrix * posB;
+    posC = matrix * posC;
+    posD = matrix * posD;
+
+    bl.x = posA.x;
+    bl.y = posA.y;
+
+    br.x = posB.x;
+    br.y = posB.y;
+
+    tl.x = posC.x;
+    tl.y = posC.y;
+
+    tr.x = posD.x;
+    tr.y = posD.y;
+}
+
+void Quad::setUV( float sa, float sb, float ta, float tb )
+{
+    bl.s = sa;
+    bl.t = GLfloat( 1.0 ) - ta; // Invert Y
+
+    br.s = sb;
+    br.t = GLfloat( 1.0 ) - ta; // Invert Y
+
+    tl.s = sa;
+    tl.t = GLfloat( 1.0 ) - tb; // Invert Y
+
+    tr.s = sb;
+    tr.t = GLfloat( 1.0 ) - tb; // Invert Y
+}
+
+void Quad::setColor( GLubyte r, GLubyte g, GLubyte b, GLubyte a ) {
+
+    bl.r = r;
+    bl.g = g;
+    bl.b = b;
+    bl.a = a;
+
+    br.r = r;
+    br.g = g;
+    br.b = b;
+    br.a = a;
+
+    tl.r = r;
+    tl.g = g;
+    tl.b = b;
+    tl.a = a;
+
+    tr.r = r;
+    tr.g = g;
+    tr.b = b;
+    tr.a = a;
+}
+
+// ----------------------------------------------------------------------
 
 void BufferQuad::add( const std::vector< Quad >& quads ) {
     std::vector< Quad >::const_iterator iter;
@@ -68,19 +147,19 @@ const Elements& BufferQuad::getElements() const {
 
 // ---------------------------------------------------------------------- //
 
-RenderQuad::RenderQuad()
+QuadRender::QuadRender()
         : m_buffer() {
 }
 
-RenderQuad::RenderQuad( const BufferQuad& buffer )
+QuadRender::QuadRender( const BufferQuad& buffer )
         : m_buffer( buffer ) {
 }
 
-void RenderQuad::bind() {
+void QuadRender::bind() {
     m_buffer.bind();
 }
 
-void RenderQuad::draw()
+void QuadRender::draw()
 {
     // Enable alpha
     glEnable( GL_BLEND );
@@ -91,7 +170,7 @@ void RenderQuad::draw()
     glDrawElements( GL_TRIANGLES, numElements, GL_UNSIGNED_INT, 0 );
 }
 
-void RenderQuad::release() {
+void QuadRender::release() {
     // TODO
 }
 

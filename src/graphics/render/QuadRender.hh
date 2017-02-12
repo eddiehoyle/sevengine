@@ -6,10 +6,27 @@
 #define SEVENGINE_RENDERSIMPLE_HH
 
 #include "../Vertex.hh"
-#include "../Quad.hh"
 #include <vector>
 
+struct Quad {
 
+    explicit Quad( float width, float height );
+
+    void setMatrix( const glm::mat4& matrix );
+    void setUV( float sa, float sb, float ta, float tb );
+    void setColor( GLubyte r, GLubyte g, GLubyte b, GLubyte a );
+
+    Vertex bl, br, tl, tr;
+
+private:
+
+    // TODO
+    void* m_transform;
+
+    glm::vec2 m_translates;
+    double m_rotates;
+    glm::vec2 m_scales;
+};
 
 typedef std::vector< Quad > Quads;
 typedef std::vector< Vertex > Vertices;
@@ -34,12 +51,12 @@ private:
     GLuint m_vao;
 };
 
-class RenderQuad {
+class QuadRender {
 
 public:
 
-    RenderQuad();
-    explicit RenderQuad( const BufferQuad& buffer );
+    QuadRender();
+    explicit QuadRender( const BufferQuad& buffer );
 
     void bind();
     void draw();

@@ -6,15 +6,18 @@
 #include <GLES2/gl2.h>
 
 #include "ParticleShader.hh"
-#include "../render/RenderParticle.hh"
+#include "../render/ParticleRender.hh"
 
 const static GLchar* kAttributePosition = "in_Position";
 const static GLchar* kAttributeColor = "in_Color";
 const static GLchar* kAttributeSize = "in_Size";
+const static GLchar* kAttributeTexture = "in_Texture";
 
 const static GLuint kIndexPosition = 0;
 const static GLuint kIndexColor = 1;
 const static GLuint kIndexSize = 2;
+const static GLuint kIndexTexture = 3;
+
 
 ParticleShader::ParticleShader()
         : Shader() {
@@ -34,6 +37,7 @@ ParticleShader::ParticleShader()
     glBindAttribLocation( m_program, kIndexPosition, kAttributePosition );
     glBindAttribLocation( m_program, kIndexColor, kAttributeColor );
     glBindAttribLocation( m_program, kIndexSize, kAttributeSize );
+//    glBindAttribLocation( m_program, kIndexTexture, kAttributeTexture );
 
     link( m_program );
 
@@ -46,11 +50,13 @@ void ParticleShader::enable() {
     glEnableVertexAttribArray( kIndexPosition );
     glEnableVertexAttribArray( kIndexColor );
     glEnableVertexAttribArray( kIndexSize );
+//    glEnableVertexAttribArray( kIndexTexture );
 
     GLsizei stride = sizeof( Point );
     glVertexAttribPointer( kIndexPosition, 2, GL_FLOAT, GL_FALSE, stride, BufferOffset(0) );
     glVertexAttribPointer( kIndexColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, BufferOffset(8) );
     glVertexAttribPointer( kIndexSize, 1, GL_FLOAT, GL_TRUE, stride, BufferOffset(12) );
+//    glVertexAttribPointer( kIndexTexture, 2, GL_FLOAT, GL_FALSE, stride, BufferOffset(16) );
 }
 
 void ParticleShader::disable() {
@@ -58,4 +64,5 @@ void ParticleShader::disable() {
     glDisableVertexAttribArray( kIndexPosition );
     glDisableVertexAttribArray( kIndexColor );
     glDisableVertexAttribArray( kIndexSize );
+//    glDisableVertexAttribArray( kIndexTexture );
 }
