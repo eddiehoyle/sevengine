@@ -115,6 +115,9 @@ void ParticleRender::release() {
 
     // Disable point size
     glDisable( 0x8642 );
+
+    // Disable point sprites
+    glDisable( 0x8861 );
 }
 
 

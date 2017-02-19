@@ -30,7 +30,7 @@ public:
     static TextureManager2D* instance();
     ~TextureManager2D();
 
-    bool load( const std::string& id, const std::string& path );
+    bool load( const std::string& id, const std::string& path, bool invert=true );
     bool unload( const std::string& id );
 
     GLint getHandle( const std::string& id ) const;

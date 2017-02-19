@@ -47,16 +47,20 @@ void Quad::setMatrix( const glm::mat4& matrix )
 void Quad::setUV( float sa, float sb, float ta, float tb )
 {
     bl.s = sa;
-    bl.t = GLfloat( 1.0 ) - ta; // Invert Y
+    bl.t = ta;
+//    bl.t = GLfloat( 1.0 ) - ta; // Invert Y
 
     br.s = sb;
-    br.t = GLfloat( 1.0 ) - ta; // Invert Y
+    br.t = ta;
+//    br.t = GLfloat( 1.0 ) - ta; // Invert Y
 
     tl.s = sa;
-    tl.t = GLfloat( 1.0 ) - tb; // Invert Y
+    tl.t = tb;
+//    tl.t = GLfloat( 1.0 ) - tb; // Invert Y
 
     tr.s = sb;
-    tr.t = GLfloat( 1.0 ) - tb; // Invert Y
+    tr.t = tb;
+//    tr.t = GLfloat( 1.0 ) - tb; // Invert Y
 }
 
 void Quad::setColor( GLubyte r, GLubyte g, GLubyte b, GLubyte a ) {

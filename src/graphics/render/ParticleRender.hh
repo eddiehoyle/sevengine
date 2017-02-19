@@ -22,6 +22,9 @@ typedef std::vector< GLuint > Elements;
 
 struct Point {
 
+    // Note
+    // UVs are in particle shader
+
     void set ( GLfloat _x, GLfloat _y,
                GLubyte _r, GLubyte _g, GLubyte _b, GLubyte _a,
                GLfloat _size ) {

@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/Utilities.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Defs.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/audio.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/audio.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/TextureShader.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/Shader.cc" isTestSource="false" />
@@ -13,33 +13,36 @@
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/ParticleShader.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/Shader.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/ShaderManager.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Texture.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Quad.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Quad.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Buffer.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/text/SimpleFontMap.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/text/SimpleFontMap.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/Buffer.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Texture.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Vertex.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/ParticleRender.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/RenderText.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/AbstractRenderer.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/QuadRender.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/ParticleRender.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/AbstractRenderer.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/RenderText.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/QuadRender.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Vertex.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/texture/TextureManager2D.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/texture/TextureManager2D.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Buffer.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Vertex.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Quad.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Texture.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Quad.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/ParticleRender.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/RenderText.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/AtlasFontRender.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/QuadRender.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/ParticleRender.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/RenderText.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/AtlasFontRender.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/QuadRender.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/SimpleFontMap.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/Char.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/FontParser.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/SimpleFontMap.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/Char.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/FontParser.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Vertex.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Texture.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/example.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/AbstractRenderable.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/BoundingBox.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Window.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Camera.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Rect.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/core/AbstractApplication.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Transform.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/AbstractApplication.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Mesh.cc" isTestSource="false" />
@@ -52,21 +55,23 @@
       <sourceFolder url="file://$MODULE_DIR$/src/core/observer/ObserverHandler.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Entity.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/event/AbstractEvent.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/core/event/AbstractEvent.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/event/InputEventHandler.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core/event/AbstractEvent.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/event/InputEvent.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/event/InputEventHandler.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/event/InputEvent.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/AbstractRenderable.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/BoundingBox.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Window.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core/Game.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Rect.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Transform.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/core/Game.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core/AbstractApplication.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/Mesh.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/audio.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/example.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Utilities.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/example.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ext/tinyxml2/tinyxml2.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ext/tinyxml2/tinyxml2.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

@@ -56,7 +56,7 @@ private:
 //    /// @param height - Image height
 //    explicit Texture( GLenum target, const char* path, int width, int height );
 //
-//    /// Get the image data read into memory
+//    /// Get the image data load into memory
 //    /// @returns Byte array of image data
 //    unsigned char* getImage() const;
 //

@@ -14,7 +14,9 @@
  *    x0, x1, y0, y1
  * values are UV coords from bottom left of screen
  */
+typedef std::pair< char, glm::vec4 > CharPair;
 typedef std::map< char, glm::vec4 > CharMap;
+
 
 class SimpleFontMap {
 
@@ -25,11 +27,7 @@ public:
     glm::vec4 getChar( char letter );
 
 private:
-    CharMap m_map;
-
-    float m_lineATop, m_lineABot;
-    float m_lineBTop, m_lineBBot;
-
+    CharMap m_data;
 };
 
 

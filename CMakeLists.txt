@@ -19,15 +19,23 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
 
+set(SEV_ROOT /Users/eddiehoyle/Code/cpp/game/sevengine)
+
+# External
+set(TINYXML2_INCLUDE ${SEV_ROOT}/include/sev/ext/tinyxml2)
+
 # Source files
-file(GLOB_RECURSE SOURCE_FILES "*.cc" "*.hh")
+file(GLOB_RECURSE SOURCE_FILES "*.cc" "*.cpp")
 
 # Dependencies
 find_package(OpenGL REQUIRED)
 find_package(glew REQUIRED)
 find_package(SOIL REQUIRED)
 
-include_directories(${SOIL_INCLUDE_DIR})
+include_directories(
+        ${SOIL_INCLUDE_DIR}
+        ${TINYXML2_INCLUDE}
+)
 #include_directories(/opt/local/include)
 #message(WARNING ${SOIL_INCLUDE_DIR})
 
@@ -37,7 +45,7 @@ add_library(${LIB_NAME} ${SOURCE_FILES})
 target_link_libraries(${LIB_NAME}
         ${OPENGL_LIBRARIES}
         ${SOIL_LIBRARY}
-        ${GLEW_LIBRARY})
+        ${TINYXML2_LIBRARY})
 
-#message(WARNING ${SOIL_LIBRARY})
+message(WARNING ${SOIL_LIBRARY})
 #message(WARNING ${SOURCE_FILES})
