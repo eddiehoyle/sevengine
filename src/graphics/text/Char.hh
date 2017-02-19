@@ -59,10 +59,12 @@ struct CharSet {
 
 };
 
-Char getChar( const CharSet& charSet, int code );
+Char fromChar( const CharSet& charSet, int code );
 
 void printChar( const Char& _char );
 
-} // namespace font
+Chars fromString( const CharSet& charSet );
+
+} // namespace text
 
 #endif //SEVENGINE_FONT_HH

@@ -483,8 +483,8 @@ public:
     virtual bool Visit( const XMLDeclaration& /*declaration*/ )		{
         return true;
     }
-    /// Visit a font node.
-    virtual bool Visit( const XMLText& /*font*/ )					{
+    /// Visit a text node.
+    virtual bool Visit( const XMLText& /*text*/ )					{
         return true;
     }
     /// Visit a comment node.
@@ -698,9 +698,9 @@ public:
     	@verbatim
     	Document:	empty (NULL is returned, not an empty string)
     	Element:	name of the element
-    	Comment:	the comment font
+    	Comment:	the comment text
     	Unknown:	the tag contents
-    	Text:		the font string
+    	Text:		the text string
     	@endverbatim
     */
     const char* Value() const;
@@ -923,14 +923,14 @@ private:
 };
 
 
-/** XML font.
+/** XML text.
 
-	Note that a font node can have child element nodes, for example:
+	Note that a text node can have child element nodes, for example:
 	@verbatim
 	<root>This is <b>bold</b></root>
 	@endverbatim
 
-	A font node can have 2 ways to output the next. "normal" output
+	A text node can have 2 ways to output the next. "normal" output
 	and CDATA. It will default to the mode it was parsed from the XML file and
 	you generally want to leave it alone, but you can change the output mode with
 	SetCData() and query it with CData().
@@ -948,11 +948,11 @@ public:
         return this;
     }
 
-    /// Declare whether this should be CDATA or standard font.
+    /// Declare whether this should be CDATA or standard text.
     void SetCData( bool isCData )			{
         _isCData = isCData;
     }
-    /// Returns true if this is a CDATA font element.
+    /// Returns true if this is a CDATA text element.
     bool CData() const						{
         return _isCData;
     }
@@ -1011,7 +1011,7 @@ private:
 	TinyXML-2 will happily load or write files without a declaration,
 	however.
 
-	The font of the declaration isn't interpreted. It is parsed
+	The text of the declaration isn't interpreted. It is parsed
 	and written as a string.
 */
 class TINYXML2_LIB XMLDeclaration : public XMLNode
@@ -1043,7 +1043,7 @@ private:
 
 
 /** Any tag that TinyXML-2 doesn't recognize is saved as an
-	unknown. It is a tag of font, but should not be modified.
+	unknown. It is a tag of text, but should not be modified.
 	It will be written back to the XML, unchanged, when the file
 	is saved.
 
@@ -1195,7 +1195,7 @@ private:
 
 
 /** The element is a container class. It has a value, the element name,
-	and can contain other elements, font, comments, and unknowns.
+	and can contain other elements, text, comments, and unknowns.
 	Elements also contain an arbitrary number of attributes.
 */
 class TINYXML2_LIB XMLElement : public XMLNode
@@ -1418,46 +1418,46 @@ public:
     /// Query a specific attribute in the list.
     const XMLAttribute* FindAttribute( const char* name ) const;
 
-    /** Convenience function for easy access to the font inside an element. Although easy
+    /** Convenience function for easy access to the text inside an element. Although easy
     	and concise, GetText() is limited compared to getting the XMLText child
     	and accessing it directly.
 
     	If the first child of 'this' is a XMLText, the GetText()
     	returns the character string of the Text node, else null is returned.
 
-    	This is a convenient method for getting the font of simple contained font:
+    	This is a convenient method for getting the text of simple contained text:
     	@verbatim
-    	<foo>This is font</foo>
+    	<foo>This is text</foo>
     		const char* str = fooElement->GetText();
     	@endverbatim
 
-    	'str' will be a pointer to "This is font".
+    	'str' will be a pointer to "This is text".
 
     	Note that this function can be misleading. If the element foo was created from
     	this XML:
     	@verbatim
-    		<foo><b>This is font</b></foo>
+    		<foo><b>This is text</b></foo>
     	@endverbatim
 
-    	then the value of str would be null. The first child node isn't a font node, it is
+    	then the value of str would be null. The first child node isn't a text node, it is
     	another element. From this XML:
     	@verbatim
-    		<foo>This is <b>font</b></foo>
+    		<foo>This is <b>text</b></foo>
     	@endverbatim
     	GetText() will return "This is ".
     */
     const char* GetText() const;
 
-    /** Convenience function for easy access to the font inside an element. Although easy
+    /** Convenience function for easy access to the text inside an element. Although easy
     	and concise, SetText() is limited compared to creating an XMLText child
     	and mutating it directly.
 
     	If the first child of 'this' is a XMLText, SetText() sets its value to
 		the given string, otherwise it will create a first child that is an XMLText.
 
-    	This is a convenient method for setting the font of simple contained font:
+    	This is a convenient method for setting the text of simple contained text:
     	@verbatim
-    	<foo>This is font</foo>
+    	<foo>This is text</foo>
     		fooElement->SetText( "Hullaballoo!" );
      	<foo>Hullaballoo!</foo>
 		@endverbatim
@@ -1465,12 +1465,12 @@ public:
     	Note that this function can be misleading. If the element foo was created from
     	this XML:
     	@verbatim
-    		<foo><b>This is font</b></foo>
+    		<foo><b>This is text</b></foo>
     	@endverbatim
 
-    	then it will not change "This is font", but rather prefix it with a font element:
+    	then it will not change "This is text", but rather prefix it with a text element:
     	@verbatim
-    		<foo>Hullaballoo!<b>This is font</b></foo>
+    		<foo>Hullaballoo!<b>This is text</b></foo>
     	@endverbatim
 
 		For this XML:
@@ -1483,21 +1483,21 @@ public:
     	@endverbatim
     */
 	void SetText( const char* inText );
-    /// Convenience method for setting font inside an element. See SetText() for important limitations.
+    /// Convenience method for setting text inside an element. See SetText() for important limitations.
     void SetText( int value );
-    /// Convenience method for setting font inside an element. See SetText() for important limitations.
+    /// Convenience method for setting text inside an element. See SetText() for important limitations.
     void SetText( unsigned value );
-	/// Convenience method for setting font inside an element. See SetText() for important limitations.
+	/// Convenience method for setting text inside an element. See SetText() for important limitations.
 	void SetText(int64_t value);
-	/// Convenience method for setting font inside an element. See SetText() for important limitations.
+	/// Convenience method for setting text inside an element. See SetText() for important limitations.
     void SetText( bool value );
-    /// Convenience method for setting font inside an element. See SetText() for important limitations.
+    /// Convenience method for setting text inside an element. See SetText() for important limitations.
     void SetText( double value );
-    /// Convenience method for setting font inside an element. See SetText() for important limitations.
+    /// Convenience method for setting text inside an element. See SetText() for important limitations.
     void SetText( float value );
 
     /**
-    	Convenience method to query the value of a child font node. This is probably best
+    	Convenience method to query the value of a child text node. This is probably best
     	shown by example. Given you have a document is this form:
     	@verbatim
     		<point>
@@ -1518,8 +1518,8 @@ public:
     		yElement->QueryFloatText( &y );
     	@endverbatim
 
-    	@returns XML_SUCCESS (0) on success, XML_CAN_NOT_CONVERT_TEXT if the font cannot be converted
-    			 to the requested type, and XML_NO_TEXT_NODE if there is no child font to query.
+    	@returns XML_SUCCESS (0) on success, XML_CAN_NOT_CONVERT_TEXT if the text cannot be converted
+    			 to the requested type, and XML_NO_TEXT_NODE if there is no child text to query.
 
     */
     XMLError QueryIntText( int* ival ) const;
@@ -1638,7 +1638,7 @@ public:
     	for providing and closing the FILE*.
 
         NOTE: The file should be opened as binary ("rb")
-        not font in order for TinyXML-2 to correctly
+        not text in order for TinyXML-2 to correctly
         do newline normalization.
 
     	Returns XML_SUCCESS (0) on success, or
@@ -1731,7 +1731,7 @@ public:
     	this Document. The memory for the object
     	is managed by the Document.
 
-    	If the 'font' param is null, the standard
+    	If the 'text' param is null, the standard
     	declaration is used.:
     	@verbatim
     		<?xml version="1.0" encoding="UTF-8"?>
@@ -2096,19 +2096,19 @@ public:
     /// If streaming, close the Element.
     virtual void CloseElement( bool compactMode=false );
 
-    /// Add a font node.
+    /// Add a text node.
     void PushText( const char* text, bool cdata=false );
-    /// Add a font node from an integer.
+    /// Add a text node from an integer.
     void PushText( int value );
-    /// Add a font node from an unsigned.
+    /// Add a text node from an unsigned.
     void PushText( unsigned value );
-	/// Add a font node from an unsigned.
+	/// Add a text node from an unsigned.
 	void PushText(int64_t value);
-	/// Add a font node from a bool.
+	/// Add a text node from a bool.
     void PushText( bool value );
-    /// Add a font node from a float.
+    /// Add a text node from a float.
     void PushText( float value );
-    /// Add a font node from a double.
+    /// Add a text node from a double.
     void PushText( double value );
 
     /// Add a comment

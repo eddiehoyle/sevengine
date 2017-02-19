@@ -15,28 +15,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45ef3f77-ceda-4b79-b26f-bfb99b454220" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ext/tinyxml2/tinyxml2.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ext/tinyxml2/tinyxml2.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphics/font/Char.cc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphics/font/Char.hh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphics/font/FontParser.cc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphics/font/FontParser.hh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphics/font/SimpleFontMap.cc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphics/render/AtlasFontRender.cc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphics/render/AtlasFontRender.hh" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphics/render/AbstractRenderer.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphics/render/AbstractRenderer.hh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphics/text/SimpleFontMap.cc" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphics/text/SimpleFontMap.hh" afterPath="$PROJECT_DIR$/src/graphics/font/SimpleFontMap.hh" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphics/font/SimpleFontMap.cc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphics/font/SimpleFontMap.hh" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphics/font/Char.cc" afterPath="$PROJECT_DIR$/src/graphics/text/Char.cc" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphics/font/Char.hh" afterPath="$PROJECT_DIR$/src/graphics/text/Char.hh" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphics/font/FontParser.cc" afterPath="$PROJECT_DIR$/src/graphics/text/FontParser.cc" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphics/font/FontParser.hh" afterPath="$PROJECT_DIR$/src/graphics/text/FontParser.hh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sev.iml" afterPath="$PROJECT_DIR$/.idea/sev.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/Texture.hh" afterPath="$PROJECT_DIR$/src/graphics/Texture.hh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/ParticleRender.cc" afterPath="$PROJECT_DIR$/src/graphics/render/ParticleRender.cc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/ParticleRender.hh" afterPath="$PROJECT_DIR$/src/graphics/render/ParticleRender.hh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/QuadRender.cc" afterPath="$PROJECT_DIR$/src/graphics/render/QuadRender.cc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/texture/TextureManager2D.cc" afterPath="$PROJECT_DIR$/src/graphics/texture/TextureManager2D.cc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/texture/TextureManager2D.hh" afterPath="$PROJECT_DIR$/src/graphics/texture/TextureManager2D.hh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/fontCoords.py" afterPath="$PROJECT_DIR$/scripts/fontCoords.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ext/tinyxml2/tinyxml2.h" afterPath="$PROJECT_DIR$/src/ext/tinyxml2/tinyxml2.h" />
     </list>
     <ignored path="sev.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,10 +46,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Char.hh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/font/Char.hh">
+        <entry file="file://$PROJECT_DIR$/src/graphics/text/Char.hh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
+            <state relative-caret-position="322">
+              <caret line="65" column="43" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
               <folding>
                 <element signature="e#99#116#0" expanded="true" />
               </folding>
@@ -69,21 +57,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Char.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/font/Char.cc">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="443">
+              <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FontParser.cc" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/graphics/font/FontParser.cc">
+      <file leaf-file-name="FontParser.hh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphics/text/FontParser.hh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+            <state relative-caret-position="165">
+              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Char.cc" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graphics/text/Char.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FontParser.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphics/text/FontParser.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-195">
+              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
               <folding>
                 <element signature="e#46#65#0" expanded="true" />
               </folding>
@@ -116,37 +124,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
               <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="particle.vert" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/shaders/particle.vert">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuadRender.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/render/QuadRender.cc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SOIL.h" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/include/SOIL.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="97" column="4" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="4" />
-              <folding />
+              <folding>
+                <marker date="1487478637000" expanded="true" signature="402:773" ph="{...}" />
+                <marker date="1487478637000" expanded="true" signature="585:710" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,10 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/graphics/buffer/Buffer.hh" />
-        <option value="$PROJECT_DIR$/src/graphics/render/RenderSimple.hh" />
-        <option value="$PROJECT_DIR$/src/graphics/render/RenderSimple.cc" />
-        <option value="$PROJECT_DIR$/src/graphics/buffer/BufferQuad.hh" />
         <option value="$PROJECT_DIR$/src/graphics/buffer/BufferQuad.cc" />
         <option value="$PROJECT_DIR$/src/graphics/Texture.hh" />
         <option value="$PROJECT_DIR$/src/core/Transform.hh" />
@@ -205,7 +182,6 @@
         <option value="$PROJECT_DIR$/src/ext/tinyxml2/tinyxml2.cpp" />
         <option value="$PROJECT_DIR$/src/graphics/font/SimpleFontMap.cc" />
         <option value="$PROJECT_DIR$/src/ext/tinyxml2/tinyxml2.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/graphics/font/Font.hh" />
         <option value="$PROJECT_DIR$/src/graphics/font/FontParser.hh" />
         <option value="$PROJECT_DIR$/src/graphics/font/Char.hh" />
@@ -217,6 +193,11 @@
         <option value="$PROJECT_DIR$/src/graphics/render/ParticleRender.hh" />
         <option value="$PROJECT_DIR$/resources/shaders/particle.frag" />
         <option value="$PROJECT_DIR$/src/graphics/font/FontParser.cc" />
+        <option value="$PROJECT_DIR$/src/graphics/text/TextBlock.cc" />
+        <option value="$PROJECT_DIR$/src/graphics/text/TextBlock.hh" />
+        <option value="$PROJECT_DIR$/src/graphics/text/Char.hh" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/graphics/text/Char.cc" />
       </list>
     </option>
   </component>
@@ -347,7 +328,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="render" />
+              <option name="myItemId" value="text" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -369,7 +350,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="font" />
+              <option name="myItemId" value="render" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -649,7 +630,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25841346" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24816446" sideWeight="0.5266084" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28781205" sideWeight="0.5266084" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32305434" sideWeight="0.45274028" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33920705" sideWeight="0.4733916" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32599118" sideWeight="0.49722" order="1" side_tool="false" content_ui="tabs" />
@@ -705,22 +686,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/graphics/shader/TextureShader.hh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/Texture.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="45" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/render/RenderRect.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -863,14 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/font/SimpleFontMap.hh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/render/AtlasFontRender.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -971,34 +928,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ext/tinyxml2/tinyxml2.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/font/SimpleFontMap.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/sev/ext/tinyxml2/tinyxml2.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1015,14 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/font/FontParser.hh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1059,16 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/font/Char.hh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
-          <folding>
-            <element signature="e#99#116#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/shaders/particle.vert">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1097,7 +1012,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-          <folding />
+          <folding>
+            <marker date="1487478637000" expanded="true" signature="402:773" ph="{...}" />
+            <marker date="1487478637000" expanded="true" signature="585:710" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1109,21 +1027,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/font/Char.cc">
+    <entry file="file://$PROJECT_DIR$/src/graphics/font/SimpleFontMap.hh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
+        <state relative-caret-position="154">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/font/FontParser.cc">
+    <entry file="file://$PROJECT_DIR$/src/graphics/font/SimpleFontMap.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+        <state relative-caret-position="-1316">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/text/FontParser.hh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ext/tinyxml2/tinyxml2.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="954" column="44" selection-start-line="954" selection-start-column="40" selection-end-line="954" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/text/TextBlock.hh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/text/Char.hh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="65" column="43" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
+          <folding>
+            <element signature="e#99#116#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/text/TextBlock.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="22" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/text/FontParser.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-195">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding>
             <element signature="e#46#65#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/text/Char.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

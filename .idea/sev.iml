@@ -5,6 +5,15 @@
       <sourceFolder url="file://$MODULE_DIR$/src/Utilities.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/audio.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/audio.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Quad.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Texture.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Buffer.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/text/FontParser.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/text/FontParser.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/text/Char.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/text/Char.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Buffer.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Texture.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/TextureShader.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/Shader.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/ShaderManager.cc" isTestSource="false" />
@@ -13,13 +22,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/ParticleShader.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/Shader.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/shader/ShaderManager.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Buffer.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/texture/TextureManager2D.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/texture/TextureManager2D.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Buffer.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Vertex.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Quad.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Texture.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/Quad.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/ParticleRender.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/RenderText.hh" isTestSource="false" />
@@ -29,14 +31,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/RenderText.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/AtlasFontRender.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/render/QuadRender.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/SimpleFontMap.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/Char.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/FontParser.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/SimpleFontMap.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/Char.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/font/FontParser.hh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Vertex.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/graphics/Vertex.hh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/graphics/Texture.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/texture/TextureManager2D.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/graphics/texture/TextureManager2D.hh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/example.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/AbstractRenderable.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/core/BoundingBox.cc" isTestSource="false" />

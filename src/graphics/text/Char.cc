@@ -6,7 +6,7 @@
 
 namespace font {
 
-Char getChar( const CharSet& charSet, int id ) {
+Char fromChar( const CharSet& charSet, int id ) {
     for ( Chars::const_iterator iter = charSet.chars.begin();
           iter != charSet.chars.end();
           ++iter ) {
@@ -15,6 +15,17 @@ Char getChar( const CharSet& charSet, int id ) {
         }
     }
     return Char();
+}
+
+Chars fromString( const CharSet& charSet, const std::string& text ) {
+
+    Chars chars;
+    for ( std::string::const_iterator iter = text.begin();
+          iter != text.end();
+          ++iter ) {
+        chars.push_back( fromChar( charSet, ( int )( *iter ) ) );
+    }
+    return chars;
 }
 
 void printChar( const Char& _char ) {

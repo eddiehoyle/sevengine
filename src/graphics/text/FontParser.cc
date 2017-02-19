@@ -23,7 +23,7 @@ void load( const std::string& path, CharSet& charSet ) {
     XMLError result = doc.LoadFile( path.c_str() );
     CHECK_XML_STATUS( result );
 
-    // <font> is root
+    // <text> is root
     XMLNode* root = doc.FirstChild();
     if ( !root ) {
         return;

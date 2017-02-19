@@ -25,7 +25,7 @@ LINES = [
 ]
 
 def get_coords():
-    """Get the pixel coords of each registered character in the font map."""
+    """Get the pixel coords of each registered character in the text map."""
 
     coords = []
     for line_index, line in enumerate(LINES):
