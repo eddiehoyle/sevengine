@@ -7,6 +7,7 @@
 // Shaders
 #include "TextureShader.hh"
 #include "ParticleShader.hh"
+#include "LineShader.hh"
 
 ShaderManager* ShaderManager::m_instance = 0;
 
@@ -17,6 +18,7 @@ ShaderManager* ShaderManager::instance() {
         // Register
         m_instance->add( "texture", new TextureShader() );
         m_instance->add( "particle", new ParticleShader() );
+//        m_instance->add( "line", new LineShader() );
     }
     return m_instance;
 }

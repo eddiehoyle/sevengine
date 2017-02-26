@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "FontParser.hh"
-#include "Char.hh"
+#include "Glyph.hh"
 
 #define CHECK_XML_STATUS( result )          \
     if ( result != XML_SUCCESS ) {          \
@@ -41,30 +41,30 @@ void load( const std::string& path, CharSet& charSet ) {
 
     while ( character ) {
 
-        Char _char;
+        Glyph glyph;
 
-        character->QueryIntAttribute( "id", &_char.id );
-        character->QueryIntAttribute( "x", &_char.x );
-        character->QueryIntAttribute( "y", &_char.y );
-        character->QueryIntAttribute( "width", &_char.width );
-        character->QueryIntAttribute( "height", &_char.height );
-        character->QueryIntAttribute( "xOffset", &_char.xOffset );
-        character->QueryIntAttribute( "yOffset", &_char.yOffset );
-        character->QueryIntAttribute( "xAdvance", &_char.xAdvance );
+        character->QueryIntAttribute( "id", &glyph.id );
+        character->QueryIntAttribute( "x", &glyph.x );
+        character->QueryIntAttribute( "y", &glyph.y );
+        character->QueryIntAttribute( "width", &glyph.width );
+        character->QueryIntAttribute( "height", &glyph.height );
+        character->QueryIntAttribute( "xoffset", &glyph.xOffset );
+        character->QueryIntAttribute( "yoffset", &glyph.yOffset );
+        character->QueryIntAttribute( "xadvance", &glyph.xAdvance );
 
         // UVs
-        float s0 = ( float )_char.x / charSet.width;
-        float s1 = ( float )( _char.x + _char.width ) / charSet.width;
+        float s0 = ( float )glyph.x / charSet.width;
+        float s1 = ( float )( glyph.x + glyph.width ) / charSet.width;
 
         // Note:
         // Image is loaded by soil flipped (invert Y)
         // The 't' coordinates for UVs are subtracted from 1.0 and
         // swapped positions in the vec4 (read up --> down)
-        float t0 = 1.0f - ( float )_char.y / charSet.height;
-        float t1 = 1.0f - ( float )( _char.y + _char.height ) / charSet.height;
-        _char.uvs = glm::vec4( s0, s1, t1, t0 );
+        float t0 = 1.0f - ( float )glyph.y / charSet.height;
+        float t1 = 1.0f - ( float )( glyph.y + glyph.height ) / charSet.height;
+        glyph.uvs = glm::vec4( s0, s1, t1, t0 );
 
-        charSet.chars.push_back( _char );
+        charSet.chars.push_back( glyph );
 
         character = character->NextSiblingElement();
     }

@@ -40,7 +40,7 @@ include_directories(
 #message(WARNING ${SOIL_INCLUDE_DIR})
 
 # Output
-add_library(${LIB_NAME} ${SOURCE_FILES})
+add_library(${LIB_NAME} ${SOURCE_FILES} src/graphics/render/LineRender.cc src/graphics/render/LineRender.hh src/graphics/shader/LineShader.cc src/graphics/shader/LineShader.hh)
 
 target_link_libraries(${LIB_NAME}
         ${OPENGL_LIBRARIES}

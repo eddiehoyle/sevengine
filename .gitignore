@@ -3,3 +3,8 @@ include/
 resources/
 research/
 lib/
+
+# virtualenv
+scripts/activate
+scripts/sevengine
+

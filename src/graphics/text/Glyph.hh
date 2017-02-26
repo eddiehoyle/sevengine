@@ -14,11 +14,11 @@
 
 namespace font {
 
-struct Char;
+struct Glyph;
 
-typedef struct std::vector< Char > Chars;
+typedef struct std::vector< Glyph > Chars;
 
-struct Char {
+struct Glyph {
 
     int id;
     int x, y;
@@ -29,7 +29,7 @@ struct Char {
 
     glm::vec4 uvs;
 
-    Char() : id( 0 ),
+    Glyph() : id( 0 ),
              x( 0 ),
              y( 0 ),
              width( 0 ),
@@ -39,6 +39,7 @@ struct Char {
              xAdvance( 0 ),
              page( 0 )
     {}
+
 };
 
 struct CharSet {
@@ -59,9 +60,9 @@ struct CharSet {
 
 };
 
-Char fromChar( const CharSet& charSet, int code );
+Glyph fromChar( const CharSet& charSet, char _char );
 
-void printChar( const Char& _char );
+void printChar( const Glyph& glyph );
 
 Chars fromString( const CharSet& charSet );
 

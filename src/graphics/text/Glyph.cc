@@ -2,11 +2,12 @@
 // Created by Eddie Hoyle on 14/02/17.
 //
 
-#include "Char.hh"
+#include "Glyph.hh"
 
 namespace font {
 
-Char fromChar( const CharSet& charSet, int id ) {
+Glyph fromChar( const CharSet& charSet, char _char ) {
+    int id = ( int )_char;
     for ( Chars::const_iterator iter = charSet.chars.begin();
           iter != charSet.chars.end();
           ++iter ) {
@@ -14,7 +15,7 @@ Char fromChar( const CharSet& charSet, int id ) {
             return *iter;
         }
     }
-    return Char();
+    return Glyph();
 }
 
 Chars fromString( const CharSet& charSet, const std::string& text ) {
@@ -28,15 +29,16 @@ Chars fromString( const CharSet& charSet, const std::string& text ) {
     return chars;
 }
 
-void printChar( const Char& _char ) {
+void printChar( const Glyph& glyph ) {
     std::cerr
-    << "Char(char='" << ( char )_char.id
-    << "', id=" << _char.id
-    << ", x=" << _char.x
-    << ", y=" << _char.y
-    << ", width=" << _char.width
-    << ", height=" << _char.height
-    << ", uvs=" << glm::to_string(_char.uvs)
+    << "Char(char='" << ( char )glyph.id
+    << "', id=" << glyph.id
+    << ", x=" << glyph.x
+    << ", y=" << glyph.y
+    << ", xAdvance=" << glyph.xAdvance
+    << ", width=" << glyph.width
+    << ", height=" << glyph.height
+    << ", uvs=" << glm::to_string(glyph.uvs)
     << ")" << std::endl;
 }
 

@@ -5,7 +5,7 @@
 #ifndef SEVENGINE_FONTPARSER_HH
 #define SEVENGINE_FONTPARSER_HH
 
-#include "Char.hh"
+#include "Glyph.hh"
 #include "../../ext/tinyxml2/tinyxml2.h"
 
 namespace font {

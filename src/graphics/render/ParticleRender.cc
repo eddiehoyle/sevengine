@@ -88,8 +88,8 @@ ParticleRender::ParticleRender( const ParticleBuffer& buffer )
 }
 
 void ParticleRender::bind() {
-    m_buffer.bind();
 
+    m_buffer.bind();
 
     // Enable point size to be set within vertex shader
     // to 'gl_PointSize' unique var
