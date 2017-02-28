@@ -66,5 +66,7 @@ private:
     BufferQuad m_buffer;
 };
 
+void print( const Vertex& vertex );
+
 
 #endif //SEVENGINE_RENDERSIMPLE_HH

@@ -9,6 +9,7 @@
 #include <iostream>
 
 
+
 void Particle::setPosition( const glm::vec2& vec ) {
 
     point.x = vec.x;

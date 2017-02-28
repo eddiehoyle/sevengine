@@ -6,6 +6,14 @@
 #include "QuadRender.hh"
 
 
+void print( const Vertex& vertex ) {
+
+    std::cerr << "Vertex(x="
+    << vertex.x << ", y=" << vertex.y
+    << ", s=" << vertex.s << ", t=" << vertex.t
+    << ")" << std::endl;
+}
+
 Quad::Quad( float width, float height ) {
 
     GLubyte r, g, b, a;

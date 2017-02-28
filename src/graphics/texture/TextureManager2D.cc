@@ -59,6 +59,8 @@ bool TextureManager2D::load( const std::string& id, const std::string& path, boo
                                       SOIL_CREATE_NEW_ID,
                                       flags );
 
+    std::cerr << "TextureManager2D::load() : Loading image: id="
+    << id << ", handle=" << handle << std::endl;
     m_textureMap.insert( std::pair< std::string, GLuint >( id, handle ) );
     return true;
 }
@@ -70,10 +72,12 @@ bool TextureManager2D::unload( const std::string& id ) {
         return false;
     }
 
+    std::cerr << "TextureManager2D::unload() : Unloading image: id="
+    << id << ", handle=" << tmp << std::endl;
+
     const GLuint handle = ( GLuint )tmp;
     glDeleteTextures( 1, &handle );
 
-    // Delete
     m_textureMap.erase( id );
 
     return true;

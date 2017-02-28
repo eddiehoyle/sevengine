@@ -10,6 +10,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <iostream>
 
 /* Note:
  * 16 slots available on macbook
@@ -49,6 +50,18 @@ public:
 
     /// Set how pixels are displayed outside of UVs
     void setWrapMode( GLenum s, GLenum t );
+
+    void print() const {
+
+        std::cerr << "TextureManager2D: Found " << m_textureMap.size() << " texture(s)" << std::endl;
+        for ( TextureMap::const_iterator iter = m_textureMap.begin();
+              iter != m_textureMap.end();
+              ++iter ) {
+            std::cerr << "TextureManager2D: Image(id="
+                      << iter->first << ", handle=" << iter->second
+                      << std::endl;
+        }
+    }
 
 
     GLint getNextUnit() const;

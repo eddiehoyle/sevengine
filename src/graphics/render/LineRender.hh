@@ -10,6 +10,7 @@
 
 #include <glm/glm.hpp>
 #include <vector>
+#include <iostream>
 #include "QuadRender.hh"
 
 
@@ -68,5 +69,7 @@ public:
 private:
     LineBuffer m_buffer;
 };
+
+void print( const Line& line );
 
 #endif //SEVENGINE_LINERENDER_HH
