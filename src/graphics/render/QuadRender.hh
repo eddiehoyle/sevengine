@@ -32,9 +32,10 @@ typedef std::vector< Quad > Quads;
 typedef std::vector< Vertex > Vertices;
 typedef std::vector< GLuint > Elements;
 
-class BufferQuad {
+class QuadBuffer {
 
 public:
+    QuadBuffer();
     void add( const Quads& quad );
     void add( const Quad& quad );
     void bind();
@@ -56,14 +57,14 @@ class QuadRender {
 public:
 
     QuadRender();
-    explicit QuadRender( const BufferQuad& buffer );
+    explicit QuadRender( const QuadBuffer& buffer );
 
     void bind();
     void draw();
     void release();
 
 private:
-    BufferQuad m_buffer;
+    QuadBuffer m_buffer;
 };
 
 void print( const Vertex& vertex );

@@ -96,14 +96,21 @@ void Quad::setColor( GLubyte r, GLubyte g, GLubyte b, GLubyte a ) {
 
 // ----------------------------------------------------------------------
 
-void BufferQuad::add( const std::vector< Quad >& quads ) {
+QuadBuffer::QuadBuffer()
+        : m_data(),
+          m_elements(),
+          m_vbo( 0 ),
+          m_vao( 0 ) {
+}
+
+void QuadBuffer::add( const std::vector< Quad >& quads ) {
     std::vector< Quad >::const_iterator iter;
     for ( iter = quads.begin(); iter != quads.end(); iter++ ) {
         add( *iter );
     }
 }
 
-void BufferQuad::add( const Quad &quad ) {
+void QuadBuffer::add( const Quad &quad ) {
 
     // Vertex array for this quad
     Vertex vertices[4] = {
@@ -125,7 +132,7 @@ void BufferQuad::add( const Quad &quad ) {
 }
 
 
-void BufferQuad::bind() {
+void QuadBuffer::bind() {
 
     glGenBuffers( 1, &m_vbo );
     glGenBuffers( 1, &m_vao );
@@ -137,7 +144,7 @@ void BufferQuad::bind() {
     glBufferData( GL_ELEMENT_ARRAY_BUFFER, m_elements.size() * sizeof( GLuint ), &m_elements[0], GL_STATIC_DRAW );
 }
 
-void BufferQuad::clear() {
+void QuadBuffer::clear() {
 
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
@@ -149,11 +156,11 @@ void BufferQuad::clear() {
     m_elements.clear();
 }
 
-const Vertices& BufferQuad::getData() const {
+const Vertices& QuadBuffer::getData() const {
     return m_data;
 }
 
-const Elements& BufferQuad::getElements() const {
+const Elements& QuadBuffer::getElements() const {
     return m_elements;
 }
 
@@ -163,7 +170,7 @@ QuadRender::QuadRender()
         : m_buffer() {
 }
 
-QuadRender::QuadRender( const BufferQuad& buffer )
+QuadRender::QuadRender( const QuadBuffer& buffer )
         : m_buffer( buffer ) {
 }
 

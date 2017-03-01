@@ -15,14 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45ef3f77-ceda-4b79-b26f-bfb99b454220" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/LineRender.cc" afterPath="$PROJECT_DIR$/src/graphics/render/LineRender.cc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/LineRender.hh" afterPath="$PROJECT_DIR$/src/graphics/render/LineRender.hh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/ParticleRender.cc" afterPath="$PROJECT_DIR$/src/graphics/render/ParticleRender.cc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/QuadRender.cc" afterPath="$PROJECT_DIR$/src/graphics/render/QuadRender.cc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/render/QuadRender.hh" afterPath="$PROJECT_DIR$/src/graphics/render/QuadRender.hh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/texture/TextureManager2D.cc" afterPath="$PROJECT_DIR$/src/graphics/texture/TextureManager2D.cc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/texture/TextureManager2D.hh" afterPath="$PROJECT_DIR$/src/graphics/texture/TextureManager2D.hh" />
     </list>
     <ignored path="sev.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,77 +37,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LineRender.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/render/LineRender.cc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding>
-                <element signature="e#46#62#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ParticleRender.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/render/ParticleRender.cc">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuadRender.cc" pinned="false" current-in-tab="false">
+      <file leaf-file-name="QuadRender.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/graphics/render/QuadRender.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="24">
+              <caret line="88" column="11" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vertex.hh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/Vertex.hh">
+      <file leaf-file-name="texture.frag" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/shaders/texture.frag">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LineRender.hh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/render/LineRender.hh">
+      <file leaf-file-name="texture.vert" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/shaders/texture.vert">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-              <folding>
-                <element signature="e#139#161#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="135">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParticleRender.hh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/render/ParticleRender.hh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-              <folding>
-                <element signature="e#147#169#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuadRender.hh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QuadRender.hh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphics/render/QuadRender.hh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -182,8 +140,8 @@
         <option value="$PROJECT_DIR$/src/graphics/texture/TextureManager2D.cc" />
         <option value="$PROJECT_DIR$/src/graphics/render/LineRender.cc" />
         <option value="$PROJECT_DIR$/src/graphics/render/LineRender.hh" />
-        <option value="$PROJECT_DIR$/src/graphics/render/QuadRender.hh" />
         <option value="$PROJECT_DIR$/src/graphics/render/ParticleRender.cc" />
+        <option value="$PROJECT_DIR$/src/graphics/render/QuadRender.hh" />
         <option value="$PROJECT_DIR$/src/graphics/render/QuadRender.cc" />
       </list>
     </option>
@@ -618,7 +576,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2451923" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35095447" sideWeight="0.5266084" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35095447" sideWeight="0.5266084" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32305434" sideWeight="0.45274028" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33920705" sideWeight="0.4733916" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32599118" sideWeight="0.49722" order="1" side_tool="false" content_ui="tabs" />
@@ -889,22 +847,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/shaders/texture.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/shaders/texture.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/shader/LineShader.hh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -1006,7 +948,7 @@
         <state relative-caret-position="285">
           <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
           <folding>
-            <element signature="e#46#70#0" expanded="true" />
+            <element signature="e#46#70#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1016,7 +958,7 @@
         <state relative-caret-position="168">
           <caret line="55" column="29" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
           <folding>
-            <element signature="e#147#169#0" expanded="true" />
+            <element signature="e#147#169#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1034,7 +976,7 @@
         <state relative-caret-position="195">
           <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
           <folding>
-            <element signature="e#86#113#0" expanded="true" />
+            <element signature="e#86#113#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1055,22 +997,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/render/LineRender.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#46#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/render/LineRender.hh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
-            <element signature="e#139#161#0" expanded="true" />
+            <element signature="e#139#161#0" expanded="false" />
+            <marker date="1488258183000" expanded="true" signature="353:758" ph="{...}" />
+            <marker date="1488258183000" expanded="true" signature="511:714" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1080,7 +1014,7 @@
         <state relative-caret-position="1245">
           <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding>
-            <element signature="e#147#169#0" expanded="true" />
+            <element signature="e#147#169#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1093,18 +1027,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/render/QuadRender.cc">
+    <entry file="file://$PROJECT_DIR$/src/graphics/render/LineRender.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="189">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#46#62#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/shaders/texture.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/shaders/texture.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/render/QuadRender.hh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/render/QuadRender.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="88" column="11" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="11" />
           <folding />
         </state>
       </provider>
