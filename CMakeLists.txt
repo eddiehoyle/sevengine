@@ -31,21 +31,28 @@ file(GLOB_RECURSE SOURCE_FILES "*.cc" "*.cpp")
 find_package(OpenGL REQUIRED)
 find_package(glew REQUIRED)
 find_package(SOIL REQUIRED)
+find_package(OpenAL REQUIRED)
 
 include_directories(
         ${SOIL_INCLUDE_DIR}
         ${TINYXML2_INCLUDE}
+        ${OPENAL_INCLUDE_DIR}
 )
 #include_directories(/opt/local/include)
 #message(WARNING ${SOIL_INCLUDE_DIR})
 
 # Output
-add_library(${LIB_NAME} ${SOURCE_FILES} src/graphics/render/LineRender.cc src/graphics/render/LineRender.hh src/graphics/shader/LineShader.cc src/graphics/shader/LineShader.hh)
+add_library(${LIB_NAME} ${SOURCE_FILES})
 
 target_link_libraries(${LIB_NAME}
         ${OPENGL_LIBRARIES}
         ${SOIL_LIBRARY}
-        ${TINYXML2_LIBRARY})
+        ${TINYXML2_LIBRARY}
+        ${OPENAL_LIBRARY})
 
-message(WARNING ${SOIL_LIBRARY})
+# OpenAL
+#message(WARNING "OpenAL found: ${OPENAL_FOUND}")
+#message(WARNING "OpenAL lib: ${OPENAL_LIBRARY}")
+#message(WARNING "OpenAL headers: ${OPENAL_INCLUDE_DIR}")
+
 #message(WARNING ${SOURCE_FILES})
