@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 
 static const ALuint kMaxSources = 32;
 
@@ -128,8 +129,9 @@ void AudioManager::play( const std::string& path ) {
 
 
 
-AudioSourceWav::AudioSourceWav( const std::string& path )
-          : m_buffer( 0 ) {
+AudioBuffer::AudioBuffer( const std::string& path )
+          : m_buffer( 0 ),
+            m_format( 0 ) {
 
     // Open file
     FILE* file = fopen( path.c_str(), "rb" );
@@ -144,10 +146,10 @@ AudioSourceWav::AudioSourceWav( const std::string& path )
     }
 
     // Check header is valid wav
-    if ( ( strcmp( "RIFF", m_header->riff ) ||
-           strcmp( "WAVE", m_header->wave ) ||
-           strcmp( "fmt ", m_header->fmt ) ||
-           strcmp( "data", m_header->data ) ) ) {
+    if ( ( memcmp( "RIFF", m_header->riff, 4 ) ||
+           memcmp( "WAVE", m_header->wave, 4 ) ||
+           memcmp( "fmt ", m_header->fmt, 4 ) ||
+           memcmp( "data", m_header->data, 4 ) ) ) {
         printf( "ERROR bad format\n" );
     }
 
@@ -156,39 +158,44 @@ AudioSourceWav::AudioSourceWav( const std::string& path )
     fread( buffer, m_header->dataSize, 1, file );
     fclose( file );
 
-    // Generate buffers
-    alGenBuffers( 1, &m_buffer );
-    alBufferData( m_buffer, getChannels(), buffer, m_header->dataSize, m_header->samplesPerSec );
-
-    // Cleanup
-    delete[] buffer;
-}
-
-AudioSourceWav::~AudioSourceWav() {
-    delete m_header;
-}
-
-ALuint AudioSourceWav::getBuffer() const {
-    return m_buffer;
-}
-
-ALuint AudioSourceWav::getChannels() {
-
-    ALuint format = 0;
+    // Set format
+    m_format = 0;
     switch ( m_header->bitsPerSample ) {
         case 8:
-            format = ( m_header->channels == 1 ) ? AL_FORMAT_MONO8 : AL_FORMAT_STEREO8;
+            m_format = ( m_header->channels == 1 ) ? AL_FORMAT_MONO8 : AL_FORMAT_STEREO8;
             break;
         case 16:
-            format = ( m_header->channels == 1 ) ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
+            m_format = ( m_header->channels == 1 ) ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
             break;
         default:
             printf( "ERROR mono/stereo bad format\n");
             break;
     }
-    return format;
+
+    // Generate buffers
+    alGenBuffers( 1, &m_buffer );
+    alBufferData( m_buffer, m_format, buffer, m_header->dataSize, m_header->samplesPerSec );
+
+    // Cleanup
+    delete[] buffer;
 }
 
+AudioBuffer::~AudioBuffer() {
+    alDeleteBuffers( 1, &m_buffer );
+    delete m_header;
+}
+
+ALuint AudioBuffer::getBuffer() const {
+    return m_buffer;
+}
+
+ALuint AudioBuffer::getHandle() const {
+    return m_handle;
+}
+
+void AudioBuffer::setHandle( ALuint handle ) {
+    m_handle = handle;
+}
 
 AudioManager2* AudioManager2::m_instance = 0;
 
@@ -202,7 +209,7 @@ AudioManager2* AudioManager2::instance() {
 AudioManager2::AudioManager2()
         : m_device( NULL ),
           m_context( NULL ),
-          m_pool() {
+          m_buffers() {
 
     // Get default device
     m_device = alcOpenDevice( NULL );
@@ -210,58 +217,100 @@ AudioManager2::AudioManager2()
     alcMakeContextCurrent( m_context );
 
     // Generate sources
-    ALuint sources[ kMaxSources ];
-    alGenSources( kMaxSources, sources );
+//    m_pool.reserve( kMaxSources );
+//    alGenSources( kMaxSources, &m_pool[0] );
 
-    // Store in vector
-    m_pool.reserve( kMaxSources );
-    std::copy( sources, sources + kMaxSources, std::back_inserter( m_pool ) );
+    const std::string bellPath = "/Users/eddiehoyle/Code/cpp/game/sevengine-workshop/resources/audio/bell.wav";
+    AudioBuffer* bell = new AudioBuffer( bellPath );
+
+    const std::string boingPath = "/Users/eddiehoyle/Code/cpp/game/sevengine-workshop/resources/audio/boing.wav";
+    AudioBuffer* boing = new AudioBuffer( boingPath );
+
+    m_buffers.insert( std::pair< std::string, AudioBuffer* >( "bell", bell ) );
+    m_buffers.insert( std::pair< std::string, AudioBuffer* >( "boing", boing ) );
+
+//    m_buffers.insert(  );
 }
 
-void AudioManager2::play( const AudioSourceWav& source ) {
-
-//    ALuint source = 0;
-//    acquire( &source );
+void AudioManager2::acquire( AudioBuffer* buffer ) {
+    // set handle on buffer
 }
 
-void AudioManager2::stop( const AudioSourceWav& source ) {
+void AudioManager2::release( AudioBuffer* buffer ) {
 
 }
 
-void AudioManager2::acquire( ALuint* source ) {
+void AudioManager2::play( AudioBuffer* source ) {
 
-    typedef std::vector< ALuint >::const_iterator SourceIterator;
-    for ( SourceIterator iter = m_pool.begin();
-          iter != m_pool.end();
-          ++iter ) {
+    std::cerr << "AudioManager2::play()" << std::endl;
 
-        ALuint checkSource = *iter;
-
-        // Is this source active?
-        SourceIterator activeIter =
-                std::find( m_activeSources.begin(), m_activeSources.end(), checkSource );
-
-        // Found a free source
-        if ( activeIter != m_activeSources.end() ) {
-            m_activeSources.push_back( checkSource );
-            *source = checkSource;
-        }
-    }
+//    ALuint handle = acquire();
+//
+//    ALuint id = 0;
+//    alGenSources( 1, &id );
+//
+//    // Generate source
+//    alSourcef( id, AL_PITCH, 1.0f );
+//    alSourcef( id, AL_GAIN, 1.0f );
+//    alSourcei( id, AL_BUFFER, buffer.getBuffer() );
+//    alSourcei( id, AL_LOOPING, AL_FALSE );
+//
+//    alSourcePlay( id );
 }
 
-void AudioManager2::restore( ALuint* source ) {
+void AudioManager2::stop( AudioBuffer* source ) {
 
-    // Is this source active?
-    typedef std::vector< ALuint >::const_iterator SourceIterator;
-    SourceIterator activeIter = std::find( m_activeSources.begin(),
-                                           m_activeSources.end(),
-                                           *source );
-
-    // Found a free source
-    if ( activeIter != m_activeSources.end() ) {
-        m_activeSources.erase( activeIter );
-    }
 }
+//
+//void AudioManager2::acquire( ALuint& source ) {
+
+    //
+
+
+
+//    typedef std::vector< ALuint >::const_iterator SourceIterator;
+//    typedef std::map< const AudioBuffer&, ALuint >::const_iterator BufferIterator;
+
+//    for ( SourceIterator sourceIter = m_pool.begin();
+//          sourceIter != m_pool.end();
+//          ++sourceIter ) {
+//
+//        ALuint checkSource = *sourceIter;
+//
+//        for ( BufferIterator bufferIter = m_bufferMap.begin();
+//              bufferIter != m_bufferMap.end();
+//              ++bufferIter ) {
+//
+//            if ( bufferIter->second == source ) {
+//
+//            }
+//        }
+//
+//        // Is this source active?
+//        SourceIterator activeIter =
+//                std::find( m_activeSources.begin(), m_activeSources.end(), checkSource );
+//
+//        // Found a free source
+//        if ( activeIter != m_activeSources.end() ) {
+//            m_activeSources.push_back( checkSource );
+//            buffer = checkSource;
+//        }
+//    }
+//}
+
+//void AudioManager2::restore( ALuint& source ) {
+
+//    // Is this source active?
+//    typedef std::vector< ALuint >::const_iterator SourceIterator;
+//    SourceIterator activeIter = std::find( m_activeSources.begin(),
+//                                           m_activeSources.end(),
+//                                           source );
+//
+//    // Found a free source
+//    if ( activeIter != m_activeSources.end() ) {
+//        m_activeSources.erase( activeIter );
+//    }
+//}
 
 
 AudioManager2::~AudioManager2() {
@@ -269,5 +318,12 @@ AudioManager2::~AudioManager2() {
     alcMakeContextCurrent( NULL );
     alcDestroyContext( m_context );
     alcCloseDevice( m_device );
+
+    // Clean up
+    for ( std::map< std::string, AudioBuffer*>::iterator iter = m_buffers.begin();
+          iter != m_buffers.end();
+          ++iter ) {
+        delete iter->second;
+    }
 }
 

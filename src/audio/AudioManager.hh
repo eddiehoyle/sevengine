@@ -67,7 +67,7 @@ private:
 // https://github.com/dilawar/sound/blob/master/include/wav-def.h#L47
 
 
-class AudioSourceWav {
+class AudioBuffer {
 
     struct WavHeader {
         char riff[4]; //'RIFF'
@@ -86,16 +86,23 @@ class AudioSourceWav {
     };
 
 public:
-    AudioSourceWav( const std::string& path );
-    ~AudioSourceWav();
+    AudioBuffer( const std::string& path );
+    ~AudioBuffer();
 
-    ALuint getChannels();
     ALuint getBuffer() const;
+    ALuint getHandle() const;
+    void setHandle( ALuint );
+
+private:
+    AudioBuffer( const AudioBuffer& );
+    AudioBuffer& operator=( const AudioBuffer& );
 
 private:
     WavHeader* m_header;
     ALuint m_buffer;
+    ALuint m_format;
 
+    ALuint m_handle;
 };
 
 class AudioManager2 {
@@ -111,34 +118,17 @@ public:
     static AudioManager2 *instance();
     ~AudioManager2();
 
-    // https://github.com/dilawar/sound/blob/master/include/wav-def.h#L47
-    struct WaveHeader {
-        char riff[4]; //'RIFF'
-        unsigned int riffSize;
-        char wave[4]; //'WAVE'
-        char fmt[4]; //'fmt '
-        unsigned int fmtSize;
-        unsigned short format;
-        unsigned short channels;
-        unsigned int samplesPerSec;
-        unsigned int bytesPerSec;
-        unsigned short blockAlign;
-        unsigned short bitsPerSample;
-        char data[4]; //'data'
-        unsigned int dataSize;
-    };
-
 public:
-    void play( const AudioSourceWav& source );
-    void stop( const AudioSourceWav& source );
+    void play( AudioBuffer* buffer );
+    void stop( AudioBuffer* buffer );
 
 private:
 
     // Acquire a source from pool to bind to buffer
-    void acquire( ALuint* source );
+    void acquire( AudioBuffer* buffer );
 
     // Restore a source to pool
-    void restore( ALuint* source );
+    void release( AudioBuffer* buffer );
 
 private:
     static AudioManager2* m_instance;
@@ -146,14 +136,14 @@ private:
     glm::vec2 m_position;
     glm::vec2 m_velocity;
 
+//    std::map< const AudioBuffer&, ALuint > m_bufferMap;
+
     ALCdevice* m_device;
     ALCcontext* m_context;
 
     // Available sources
-    std::vector< ALuint > m_pool;
+    std::map< std::string, AudioBuffer* > m_buffers;
 
-    // Sources in use
-    std::vector< ALuint > m_activeSources;
 
 private:
     AudioManager2();
@@ -161,5 +151,9 @@ private:
     AudioManager2& operator=( const AudioManager2& );
 
 };
+
+
+
+
 
 #endif //SEVENGINE_AUDIOMANAGER_HH
