@@ -217,8 +217,8 @@ AudioManager2::AudioManager2()
     alcMakeContextCurrent( m_context );
 
     // Generate sources
-//    m_pool.reserve( kMaxSources );
-//    alGenSources( kMaxSources, &m_pool[0] );
+    m_pool.reserve( kMaxSources );
+    alGenSources( kMaxSources, &m_pool[0] );
 
     const std::string bellPath = "/Users/eddiehoyle/Code/cpp/game/sevengine-workshop/resources/audio/bell.wav";
     AudioBuffer* bell = new AudioBuffer( bellPath );
@@ -228,19 +228,65 @@ AudioManager2::AudioManager2()
 
     m_buffers.insert( std::pair< std::string, AudioBuffer* >( "bell", bell ) );
     m_buffers.insert( std::pair< std::string, AudioBuffer* >( "boing", boing ) );
-
-//    m_buffers.insert(  );
 }
 
-void AudioManager2::acquire( AudioBuffer* buffer ) {
-    // set handle on buffer
+void AudioManager2::acquire( const std::string& name ) {
+
+    // Does name have a source?
+    typedef std::map< std::string, ALuint >::iterator SourceMapIter;
+    SourceMapIter findSourceIter = m_sourceMap.find( name );
+    if ( findSourceIter != m_sourceMap.end() ) {
+        return;
+    }
+
+    std::size_t sourcesInUse = m_sourceMap.size();
+    std::size_t availableSources = m_pool.size();
+
+    if ( availableSources == sourcesInUse ) {
+
+        // All sources in use, need to pop one
+        ALuint source = m_queue.front();
+        std::cerr << "Ran out of sources! Popping oldest id: " << source << std::endl;
+
+        for ( SourceMapIter sourceIter = m_sourceMap.begin();
+              sourceIter != m_sourceMap.end();
+              ++sourceIter ) {
+
+            // Stop source and remove entry
+            if ( source == sourceIter->second ) {
+                stop( sourceIter->first );
+                break;
+            }
+        }
+
+        m_queue.pop();
+
+    } else {
+
+
+
+
+
+        for ( SourceMapIter sourceIter = m_sourceMap.begin();
+              sourceIter != m_sourceMap.end();
+              ++sourceIter ) {
+
+        }
+
+    }
+
+
+    // Insert into queue
+//    m_queue.push( source );
+
+
 }
 
-void AudioManager2::release( AudioBuffer* buffer ) {
+void AudioManager2::release( const std::string& name ) {
 
 }
 
-void AudioManager2::play( AudioBuffer* source ) {
+void AudioManager2::play( const std::string& name ) {
 
     std::cerr << "AudioManager2::play()" << std::endl;
 
@@ -258,7 +304,7 @@ void AudioManager2::play( AudioBuffer* source ) {
 //    alSourcePlay( id );
 }
 
-void AudioManager2::stop( AudioBuffer* source ) {
+void AudioManager2::stop( const std::string& name ) {
 
 }
 //

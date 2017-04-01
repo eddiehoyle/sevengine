@@ -12,6 +12,7 @@
 #include <OpenAL/alc.h>
 #include <map>
 #include <vector>
+#include <queue>
 
 void checkALErrors( const char* errLocation );
 
@@ -119,16 +120,16 @@ public:
     ~AudioManager2();
 
 public:
-    void play( AudioBuffer* buffer );
-    void stop( AudioBuffer* buffer );
+    void play( const std::string& buffer );
+    void stop( const std::string& buffer );
 
 private:
 
     // Acquire a source from pool to bind to buffer
-    void acquire( AudioBuffer* buffer );
+    void acquire( const std::string& name );
 
     // Restore a source to pool
-    void release( AudioBuffer* buffer );
+    void release( const std::string& name );
 
 private:
     static AudioManager2* m_instance;
@@ -142,7 +143,11 @@ private:
     ALCcontext* m_context;
 
     // Available sources
+    std::vector< ALuint > m_pool;
+    std::queue< ALuint > m_queue;
+
     std::map< std::string, AudioBuffer* > m_buffers;
+    std::map< std::string, ALuint > m_sourceMap;
 
 
 private:
