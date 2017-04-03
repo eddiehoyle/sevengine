@@ -16,50 +16,50 @@
 
 void checkALErrors( const char* errLocation );
 
-class AudioManager {
-
-public:
-    static AudioManager* instance();
-
-    // https://github.com/dilawar/sound/blob/master/include/wav-def.h#L47
-    struct wave_header_t {
-        char riff[4]; //'RIFF'
-        unsigned int riffSize;
-        char wave[4]; //'WAVE'
-        char fmt[4]; //'fmt '
-        unsigned int fmtSize;
-        unsigned short format;
-        unsigned short channels;
-        unsigned int samplesPerSec;
-        unsigned int bytesPerSec;
-        unsigned short blockAlign;
-        unsigned short bitsPerSample;
-        char data[4]; //'data'
-        unsigned int dataSize;
-    };
-
-public:
-    void play( const std::string& path2 );
-    void stop();
-
-private:
-    AudioManager();
-    AudioManager( const AudioManager& );
-    AudioManager& operator=( const AudioManager& );
-
-private:
-    static AudioManager* m_instance;
-
-private:
-    ALuint m_buffer;
-    ALuint m_source;
-    glm::vec2 m_position;
-    glm::vec2 m_velocity;
-
-    ALCdevice* m_device;
-    ALCcontext* m_context;
-
-};
+//class AudioManager {
+//
+//public:
+//    static AudioManager* instance();
+//
+//    // https://github.com/dilawar/sound/blob/master/include/wav-def.h#L47
+//    struct wave_header_t {
+//        char riff[4]; //'RIFF'
+//        unsigned int riffSize;
+//        char wave[4]; //'WAVE'
+//        char fmt[4]; //'fmt '
+//        unsigned int fmtSize;
+//        unsigned short format;
+//        unsigned short channels;
+//        unsigned int samplesPerSec;
+//        unsigned int bytesPerSec;
+//        unsigned short blockAlign;
+//        unsigned short bitsPerSample;
+//        char data[4]; //'data'
+//        unsigned int dataSize;
+//    };
+//
+//public:
+//    void play( const std::string& path2 );
+//    void stop();
+//
+//private:
+//    AudioManager();
+//    AudioManager( const AudioManager& );
+//    AudioManager& operator=( const AudioManager& );
+//
+//private:
+//    static AudioManager* m_instance;
+//
+//private:
+//    ALuint m_buffer;
+//    ALuint m_source;
+//    glm::vec2 m_position;
+//    glm::vec2 m_velocity;
+//
+//    ALCdevice* m_device;
+//    ALCcontext* m_context;
+//
+//};
 
 /*
  * AudioManager2::instance()->acquire();
@@ -106,6 +106,12 @@ private:
     ALuint m_handle;
 };
 
+
+
+typedef std::map< std::string, ALuint >::iterator SourceMapIter;
+typedef std::map< std::string, AudioBuffer* >::iterator BufferMapIter;
+
+
 class AudioManager2 {
 
     /*
@@ -120,16 +126,12 @@ public:
     ~AudioManager2();
 
 public:
+
+    void acquire( const std::string& name );
+    void release( const std::string& name );
+
     void play( const std::string& buffer );
     void stop( const std::string& buffer );
-
-private:
-
-    // Acquire a source from pool to bind to buffer
-    void acquire( const std::string& name );
-
-    // Restore a source to pool
-    void release( const std::string& name );
 
 private:
     static AudioManager2* m_instance;
@@ -144,10 +146,10 @@ private:
 
     // Available sources
     std::vector< ALuint > m_pool;
-    std::queue< ALuint > m_queue;
+    std::vector< ALuint > m_active;
 
-    std::map< std::string, AudioBuffer* > m_buffers;
     std::map< std::string, ALuint > m_sourceMap;
+    std::map< std::string, AudioBuffer* > m_bufferMap;
 
 
 private:
