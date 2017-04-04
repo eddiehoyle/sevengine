@@ -33,102 +33,6 @@ void checkALErrors( const char* errLocation ) {
         default: printf("%s: UNKNOWN ERROR\n", errLocation); break;
     }
 }
-//
-//AudioManager* AudioManager::m_instance = 0;
-//
-//AudioManager* AudioManager::instance() {
-//    if ( m_instance == 0 ) {
-//        m_instance = new AudioManager();
-//    }
-//    return m_instance;
-//}
-//
-//
-//AudioManager::AudioManager()
-//        : m_device( NULL ),
-//          m_context( NULL ) {
-//
-//    // Get default device
-//    m_device = alcOpenDevice( NULL );
-//    checkALErrors( "alcOpenDevice()" );
-//
-//    // Create context
-//    m_context = alcCreateContext( m_device, NULL );
-//    checkALErrors( "alcOpenDevice()" );
-//
-//    //
-//    alcMakeContextCurrent( m_context );
-//    checkALErrors( "alcOpenDevice()" );
-//
-//}
-//
-//void AudioManager::stop() {
-//    alSourceStop( m_source );
-//}
-//
-//void AudioManager::play( const std::string& path ) {
-//
-////    // Generate buffers
-////    alGenBuffers( 1, &m_buffer );
-////    checkALErrors( "alGenBuffers" );
-//
-//    FILE* file = fopen( path.c_str(), "rb" );
-//    if (!file) {
-//        printf( "ERROR reading file\n" );
-//    }
-//
-//    wave_header_t* header = ( wave_header_t* )malloc( sizeof( wave_header_t ) );
-//    if ( !fread( header, sizeof( wave_header_t ), 1, file ) ) {
-//        printf( "ERROR bad file\n" );
-//    }
-//
-//    if ( ( memcmp( "RIFF", header->riff, 4 ) ||
-//           memcmp( "WAVE", header->wave, 4 ) ||
-//           memcmp( "fmt ", header->fmt, 4 ) ||
-//           memcmp( "data", header->data, 4 ) ) ) {
-//        printf( "ERROR bad format\n" );
-//    }
-//
-//    std::cerr << "dataSize: " << header->dataSize << std::endl;
-//
-//    char* buffer = ( char* )malloc( header->dataSize );
-//    size_t datasize = fread( buffer, header->dataSize, 1, file );
-//    fclose(file);
-//
-//    ALuint format = 0;
-//    switch ( header->bitsPerSample ) {
-//        case 8: format = ( header->channels == 1 ) ? AL_FORMAT_MONO8 : AL_FORMAT_STEREO8;
-//            break;
-//        case 16: format = ( header->channels == 1 ) ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
-//            break;
-//        default: printf( "ERROR mono/stereo bad format\n");
-//            break;
-//    }
-//
-//    // Generate buffers
-//    alGenBuffers( 1, &m_buffer );
-//    checkALErrors( "alGenBuffers" );
-//
-//    alBufferData( m_buffer, format, buffer, header->dataSize, header->samplesPerSec );
-//    checkALErrors( "alBufferData" );
-//    free(buffer);
-//    free(header);
-//
-//    // Generate source
-//    alGenSources( 1, &m_source );
-//    checkALErrors( "alGenSources" );
-//    alSourcef( m_source, AL_PITCH, 1.0f );
-//    alSourcef( m_source, AL_GAIN, 1.0f );
-//    alSourcei( m_source, AL_BUFFER, m_buffer );
-//    alSourcei( m_source, AL_LOOPING, AL_FALSE );
-//
-//    alSourcePlay( m_source );
-//}
-
-
-// ------------------------------------------------------------------------------------------------------------ //
-
-
 
 AudioBuffer::AudioBuffer( const std::string& path )
           : m_buffer( 0 ),
@@ -198,21 +102,24 @@ void AudioBuffer::setHandle( ALuint handle ) {
     m_handle = handle;
 }
 
-AudioManager2* AudioManager2::m_instance = 0;
 
-AudioManager2* AudioManager2::instance() {
+
+
+AudioManager* AudioManager::m_instance = 0;
+
+AudioManager* AudioManager::instance() {
     if ( m_instance == 0 ) {
-        m_instance = new AudioManager2();
+        m_instance = new AudioManager();
     }
     return m_instance;
 }
 
-AudioManager2::AudioManager2()
+AudioManager::AudioManager()
         : m_device( NULL ),
           m_context( NULL ),
           m_bufferMap(),
           m_pool(),
-          m_active(),
+//          m_active(),
           m_sourceMap() {
 
     // Get default device
@@ -221,11 +128,12 @@ AudioManager2::AudioManager2()
     alcMakeContextCurrent( m_context );
 
     // Generate sources
-    m_pool.reserve( 32 );
+//    m_pool.reserve( 2 );
 //    alGenSources( kMaxSources, &m_pool[0] );
-    ALuint sources[32];
-    alGenSources( 32, sources );
-    m_pool = std::vector< ALuint >( sources, sources + 32 );
+    std::size_t numSources = 2;
+    ALuint sources[numSources];
+    alGenSources( numSources, sources );
+    m_pool = std::vector< ALuint >( sources, sources + numSources );
 
     std::cerr << "Sources: ";
     for ( std::size_t i  = 0; i < m_pool.size(); ++i ) {
@@ -239,11 +147,19 @@ AudioManager2::AudioManager2()
     const std::string boingPath = "/Users/eddiehoyle/Code/cpp/game/sevengine-workshop/resources/audio/boing.wav";
     AudioBuffer* boing = new AudioBuffer( boingPath );
 
+    const std::string birdPath = "/Users/eddiehoyle/Code/cpp/game/sevengine-workshop/resources/audio/bird.wav";
+    AudioBuffer* bird = new AudioBuffer( birdPath );
+
+    const std::string chickenPath = "/Users/eddiehoyle/Code/cpp/game/sevengine-workshop/resources/audio/chicken.wav";
+    AudioBuffer* chicken = new AudioBuffer( chickenPath );
+
     m_bufferMap.insert( std::pair< std::string, AudioBuffer* >( "bell", bell ) );
     m_bufferMap.insert( std::pair< std::string, AudioBuffer* >( "boing", boing ) );
+    m_bufferMap.insert( std::pair< std::string, AudioBuffer* >( "bird", bird ) );
+    m_bufferMap.insert( std::pair< std::string, AudioBuffer* >( "chicken", chicken ) );
 }
 
-void AudioManager2::acquire( const std::string& name ) {
+void AudioManager::acquire( const std::string& name ) {
 
     // Does name have a source?
     SourceMapIter findSourceIter = m_sourceMap.find( name );
@@ -260,8 +176,11 @@ void AudioManager2::acquire( const std::string& name ) {
     if ( !( sourcesInUse == 0 || availableSources == 0 ) &&
          ( availableSources == sourcesInUse ) ) {
 
-        // All sources in use, need to pop one
-        source = m_active.front();
+        // TODO
+        // This just grabs the first source from the pool
+        // which could be anything. Ideally this should grab
+        // the oldest source or something
+        source = m_pool.front();
         std::cerr << "Ran out of sources! Popping oldest id: " << source << std::endl;
 
         for ( SourceMapIter sourceIter = m_sourceMap.begin();
@@ -271,12 +190,13 @@ void AudioManager2::acquire( const std::string& name ) {
             // Stop source and remove entry
             if ( source == sourceIter->second ) {
                 stop( sourceIter->first );
+                release( sourceIter->first );
                 break;
             }
         }
 
         // Remove source
-        m_active.erase( std::find( m_active.begin(), m_active.end(), source ) );
+//        m_active.erase( std::find( m_active.begin(), m_active.end(), source ) );
 
     } else {
 
@@ -300,7 +220,7 @@ void AudioManager2::acquire( const std::string& name ) {
 
             for ( std::size_t index = 0; index < m_pool.size(); ++index ) {
 
-//                std::cerr << "AudioManager2::acquire() : Looking for source: " << m_pool[ index ] << std::endl;
+                std::cerr << "AudioManager2::acquire() : Looking for source: " << m_pool[ index ] << std::endl;
 
                 // Check each source in pool if it's in use
                 typedef std::vector< ALuint >::iterator PoolIter;
@@ -308,7 +228,9 @@ void AudioManager2::acquire( const std::string& name ) {
 
                 // Pool source is not in use, we can use it!
                 if ( inUseIter == inUse.end() ) {
+
                     source = m_pool[ index ];
+                    std::cerr << "AudioManager2::acquire() : Found available source: " << source << std::endl;
                     break;
                 }
             }
@@ -326,7 +248,7 @@ void AudioManager2::acquire( const std::string& name ) {
     std::cerr << "AudioManager2::acquire() : Acquired source: " << source << std::endl;
 }
 
-void AudioManager2::release( const std::string& name ) {
+void AudioManager::release( const std::string& name ) {
 
     // Remove source name
     typedef std::map< std::string, ALuint >::iterator SourceMapIter;
@@ -340,7 +262,7 @@ void AudioManager2::release( const std::string& name ) {
     }
 }
 
-void AudioManager2::play( const std::string& name ) {
+void AudioManager::play( const std::string& name ) {
 
     std::cerr << "AudioManager2::play()" << std::endl;
 
@@ -369,7 +291,7 @@ void AudioManager2::play( const std::string& name ) {
     alSourcePlay( id );
 }
 
-void AudioManager2::stop( const std::string& name ) {
+void AudioManager::stop( const std::string& name ) {
 
     SourceMapIter sourceIter = m_sourceMap.find( name );
     if ( sourceIter == m_sourceMap.end() ) {
@@ -436,17 +358,24 @@ void AudioManager2::stop( const std::string& name ) {
 //}
 
 
-AudioManager2::~AudioManager2() {
+AudioManager::~AudioManager() {
+
+    // Clean up buffers
+    for ( BufferMapIter bufferIter = m_bufferMap.begin();
+          bufferIter != m_bufferMap.end();
+          ++bufferIter ) {
+        delete bufferIter->second;
+    }
+
+    // Clean up sources
+    for ( SourceMapIter sourceIter = m_sourceMap.begin();
+          sourceIter != m_sourceMap.end();
+          ++sourceIter ) {
+        alDeleteBuffers( 1, &sourceIter->second );
+    }
 
     alcMakeContextCurrent( NULL );
     alcDestroyContext( m_context );
     alcCloseDevice( m_device );
-
-    // Clean up
-    for ( std::map< std::string, AudioBuffer*>::iterator iter = m_bufferMap.begin();
-          iter != m_bufferMap.end();
-          ++iter ) {
-        delete iter->second;
-    }
 }
 

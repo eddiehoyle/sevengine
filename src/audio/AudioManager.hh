@@ -16,58 +16,7 @@
 
 void checkALErrors( const char* errLocation );
 
-//class AudioManager {
-//
-//public:
-//    static AudioManager* instance();
-//
-//    // https://github.com/dilawar/sound/blob/master/include/wav-def.h#L47
-//    struct wave_header_t {
-//        char riff[4]; //'RIFF'
-//        unsigned int riffSize;
-//        char wave[4]; //'WAVE'
-//        char fmt[4]; //'fmt '
-//        unsigned int fmtSize;
-//        unsigned short format;
-//        unsigned short channels;
-//        unsigned int samplesPerSec;
-//        unsigned int bytesPerSec;
-//        unsigned short blockAlign;
-//        unsigned short bitsPerSample;
-//        char data[4]; //'data'
-//        unsigned int dataSize;
-//    };
-//
-//public:
-//    void play( const std::string& path2 );
-//    void stop();
-//
-//private:
-//    AudioManager();
-//    AudioManager( const AudioManager& );
-//    AudioManager& operator=( const AudioManager& );
-//
-//private:
-//    static AudioManager* m_instance;
-//
-//private:
-//    ALuint m_buffer;
-//    ALuint m_source;
-//    glm::vec2 m_position;
-//    glm::vec2 m_velocity;
-//
-//    ALCdevice* m_device;
-//    ALCcontext* m_context;
-//
-//};
-
-/*
- * AudioManager2::instance()->acquire();
- */
-
 // https://github.com/dilawar/sound/blob/master/include/wav-def.h#L47
-
-
 class AudioBuffer {
 
     struct WavHeader {
@@ -112,7 +61,7 @@ typedef std::map< std::string, ALuint >::iterator SourceMapIter;
 typedef std::map< std::string, AudioBuffer* >::iterator BufferMapIter;
 
 
-class AudioManager2 {
+class AudioManager {
 
     /*
      * On iOS there is a maximum of 32 sound sources playing at one time.
@@ -122,8 +71,8 @@ class AudioManager2 {
      */
 
 public:
-    static AudioManager2 *instance();
-    ~AudioManager2();
+    static AudioManager *instance();
+    ~AudioManager();
 
 public:
 
@@ -134,7 +83,7 @@ public:
     void stop( const std::string& buffer );
 
 private:
-    static AudioManager2* m_instance;
+    static AudioManager* m_instance;
 
     glm::vec2 m_position;
     glm::vec2 m_velocity;
@@ -146,16 +95,15 @@ private:
 
     // Available sources
     std::vector< ALuint > m_pool;
-    std::vector< ALuint > m_active;
 
     std::map< std::string, ALuint > m_sourceMap;
     std::map< std::string, AudioBuffer* > m_bufferMap;
 
 
 private:
-    AudioManager2();
-    AudioManager2( const AudioManager2& );
-    AudioManager2& operator=( const AudioManager2& );
+    AudioManager();
+    AudioManager( const AudioManager& );
+    AudioManager& operator=( const AudioManager& );
 
 };
 
